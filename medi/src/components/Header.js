@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonTeam from "./button/button-team";
-import ButtonLogin from "./button/button-login";
+import ButtonTeam from "./button/header/button-team";
+import ButtonLogin from "./button/header/button-login";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const HeaderNavBar = styled.div`
 const Header = () => {
     const HeaderPStyle = {
         color: colors.mainBlue,
-        marginLeft: "2vw",
+        marginLeft: "2.5vw",
         fontSize: "4rem",
         fontWeight: "bold"
     }
@@ -25,7 +25,7 @@ const Header = () => {
         display: "flex",
         flexDirection: "row",
         gap: "1vw",
-        marginRight: "2vw",
+        marginRight: "2.5vw",
     }
 
     return (
@@ -35,7 +35,7 @@ const Header = () => {
             </Link>
             <div style = {HeaderStyle}>
                 <ButtonTeam/>
-                <ButtonLogin/>
+                <ButtonLogin buttonText="LOGIN" linkTo="/login" />
             </div>
         </HeaderNavBar>
     )

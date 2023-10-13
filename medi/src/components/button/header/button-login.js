@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import colors from "../../styles/colors";
+import colors from "../../../styles/colors";
 
 const HomeLoginButton = styled.button`
     width: 13.8rem;
@@ -13,13 +13,17 @@ const HomeLoginButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+        color: ${colors.white};
+    }
 `
 
-const ButtonLogin = () => {
+const ButtonLogin = ({ buttonText, linkTo }) => {
     return (
-        <Link to = "/login">
+        <Link to={linkTo}>
             <HomeLoginButton>
-                <p style = {{color: `${colors.black}`}}>LOGIN</p>
+                <p>{buttonText}</p>
             </HomeLoginButton>
         </Link>
     )
