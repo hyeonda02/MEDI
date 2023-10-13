@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import NavButton from "./button/nav/button-nav";
+import NavButton from "./button/button-nav";
 
 const HomeNav = styled.div`
     display: flex;

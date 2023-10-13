@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-import colors from "../../../styles/colors";
+import colors from "../../styles/colors";
 
 const HomeTeamButton = styled.button`
     width: 13.8rem;
