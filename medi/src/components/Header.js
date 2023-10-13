@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonTeam from "./button/header/button-team";
-import ButtonLogin from "./button/header/button-login";
+import ButtonTeam from "./button/button-team";
+import ButtonLogin from "./button/button-login";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";

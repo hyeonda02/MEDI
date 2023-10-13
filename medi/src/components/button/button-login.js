@@ -1,32 +1,32 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import colors from "../../../styles/colors";
+import colors from "../../styles/colors";
 
-const NavButton = styled.div`
+const HomeLoginButton = styled.button`
     width: 13.8rem;
     height: 4.4rem;
-    background-color: ${colors.black};
+    background-color: ${colors.mainBlue};
+    border-radius: 0.8rem;
     border: none;
-    color: ${colors.white};
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &:hover {
-        color: ${colors.mainBlue};
+        color: ${colors.white};
     }
 `
 
-const ButtonNav = ({ buttonText, linkTo }) => {
+const ButtonLogin = ({ buttonText, linkTo }) => {
     return (
         <Link to={linkTo}>
-            <NavButton>
+            <HomeLoginButton>
                 <p>{buttonText}</p>
-            </NavButton>
+            </HomeLoginButton>
         </Link>
-    );
-};
+    )
+}
 
-export default ButtonNav;
+export default ButtonLogin

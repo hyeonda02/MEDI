@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import Nav from "../components/nav";
-import ButtonLogin from "../components/button/header/button-login";
+import ButtonLogin from "../components/button/button-login";
 import ListDrug from "../components/list/list-drug";
 import DrugData from "../util/drug";
 import homeBanner from "../assets/images/homeBanner.png";
