@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import NavButton from "./button/button-nav";
 
@@ -9,6 +10,12 @@ const HomeNav = styled.div`
 `
 
 const Nav = () => {
+    const location = useLocation();
+
+    if (location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/team') {
+        return null;
+    }
+
     return (
         <HomeNav>
             <NavButton buttonText="HOME" linkTo="/" />
@@ -19,4 +26,4 @@ const Nav = () => {
     )
 }
 
-export default Nav
+export default Nav;
