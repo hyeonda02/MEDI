@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 import colors from "../../styles/colors";
 
@@ -7,7 +7,8 @@ const NavButton = styled.div`
     height: 4.4rem;
     background-color: ${colors.black};
     border: none;
-    color: ${colors.white};
+    color: ${(props) =>
+        props.isActive ? colors.mainBlue : colors.white}; /* 변경된 부분 */
     font-size: 2rem;
     font-weight: 700;
     display: flex;
@@ -17,14 +18,15 @@ const NavButton = styled.div`
     &:hover {
         color: ${colors.mainBlue};
     }
-`
+`;
 
 const ButtonNav = ({ buttonText, linkTo }) => {
+    const location = useLocation();
+    const isActive = location.pathname === linkTo;
+
     return (
         <Link to={linkTo}>
-            <NavButton>
-                <p>{buttonText}</p>
-            </NavButton>
+            <NavButton isActive={isActive}>{buttonText}</NavButton>
         </Link>
     );
 };

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GlobalStyle from "./styles/globalStyles";
 import Header from "./components/Header";
+import Nav from "./components/nav";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
@@ -13,6 +14,7 @@ function App() {
       <GlobalStyle/>
       <Router>
         <Header/>
+        <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/team" element={<Team />} />

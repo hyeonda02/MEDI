@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import Nav from "../components/nav";
 import ButtonLogin from "../components/button/button-login";
 import ListDrug from "../components/list/list-drug";
 import DrugData from "../util/drug";
@@ -81,8 +80,6 @@ const Home = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
-            
-            <Nav /> 
 
             <img src={homeBanner} alt="homeBanner" style={{
                 width: "100%", 
