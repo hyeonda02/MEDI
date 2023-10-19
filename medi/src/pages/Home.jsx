@@ -81,7 +81,9 @@ const Home = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
+            
             <Nav /> 
+
             <img src={homeBanner} alt="homeBanner" style={{
                 width: "100%", 
                 height: "30vw", 
@@ -130,11 +132,13 @@ const Home = () => {
                 }}/>
                 <HomeBannerP1 style={{marginTop: "0.5rem"}}>의약품 종류</HomeBannerP1>
                 <div style={{width: "90%", height: "0.5vw", backgroundColor: colors.white}}/>
+                
                 <HomeMiddleContainer>
                     {drugData.length > 0 &&
                         <ListDrug data={drugData} />
                     }
                 </HomeMiddleContainer>
+                
             </HomeMiddle>
 
             <HomeExplainContainer style={{ width: "80%", marginTop:"4vw", marginBottom: "5vw" }}>
@@ -148,7 +152,7 @@ const Home = () => {
                         여러 종류의 약을 섭취할 시 주의사항을 한 눈에 볼 수 있어요.
                     </HomeBannerP1>
                 </HomeExplain>
-                <HomeExplain style={{marginLeft: "1%", marginTop: "2vw"}}>
+                <HomeExplain style={{marginLeft: "1%", marginTop: "3vw"}}>
                     <img src={locationIcon} alt="location-icon" style={{
                         width: "3.5vw",
                         height: "4vw"
