@@ -22,7 +22,8 @@ const ListDrug = ({data}) => {
                     <ItemDrug
                         key = {index}
                         img={require(`../../assets/${item.image}`)}
-                        name = {item.name}
+                        company = {item.company}
+                        type = {item.type}
                     />
                 )
             })}
