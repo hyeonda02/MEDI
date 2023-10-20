@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import colors from "../../styles/colors";
 
 const StyleItem = styled.div`
-    width: 11vw;
+    width: 12vw;
     min-height: 16vw;
     border: none;
     background-color: ${colors.mainBlue};
@@ -12,40 +12,57 @@ const StyleItem = styled.div`
     justify-content: center;
 
     @media screen and (max-width:600px) {
-        width: 16vw;
+        width: 18vw;
         min-height: 21vw;
     }
 `
 
 const ItemContainer = styled.div`
     display: flex;
-    gap: 0.2vw;
+    gap: 0.3vw;
     align-items: center;
     padding-left: 1vw;
+    padding-right: 1vw;
+`
+
+const ImageContainer = styled.div`
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 90%;
+        height: 19rem;
+        margin-bottom: 1vw;
+        margin-top: 1vw;
+
+        @media screen and (max-width:1000px) {
+            width: 90%;
+            height: 17rem;
+        }
+    }
 `
 
 const ItemDrug = (props) => {
-    const {img, name} = props;
+    const { img, type, company } = props;
 
     return (
         <StyleItem>
             <ItemContainer>
                 <div style={{
-                    width: "0.5rem", 
-                    height:"2rem", 
+                    width: "0.5rem",
+                    height: "4rem",
                     backgroundColor: colors.white
-                }}/>
+                }} />
                 <p style={{
-                    color: colors.white, 
-                    fontSize:"2rem", 
+                    color: colors.white,
+                    fontSize: "1.5rem",
                     fontWeight: "bold"
-                }}>{name}</p>
+                }}>{company}<br />{type}</p>
             </ItemContainer>
-            
-            <img src={img} alt="drug" style={{
-                width: "100%",
-                height: "80%",
-            }}/>
+
+            <ImageContainer>
+                <img src={img} alt="drug" />
+            </ImageContainer>
             {console.log(img)}
         </StyleItem>
     )
