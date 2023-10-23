@@ -14,13 +14,17 @@ const HomeSignButton = styled.button`
     display: flex;
     font-weight: bold;
     color: ${colors.black};
-    margin-top: 8rem;
+    margin-top: 3vw;
+
+    &:hover {
+        color: ${colors.white};
+    }
 `
 
-const ButtonSign = ({ buttonText, linkTo }) => {
+const ButtonSign = ({ buttonText, linkTo, type }) => {
     return (
         <Link to={linkTo}>
-            <HomeSignButton>
+            <HomeSignButton type={type}>
                 <p>{buttonText}</p>
             </HomeSignButton>
         </Link>
