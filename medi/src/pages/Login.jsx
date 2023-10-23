@@ -21,11 +21,11 @@ const Login = () => {
       
       <LoginContainer>
         <LoginP text="아이디"/>
-        <LoginInput type="text" />
+        <LoginInput type="text" placeholder="아이디를 입력해주세요." />
       </LoginContainer>
-      <LoginContainer>
+      <LoginContainer style={{marginTop: "2rem"}}>
         <LoginP text="비밀번호"/>
-        <LoginInput type="password"/>
+        <LoginInput type="password" placeholder="비밀번호를 입력해주세요."/>
         <SignButton buttonText="LOGIN" linkTo="/" />
       </LoginContainer>
     </div>
