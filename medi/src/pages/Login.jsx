@@ -29,8 +29,12 @@ const StyledLink = styled(Link)`
 
 const ShowDiv = styled.div`
   position: absolute;
-  top: 29%;
+  top: 26.5%;
   right: 2vw;
+
+  @media (max-width: 1100px) {
+    top: 28%;
+  }
 `
 
 const Login = () => {

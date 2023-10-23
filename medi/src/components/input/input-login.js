@@ -13,6 +13,7 @@ const LoginInput = styled.input`
     padding: 2vw;
     color: ${colors.white};
     align-items: center;
+    margin-top: -0.6vw;
 `
 
 const LoginInputContainer = ({ type, placeholder }) => {
