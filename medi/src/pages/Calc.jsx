@@ -98,22 +98,25 @@ const CalcCheckedContainer = styled.div`
     width: 80%;
     //margin-top : 5%;
 
-    height: 25%;
+    height: 20%;
     border-radius: 5rem;
 
     background-color: ${colors.white};
     margin: 5% auto;
 `
-const CalcCom = styled.div`
-    color: black;
-`
+
 
 const CalcPills = styled.div`
     color: black;
+    font-size: 2rem;
+    
 `
-
+const CalcCom = styled.div`
+    color: black;
+`
 const CalcPillsName = styled.div`
     color: black;
+    font-size: 4rem;
 `
 
 
@@ -157,8 +160,8 @@ const Calc = () => {
                         {/* 사진, 제약사, 제품이름 */}
                         <UserImage src={doctor} alt="doctor"/>
                         <CalcPills>
-                        <CalcCom>shuffledData</CalcCom>
-                        <CalcPillsName>sdf</CalcPillsName>
+                            <CalcCom>shuffledData</CalcCom>
+                            <CalcPillsName>sdf</CalcPillsName>
                         </CalcPills>
                         
                     </CalcList>
@@ -168,7 +171,7 @@ const Calc = () => {
                 <CalcCheckedContainer>
 
                 </CalcCheckedContainer>
-                
+
 
             </CalcBox>
 
