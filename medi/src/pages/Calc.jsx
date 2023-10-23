@@ -70,23 +70,29 @@ const CalcName = styled.div`
 const CalcListContainer = styled.div`
     width: 80%;
     height: 55%;
-    border-radius: 5rem;
-
+    border-radius: 3rem;
+    gap: 0.6vw;
     background-color: ${colors.white};
     margin: 5% auto;
     display: flex;
-
-    //align-items: center;
+    justify-content: center; //수평정렬
+    //align-items: center; //수직정렬
 `
 const CalcList = styled.div`
-    width: 20%;
-    height: 70%;
+    width: 48%;
+    height: 20%;
     margin-top : 6rem;
     display: flex;
-    
-    border-radius: 5rem;
-    color :  ${colors.mainBlue};
-    background-color: ${colors.silver};
+    text-align: justify;
+    border-radius: 3rem;
+    color :  ${colors.black};
+    background-color: ${colors.lightgray};
+    &:hover {
+        box-shadow:inset 5px 5px 5px #333;
+    }
+    gap: 0.6vw;
+    justify-content: center; //수평정렬
+    align-items: center; //수직정렬
 `
 const CalcCheckedContainer = styled.div`
     width: 80%;
@@ -97,6 +103,17 @@ const CalcCheckedContainer = styled.div`
 
     background-color: ${colors.white};
     margin: 5% auto;
+`
+const CalcCom = styled.div`
+    color: black;
+`
+
+const CalcPills = styled.div`
+    color: black;
+`
+
+const CalcPillsName = styled.div`
+    color: black;
 `
 
 
@@ -136,9 +153,16 @@ const Calc = () => {
                 </CalcSearch>
 
                 <CalcListContainer>
-                    <CalcList>영양제 목록</CalcList>
-                    <CalcList>영양제 목록</CalcList>
-                    <CalcList>영양제 목록</CalcList>
+                    <CalcList>
+                        {/* 사진, 제약사, 제품이름 */}
+                        <UserImage src={doctor} alt="doctor"/>
+                        <CalcPills>
+                        <CalcCom>shuffledData</CalcCom>
+                        <CalcPillsName>sdf</CalcPillsName>
+                        </CalcPills>
+                        
+                    </CalcList>
+                    <CalcList></CalcList>
                 </CalcListContainer>
 
                 <CalcCheckedContainer>
