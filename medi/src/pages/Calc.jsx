@@ -69,24 +69,24 @@ const CalcName = styled.div`
 
 const CalcListContainer = styled.div`
     width: 80%;
-    //margin-top : 5%;
-
     height: 55%;
     border-radius: 5rem;
 
     background-color: ${colors.white};
     margin: 5% auto;
+    display: flex;
+
+    //align-items: center;
 `
 const CalcList = styled.div`
-    // //width: 80%;
-    // margin-top : 6rem;
-    // //display: flex;
-
-    // height: 70%;
-    // border-radius: 5rem;
+    width: 20%;
+    height: 70%;
+    margin-top : 6rem;
+    display: flex;
     
-    // background-color: ${colors.white};
-
+    border-radius: 5rem;
+    color :  ${colors.mainBlue};
+    background-color: ${colors.silver};
 `
 const CalcCheckedContainer = styled.div`
     width: 80%;
@@ -131,13 +131,14 @@ const Calc = () => {
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
                     <CalcInput ></CalcInput>
+                    
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
                 <CalcListContainer>
-                    <CalcList>
-                        {/* <div>상품 목록</div> */}
-                    </CalcList>
+                    <CalcList>영양제 목록</CalcList>
+                    <CalcList>영양제 목록</CalcList>
+                    <CalcList>영양제 목록</CalcList>
                 </CalcListContainer>
 
                 <CalcCheckedContainer>
