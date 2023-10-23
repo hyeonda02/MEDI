@@ -2,7 +2,7 @@ import React from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
-import medi from "../assets/images/medi.png";
+import CalcInput from "../components/input/input-login";
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -88,8 +88,8 @@ const Calc = () => {
                 <CalcTitle>궁합 계산기</CalcTitle>
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
-                    {/* <input></input>
-                    <button type="submit"></button> */}
+                    <CalcInput></CalcInput>
+                    <button type="submit"></button> 
                 </CalcSearch>
                 
 
