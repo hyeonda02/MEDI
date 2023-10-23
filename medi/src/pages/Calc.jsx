@@ -2,7 +2,8 @@ import React from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
-import CalcInput from "../components/input/input-login";
+import CalcInput from "../components/input/input-calc";
+import CalcButton from "../components/button/button-calc";
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -18,6 +19,8 @@ const CalcBannerP2 = styled.p`
 const CalcExplainContainer = styled.div`
     width: 50%;
     margin-top: 5rem;
+    background-color: ${colors.gray};
+    
 `
 const CalcExplain = styled.div`
     width: 100%;
@@ -36,7 +39,7 @@ const CalcExplainBar = styled.div`
 `
 const CalcBox = styled.div`
     width: 80rem;
-    height: 100rem;
+    height: 150rem;
     border-radius: 5rem;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -46,18 +49,56 @@ const CalcTitle = styled.div`
     margin-left : 5rem;
     margin-top : 4rem;
     color : ${colors.white};
+    text-shadow: 2.5px 2px 2px gray; 
 `
 const CalcSearch = styled.div`
-    width: 50%;
+    width: 100%;
     margin-top : 6rem;
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+    justify-content: center;
+`
+// 제품명
+const CalcName = styled.div`
+    font-size : 3rem;
+    //margin-left : 5rem;
+    color : ${colors.white};
+    text-shadow: 2.5px 2px 2px gray; 
 `
 
-const CalcName = styled.div`
-    width : 50rem;
-    color : ${colors.white};
-    font-size : 3rem;
-    margin-left : 10rem;
+const CalcListContainer = styled.div`
+    width: 80%;
+    //margin-top : 5%;
+
+    height: 55%;
+    border-radius: 5rem;
+
+    background-color: ${colors.white};
+    margin: 5% auto;
 `
+const CalcList = styled.div`
+    // //width: 80%;
+    // margin-top : 6rem;
+    // //display: flex;
+
+    // height: 70%;
+    // border-radius: 5rem;
+    
+    // background-color: ${colors.white};
+
+`
+const CalcCheckedContainer = styled.div`
+    width: 80%;
+    //margin-top : 5%;
+
+    height: 25%;
+    border-radius: 5rem;
+
+    background-color: ${colors.white};
+    margin: 5% auto;
+`
+
 
 const Calc = () => {
     return (
@@ -86,11 +127,22 @@ const Calc = () => {
 
             <CalcBox>
                 <CalcTitle>궁합 계산기</CalcTitle>
+
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
-                    <CalcInput></CalcInput>
-                    <button type="submit"></button> 
+                    <CalcInput ></CalcInput>
+                    <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
+
+                <CalcListContainer>
+                    <CalcList>
+                        {/* <div>상품 목록</div> */}
+                    </CalcList>
+                </CalcListContainer>
+
+                <CalcCheckedContainer>
+
+                </CalcCheckedContainer>
                 
 
             </CalcBox>
