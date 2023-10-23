@@ -15,8 +15,8 @@ const LoginInput = styled.input`
     margin-bottom: 1rem;
 `
 
-const LoginInputContainer = ({ type }) => {
-    return <LoginInput type={type} />;
+const LoginInputContainer = ({ type, placeholder }) => {
+    return <LoginInput type={type} placeholder={placeholder}/>;
 };
 
 export default LoginInputContainer;
