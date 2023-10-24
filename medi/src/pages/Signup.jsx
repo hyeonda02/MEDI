@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
 import LoginP from "../components/p/p-login";
 import LoginInput from "../components/input/input-login";
 import SignButton from "../components/button/button-sign";
@@ -15,19 +14,24 @@ const LoginContainer = styled.div`
 
 const ShowDiv = styled.div`
   position: absolute;
-  top: 26.5%;
+  top: 30.5%;
   right: 2vw;
 
   @media (max-width: 1100px) {
-    top: 28%;
+    top: 34%;
   }
 `
 
 const Signup = () => {
   const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const toggleShowPswd = () => {
     setShowPass(!showPass);
+  };
+
+  const toggleShowConfirmPswd = () => {
+    setShowConfirmPass(!showConfirmPass);
   };
 
   return (
@@ -54,8 +58,19 @@ const Signup = () => {
       <LoginContainer style={{ position: "relative", marginTop: "1vw" }}>
         <LoginP text="비밀번호" />
         <LoginInput type={showPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." />
-
         <ShowDiv onClick={toggleShowPswd}>
+          {showPass ? (
+            <img src={show} alt="show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
+          ) : (
+            <img src={noShow} alt="no-show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
+          )}
+        </ShowDiv>
+      </LoginContainer>
+
+      <LoginContainer style={{ position: "relative", marginTop: "1vw" }}>
+        <LoginP text="비밀번호 확인" />
+        <LoginInput type={showConfirmPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." />
+        <ShowDiv onClick={toggleShowConfirmPswd}>
           {showPass ? (
             <img src={show} alt="show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
           ) : (
