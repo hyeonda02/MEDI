@@ -10,22 +10,33 @@ const FooterDiv = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${colors.gray};
-    position: ${(props) => (props.login ? "fixed" : "relative")};
+    position: ${({ login }) => (login ? "fixed" : "relative")};
     bottom: 0;
     left: 0;
+    margin-top: 10rem;
 
-    img {
+    & img {
         width: 33.333rem;
+    }
+
+    @media (max-width: 1300px) {
+        ${({ isSign }) =>
+        isSign && 
+        `
+            position: fixed;
+            bottom: 0;
+        `}
     }
 `;
 
 const Footer = () => {
     const location = useLocation();
     const isLogin = location.pathname === "/login";
+    const isSign = location.pathname === "/signup";
 
     return (
-        <FooterDiv login={isLogin}>
-            <img src={mediFooter} alt="footer" />
+        <FooterDiv login={isLogin} isSign={isSign}>
+        <img src={mediFooter} alt="footer" />
         </FooterDiv>
     );
 };
