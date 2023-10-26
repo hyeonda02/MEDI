@@ -9,6 +9,8 @@ const CalcInput = styled.input`
     border-radius: 0.5vw;
     outline: none;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
     padding: 1.5vw;
     color: ${colors.black};
 

@@ -8,6 +8,7 @@ import Team from "./pages/Team";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Calc from "./pages/Calc";
+import Location from "./pages/location"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/calc" element={<Calc />} />
+          <Route path="/location" element={<Location />} />
         </Routes>
         <Footer/>
       </Router>
