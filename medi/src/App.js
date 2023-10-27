@@ -8,7 +8,7 @@ import Team from "./pages/Team";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Calc from "./pages/Calc";
-import Location from "./pages/location"
+import Location from "./pages/Location";
 
 function App() {
   return (
