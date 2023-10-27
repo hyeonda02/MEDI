@@ -60,17 +60,19 @@ const shuffleArray = (array) => {
 }
 
 const Home = () => {
-    const [drugData, setDrugData] = useState([]);
-    const [slicedData, setSlicedData] = useState([]);
+    //애니메이션
+    const [drugData, setDrugData] = useState(DrugData);
+    const [slicedData, setSlicedData] = useState(shuffleArray(drugData).slice(0, 12));
 
     useEffect(() => {
         setDrugData(DrugData);
     }, []);
 
     useEffect(() => {
-        const shuffledData = shuffleArray(drugData);
-        const selectedData = shuffledData.slice(0, 12);
-        setSlicedData(selectedData);
+        const interval = setInterval(() => {
+            setSlicedData(shuffleArray(drugData).slice(0, 12));
+        }, 5000);
+        return () => clearInterval(interval);
     }, [drugData]);
 
     return (

@@ -31,13 +31,13 @@ const ImageContainer = styled.div`
 
     img {
         width: 90%;
-        height: 19rem;
+        height: 18rem;
         margin-bottom: 1vw;
         margin-top: 1vw;
 
         @media screen and (max-width:1000px) {
             width: 90%;
-            height: 17rem;
+            height: 16rem;
         }
     }
 `
