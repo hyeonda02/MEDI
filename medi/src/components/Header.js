@@ -1,6 +1,5 @@
 import React from 'react'
-import ButtonTeam from "./button/button-team";
-import ButtonLogin from "./button/button-login";
+import ButtonLogin from "./button/button-header";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
@@ -34,7 +33,7 @@ const Header = () => {
                 <p style={HeaderPStyle}>MEDI:</p>
             </Link>
             <div style = {HeaderStyle}>
-                <ButtonTeam/>
+                <ButtonLogin buttonText="팀 정보" linkTo="/team" backgroundColor="black" textColor="white"/>
                 <ButtonLogin buttonText="LOGIN" linkTo="/login" />
             </div>
         </HeaderNavBar>

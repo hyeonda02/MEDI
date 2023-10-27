@@ -2,31 +2,33 @@ import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import colors from "../../styles/colors";
 
-const HomeLoginButton = styled.button`
-    width: 13.8rem;
-    height: 4.4rem;
+const ButtonAuth = styled.button`
+    width: 100%;
+    height: 6.5rem;
     background-color: ${colors.mainBlue};
-    border-radius: 0.8rem;
     border: none;
-    font-size: 1.6rem;
-    font-weight: 700;
-    display: flex;
+    border-radius: 0.5vw;
+    font-size: 2.5rem;
     align-items: center;
     justify-content: center;
+    display: flex;
+    font-weight: bold;
+    color: ${colors.black};
+    margin-top: 3vw;
 
     &:hover {
         color: ${colors.white};
     }
 `
 
-const ButtonLogin = ({ buttonText, linkTo }) => {
+const AuthButton = ({ buttonText, linkTo, type }) => {
     return (
         <Link to={linkTo}>
-            <HomeLoginButton>
+            <ButtonAuth type={type}>
                 <p>{buttonText}</p>
-            </HomeLoginButton>
+            </ButtonAuth>
         </Link>
     )
 }
 
-export default ButtonLogin
+export default AuthButton

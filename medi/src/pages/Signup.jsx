@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import LoginP from "../components/p/p-login";
-import SignButton from "../components/button/button-sign";
+import SignButton from "../components/button/button-auth";
 import show from "../assets/images/show.png";
 import noShow from "../assets/images/no-show.png";
 
@@ -51,6 +50,11 @@ const SignInput = styled.input`
     margin-top: -0.6vw;
     margin-bottom: 1.5vw;
 `
+
+const SignP = styled.p`
+    color: ${colors.white};
+    font-size: 1vw;
+`;
 
 const Signup = () => {
   // 비밀번호 및 비밀번호 확인 show
@@ -172,7 +176,7 @@ const Signup = () => {
 
       <LoginContainer>
         <form>
-          <LoginP text="이름" />
+          <SignP>이름</SignP>
           <SignInput type="text" placeholder="이름을 입력해주세요." value={name} onChange={handleNameChange} />
           {!isName && nameTouched && (
             <Errordiv>
@@ -185,7 +189,7 @@ const Signup = () => {
             </Errordiv>
           )}
 
-          <LoginP text="생년월일" />
+          <SignP>생년월일</SignP>
           <SignInput type="text" placeholder="생년월일을 입력해주세요.(ex. 20231026)" value={birthday} onChange={handleBirthdayChange} />
           {!isBirthday && birthdayTouched && (
             <Errordiv>
@@ -198,7 +202,7 @@ const Signup = () => {
             </Errordiv>
           )}
 
-          <LoginP text="아이디" />
+          <SignP>아이디</SignP>
           <SignInput type="text" placeholder="아이디를 입력해주세요." value={id} onChange={handleIdChange} />
           {!isId && idTouched && (
             <Errordiv>
@@ -211,7 +215,7 @@ const Signup = () => {
             </Errordiv>
           )}
 
-          <LoginP text="비밀번호" />
+          <SignP>비밀번호</SignP>
           <SignInput type={showPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={password} onChange={handlePasswordChange} />
           <ShowDiv onClick={toggleShowPswd}>
             {showPass ? (
@@ -231,7 +235,7 @@ const Signup = () => {
             </Errordiv>
           )}
 
-          <LoginP text="비밀번호 확인" />
+          <SignP>비밀번호 확인</SignP>
           <SignInput type={showConfirmPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={confirmPassword} onChange={handleConfirmPasswordChange} />
           <ShowDiv onClick={toggleShowConfirmPswd}>
             {showPass ? (

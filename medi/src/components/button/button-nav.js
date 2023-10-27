@@ -8,7 +8,7 @@ const NavButton = styled.div`
     background-color: ${colors.black};
     border: none;
     color: ${(props) =>
-        props.isActive ? colors.mainBlue : colors.white}; /* 변경된 부분 */
+        props.isActive ? colors.mainBlue : colors.white};
     font-size: 2rem;
     font-weight: 700;
     display: flex;
