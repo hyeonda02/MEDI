@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import colors from "../styles/colors";
-import showImg from "../assets/images/show.png";
-import noShowImg from "../assets/images/no-show.png";
+import colors from "../../styles/colors";
+import showImg from "../../assets/images/show.png";
+import noShowImg from "../../assets/images/no-show.png";
 
 const Errordiv = styled.div`
     position: absolute;
