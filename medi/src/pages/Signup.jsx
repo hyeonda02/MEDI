@@ -1,87 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import SignButton from "../components/button/button-auth";
+import Input from "../components/Signup-Input";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import SignButton from "../components/button/button-auth";
-import show from "../assets/images/show.png";
-import noShow from "../assets/images/no-show.png";
-
-const LoginContainer = styled.div`
-  width: 30%;
-  margin-top: -1.5vw;
-  position: relative;
-`;
-
-const ShowDiv = styled.div`
-  position: absolute;
-  margin-top: -4vw;
-  right: 2vw;
-
-  @media (max-width: 800px) {
-    margin-top: -4.5vw;
-  }
-
-  @media (max-width: 500px) {
-    margin-top: -5vw;
-  }
-`;
-
-const Errordiv = styled.div`
-    position: absolute;
-    margin-top: -2vw;
-`
-
-const SignError = styled.p`
-    font-size: 0.8vw;
-    color: ${colors.white};
-`;
-
-const SignInput = styled.input`
-    width: 100%;
-    height: 2rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 0.5vw;
-    outline: none;
-    font-size: 1vw;
-    box-sizing: border-box;
-    padding: 2vw;
-    color: ${colors.white};
-    align-items: center;
-    margin-top: -0.6vw;
-    margin-bottom: 1.5vw;
-`
 
 const SignP = styled.p`
-    color: ${colors.white};
-    font-size: 1vw;
-`;
+  color: ${colors.white};
+  font-size: 1vw;
+  font-weight: bold;
+`
 
-const Signup = () => {
-  // 비밀번호 및 비밀번호 확인 show
-  const [showPass, setShowPass] = useState(false);
-  const [showConfirmPass, setShowConfirmPass] = useState(false);
-
-  const toggleShowPswd = () => {
-    setShowPass(!showPass);
-  };
-
-  const toggleShowConfirmPswd = () => {
-    setShowConfirmPass(!showConfirmPass);
-  };
-
-  // 유효성 검사
+const SignUp = () => {
+  //유효성 검사
   const [name, setName] = useState("");
   const [isName, setIsName] = useState(false);
+  const [nameTouched, setNameTouched] = useState(false);
+  
   const [birthday, setBirthday] = useState("");
   const [isBirthday, setIsBirthday] = useState(false);
+  const [birthdayTouched, setBirthdayTouched] = useState(false);
+  
   const [id, setId] = useState("");
   const [isId, setIsId] = useState(false);
+  const [idTouched, setIdTouched] = useState(false);
+  
   const [password, setPassword] = useState("");
   const [isPassword, setIsPassword] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isConfirmPassword, setIsConfirmPassword] = useState(false);
+  const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
-  // 이름
+  //이름
   const handleNameChange = (e) => {
     const inputName = e.target.value;
     setName(inputName);
@@ -92,7 +43,7 @@ const Signup = () => {
     }
   };
 
-  // 생년월일
+  //생년월일
   const handleBirthdayChange = (e) => {
     const inputBirthday = e.target.value;
     const birthdayFormat = /^\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])$/;
@@ -104,7 +55,7 @@ const Signup = () => {
     }
   };
 
-  // 아이디
+  //아이디
   const handleIdChange = (e) => {
     const inputId = e.target.value;
     const idFormat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
@@ -116,8 +67,8 @@ const Signup = () => {
     }
   };
 
-  // 비밀번호
-  const handlePasswordChange = (e) => {
+  //비밀번호
+const handlePasswordChange = (e) => {
     const inputPassword = e.target.value;
     const passwordFormat = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%^*#?&])[A-Za-z\d@$!%^*#?&]{8,}$/;
     setPassword(inputPassword);
@@ -132,9 +83,9 @@ const Signup = () => {
       setIsPassword(false);
       setIsConfirmPassword(false);
     }
-  };
+};
 
-  // 비밀번호 확인
+  //비밀번호 확인
   const handleConfirmPasswordChange = (e) => {
     const inputConfirmPassword = e.target.value;
     setConfirmPassword(inputConfirmPassword);
@@ -145,14 +96,8 @@ const Signup = () => {
     }
   };
 
-    //포커스
-  const [nameTouched, setNameTouched] = useState(false);
-  const [birthdayTouched, setBirthdayTouched] = useState(false);
-  const [idTouched, setIdTouched] = useState(false);
-  const [passwordTouched, setPasswordTouched] = useState(false);
-  const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
-
-  useEffect(() => {
+  //포커스
+    useEffect(() => {
     if (name.trim() !== '') {
       setNameTouched(true);
     }
@@ -170,96 +115,50 @@ const Signup = () => {
     }
   }, [name, birthday, id, password, confirmPassword]);
 
+  //비밀번호 및 비밀번호 확인 show
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPass(!showPass);
+  };
+
+  const toggleShowConfirmPassword = () => {
+    setShowConfirmPass(!showConfirmPass);
+  };
+
+  //에러 메시지
+  const nameError = "필수 입력 항목입니다 :(";
+  const birthdayError = "형식에 맞게 8자리로 입력해주세요 :(";
+  const idError = "영문, 숫자 포함 6자리 이상 입력해주세요 :(";
+  const passwordError = "영문, 숫자, 특수문자 포함 8자리 이상 입력해주세요 :(";
+  const confirmPasswordError = "비밀번호가 일치하지 않습니다 :(";
+
+  //성공 메시지
+  const nameSuccess = "올바른 형식입니다 :)";
+  const birthdaySuccess = "올바른 형식입니다 :)";
+  const idSuccess = "올바른 형식입니다 :)";
+  const passwordSuccess = "올바른 형식입니다 :)";
+  const confirmPasswordSuccess = "비밀번호와 일치합니다 :)";
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+    <form style={{width: "100%", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
       <p style={{ color: colors.white, fontSize: "2.5vw", fontWeight: "bold" }}>회원가입</p>
-
-      <LoginContainer>
-        <form>
+        <div style={{ width: "30%", display: "flex", flexDirection: "column"}}>
           <SignP>이름</SignP>
-          <SignInput type="text" placeholder="이름을 입력해주세요." value={name} onChange={handleNameChange} />
-          {!isName && nameTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.red }}>필수 입력 항목입니다 :(</SignError>
-            </Errordiv>
-          )}
-          {isName && nameTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.green }}>올바른 형식입니다 :)</SignError>
-            </Errordiv>
-          )}
-
+          <Input show="text" isInput={isName} input={name} handleInputChange={handleNameChange} placeholder="이름을 입력해주세요." inputError={nameError} inputSuccess={nameSuccess} showInputError={nameTouched} />
           <SignP>생년월일</SignP>
-          <SignInput type="text" placeholder="생년월일을 입력해주세요.(ex. 20231026)" value={birthday} onChange={handleBirthdayChange} />
-          {!isBirthday && birthdayTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.red }}>형식에 맞게 8자리로 입력해주세요 :(</SignError>
-            </Errordiv>
-          )}
-          {isBirthday && birthdayTouched &&(
-            <Errordiv>
-              <SignError style={{ color: colors.green }}>올바른 형식입니다 :)</SignError>
-            </Errordiv>
-          )}
-
+          <Input show="text" isInput={isBirthday} input={birthday} handleInputChange={handleBirthdayChange} placeholder="생년월일을 입력해주세요.(ex. 20231026)" inputError={birthdayError} inputSuccess={birthdaySuccess} showInputError={birthdayTouched} />
           <SignP>아이디</SignP>
-          <SignInput type="text" placeholder="아이디를 입력해주세요." value={id} onChange={handleIdChange} />
-          {!isId && idTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.red }}>영문, 숫자 포함 6자리 이상 입력해주세요 :(</SignError>
-            </Errordiv>
-          )}
-          {isId && idTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.green }}>올바른 형식입니다 :)</SignError>
-            </Errordiv>
-          )}
-
+          <Input show="text" isInput={isId} input={id} handleInputChange={handleIdChange} placeholder="아이디를 입력해주세요." inputError={idError} inputSuccess={idSuccess} showInputError={idTouched} />
           <SignP>비밀번호</SignP>
-          <SignInput type={showPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={password} onChange={handlePasswordChange} />
-          <ShowDiv onClick={toggleShowPswd}>
-            {showPass ? (
-              <img src={show} alt="show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
-            ) : (
-              <img src={noShow} alt="no-show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
-            )}
-          </ShowDiv>
-          {!isPassword && passwordTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.red }}>영문, 숫자, 특수문자 포함 8자리 이상 입력해주세요 :(</SignError>
-            </Errordiv>
-          )}
-          {isPassword && passwordTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.green }}>올바른 형식입니다 :)</SignError>
-            </Errordiv>
-          )}
-
+          <Input show={showPass} isInput={isPassword} toggleShow={toggleShowPassword} handleInputChange={handlePasswordChange} placeholder="비밀번호를 입력해주세요." inputError={passwordError} inputSuccess={passwordSuccess} showInputError={passwordTouched} />
           <SignP>비밀번호 확인</SignP>
-          <SignInput type={showConfirmPass ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={confirmPassword} onChange={handleConfirmPasswordChange} />
-          <ShowDiv onClick={toggleShowConfirmPswd}>
-            {showPass ? (
-              <img src={show} alt="show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
-            ) : (
-              <img src={noShow} alt="no-show" style={{ height: "1.2vw", width: "1.8vw", cursor: "pointer" }} />
-            )}
-          </ShowDiv>
-          {!isConfirmPassword && confirmPasswordTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.red }}>비밀번호가 일치하지 않습니다 :(</SignError>
-            </Errordiv>
-          )}
-          {isConfirmPassword && confirmPasswordTouched && (
-            <Errordiv>
-              <SignError style={{ color: colors.green }}>비밀번호가 일치합니다 :)</SignError>
-            </Errordiv>
-          )}
-
-          <SignButton buttonText="SIGN UP" linkTo="/login" type="submit"/>
-        </form>
-      </LoginContainer>
-    </div>
+          <Input show={showConfirmPass} isInput={isConfirmPassword} toggleShow={toggleShowConfirmPassword} handleInputChange={handleConfirmPasswordChange} placeholder="비밀번호를 다시 입력해주세요." inputError={confirmPasswordError} inputSuccess={confirmPasswordSuccess} showInputError={confirmPasswordTouched} />
+          <SignButton buttonText="SIGN UP" linkTo="/login" type="submit" />
+        </div>
+    </form>
   );
 };
 
-export default Signup;
+export default SignUp;
