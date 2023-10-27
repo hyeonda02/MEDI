@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SignButton from "../components/button/button-auth";
-import Input from "../components/input/input-sign";
+import Input from "../components/input/input-auth";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 
