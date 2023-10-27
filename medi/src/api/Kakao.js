@@ -12,11 +12,16 @@ height: 65rem;
 const Kakao = () => {
     const [map,setMap] = useState(null);
     useEffect(()=>{
-        if(navigator.geolocation){
+        if(navigator.geolocation){ 
+            const geoOptions = {
+                enableHighAccuracy: true,
+                maximumAge: 0,
+                timeout: Infinity,
+            };
             navigator.geolocation.getCurrentPosition( function (position) {
                 const container = document.getElementById('map');
                 const options = { 
-                    center: new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude) 
+                    center: new kakao.maps.LatLng(33.450701, 126.570667) 
                 };
                 const kakaoMap = new kakao.maps.Map(container, options);
                 setMap(kakaoMap);
@@ -25,6 +30,7 @@ const Kakao = () => {
                 const message = '<div style="padding:5px;">내위치</div>';
                 displayMarker(kakaoMap, locPostion, message);
             });
+        }else{
         }
     },[]);
 
