@@ -9,7 +9,8 @@ import Team from "./pages/Team";
 import Home from "./pages/Home";
 import Pills from "./pages/Pills";
 import Calc from "./pages/Calc";
-import Location from "./pages/location";
+import Location from "./pages/Location";
+
 
 function App() {
   return (

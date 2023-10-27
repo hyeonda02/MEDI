@@ -1,7 +1,6 @@
 import React from "react";
-import colors from "../styles/colors";
 import styled from "styled-components";
-import Kakao from "../components/location/Kakao";
+import Kakao from "../api/Kakao";
 import LocInput from "../components/input/input-Loc";
 import LocButton from "../components/button/button-Loc";
 
