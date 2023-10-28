@@ -86,16 +86,16 @@ const ButtonLeftStyled = styled(Button)`
   margin-right: 1vw;
   position: absolute;
   left: 500px; 
-  top: 40%; 
-  transform: translateY(-50%); 
+  top: 50%; 
+  
 `;
 
 const ButtonRightStyled = styled(Button)`
   margin-left: 1vw;
   position: absolute;
   right: 500px; 
-  top: 40%; 
-  transform: translateY(-50%); 
+  top: 50%; 
+  
 `;
 
 
