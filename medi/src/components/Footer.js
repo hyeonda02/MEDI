@@ -27,15 +27,25 @@ const FooterDiv = styled.div`
             bottom: 0;
         `}
     }
+
+    @media (max-width: 630px) {
+        ${({ isTeam }) =>
+        isTeam && 
+        `
+            position: fixed;
+            bottom: 0;
+        `}
+    }
 `;
 
 const Footer = () => {
     const location = useLocation();
     const isLogin = location.pathname === "/login";
     const isSign = location.pathname === "/signup";
+    const isTeam = location.pathname === "/team";
 
     return (
-        <FooterDiv login={isLogin} isSign={isSign}>
+        <FooterDiv login={isLogin} isSign={isSign} isTeam={isTeam}>
         <img src={mediFooter} alt="footer" />
         </FooterDiv>
     );
