@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import ListDrug from "../components/list/list-homeDrug";
+import ListDrug from "../components/list/list-drug";
 import DrugData from "../util/drug";
 import homeBanner from "../assets/images/homeBanner.png";
 import user from "../assets/images/user.png";
