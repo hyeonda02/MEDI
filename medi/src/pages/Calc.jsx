@@ -78,15 +78,18 @@ const CalcListContainer = styled.div`
     margin: 5% auto;
     display: flex;
     justify-content: space-between; //수평정렬
-    //align-items: center; //수직정렬
+    align-items:  flex-start; //수직정렬
 
-    flex-direction: column;
+    //flex-direction: column;
     overflow-y: auto;
+    flex-wrap: wrap;
+    
 `
 const CalcList = styled.div`
-    width: 48%;
+    width: 40%;
     height: 20%;
-    margin-top : 6rem;
+    margin: 4%;
+    //margin-top: 0;
     display: flex;
     text-align: justify;
     border-radius: 3rem;
