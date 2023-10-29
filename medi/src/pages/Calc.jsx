@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
@@ -113,6 +113,10 @@ const CalcCheckedContainer = styled.div`
     margin: 5% auto;
 `
 
+const PillsImage = styled.img`
+    width: 30%;
+    height: 30%;
+`
 
 const CalcPills = styled.div`
     color: black;
@@ -124,20 +128,13 @@ const CalcCom = styled.div`
 `
 const CalcPillsName = styled.div`
     color: black;
-    font-size: 4rem;
+    font-size: 3rem;
+    
 `
-const groupBy = (arr, groupSize) => {
-    const grouped = [];
-    for (let i = 0; i < arr.length; i += groupSize) {
-        grouped.push(arr.slice(i, i + groupSize));
-    }
-    return grouped;
-};
 
 
 const Calc = () => {
 
-    const groupedData = groupBy(DrugData, 2); // 데이터를 2개씩 그룹화
 
     return (
 
@@ -180,7 +177,7 @@ const Calc = () => {
                 {DrugData.map(drug => (
                     
                     <CalcList key={drug.id}>
-                        <UserImage src={drug.image} alt={drug.name} />
+                        <PillsImage src={drug.image} alt={drug.name} />
                         <CalcPills>
                             <CalcCom>{drug.company}</CalcCom>
                             <CalcPillsName>{drug.name}</CalcPillsName>
