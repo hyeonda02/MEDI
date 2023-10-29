@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import colors from "../styles/colors";
 import styled from "styled-components";
 import Banner1 from "../assets/images/Banner1.png";
@@ -12,7 +12,7 @@ const PillsContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-//검색
+
 const PillsSearch = styled.div`
   width: 80%;
   display: flex;
@@ -20,7 +20,7 @@ const PillsSearch = styled.div`
   align-items: center;
   justify-content: center;
   color: ${colors.lightgray};
-  margin-top: 5rem; /* PillsSearch를 아래로 내리는 여백 추가 */
+  margin-top: 5rem;
   margin-left: -50rem;
 `;
 
@@ -37,54 +37,26 @@ const SearchInput = styled.input`
 `;
 
 //필터링
-const SortContainer = styled.div`
+const SelectContainer = styled.div`
+  display: flex;
+  position: relative;
+  margin-top: -50rem;
+  margin-bottom: 50rem;
+  margin-right: -40rem;
+`;
+
+const Select = styled.select`
+  width: 100% 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -58.5rem;
-  margin-bottom: 50rem;
-  margin-right: -50rem;
-`;
-
-const SortSelect = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-`;
-
-const SortTitle = styled.p`
-  font-weight: 500;
-  font-size: 1vw;
-  line-height: 0.8vw;
-  color: ${colors.lightgray};
+  font-size: 2rem;
+  padding: 0.5vw 2vw 0.5vw 2vw;
+  height: 3vw;
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
-  padding: 1vw 3vw 1vw 3vw;
-`;
-
-const DropdownOptions = styled.div`
-  width: 6vw;
-  height: 10vw;
-  border-radius: 0.5vw;
-  border: 0.3vw solid #2A2A3A;
-  background: #191B24;
-  color: ${colors.lightgray};
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
-
-const DropdownOption = styled.div`
-  text-align: center;
-  height: 2vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 1vw;
-  font-size: 0.8vw;
-  color: ${colors.lightgray};
+  color: #484A64;
 `;
 
 //배너
@@ -103,8 +75,8 @@ const Banner = styled.div`
 `;
 
 const PillsBannerContainer = styled.div`
-  width: 50vw; 
-  height: 6.75vw; 
+  width: 50vw;
+  height: 6.75vw;
   border-radius: 0.4vw;
   display: flex;
   justify-content: center;
@@ -123,23 +95,22 @@ const Button = styled.img`
 const ButtonLeftStyled = styled(Button)`
   margin-right: 1vw;
   position: relative;
-  left: -3%;  /* 왼쪽에서 3% 위치에 배치 */
-  top: 50%;  /* 세로 중앙 정렬 */
+  left: -3%;
+  top: 50%;
 `;
 
 const ButtonRightStyled = styled(Button)`
   margin-left: 1vw;
   position: relative;
-  right: 5%;  
-  top: 50%; 
+  right: 5%;
+  top: 50%;
 `;
-
 
 const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rem; /* 여백 설정 */
+  margin-top: 20rem;
 `;
 
 const Circle = styled.div`
@@ -149,7 +120,7 @@ const Circle = styled.div`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  margin: 0 0.25vw; /* 각 동그라미 사이 여백 추가 */
+  margin: 0 0.25vw;
   transition: background-color 0.3s;
 
   &.active {
@@ -159,46 +130,30 @@ const Circle = styled.div`
 
 
 
-
 function Pills() {
+  const OPTIONS = [
+    { value: "age", name: "나이" },
+    { value: "child", name: "어린이" },
+    { value: "Teenager", name: "청소년" },
+    { value: "adult", name: "성인" },
+    { value: "old", name: "중년/노년" },
+    { value: "pregnant", name: "임산부" },
+  ];
 
-  //정렬 박스(셀렉트 박스)
-  const [selectedOption, setSelectedOption] = useState('나이');
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [clickStatus, setClickStatus] = useState({
-      '어린이': true,
-      '청소년': false,
-      '성인': false,
-      '중년/노년': false,
-      '임산부': false,
-  });
-  const dropdownRef = useRef(null);
-
-  const handleOptionClick = (option) => {
-      setSelectedOption(option);
-
-      const updatedClickStatus = {
-       '어린이': false,
-       '청소년': true,
-       '성인': false,
-       '중년/노년': false,
-       '임산부': false,
-      };
-      updatedClickStatus[option] = true;
-      setClickStatus(updatedClickStatus);
+  const SelectBox = ({ options, defaultValue, onChange }) => {
+    return (
+      <Select defaultValue={defaultValue} onChange={onChange}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
+        ))}
+      </Select>
+    );
   };
 
-  const toggleDropdown = () => {
-      setIsDropdownVisible(!isDropdownVisible);
-  };
 
-  const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-          setIsDropdownVisible(false);
-      }
-  };
-
-  //베너박스
+  //배너
   const images = [Banner1, Banner2, Banner3];
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -212,7 +167,7 @@ function Pills() {
     }
 
     setCurrentSlide(newIndex);
-  };
+  }
 
   useEffect(() => {
     const autoSlideTimer = setInterval(() => {
@@ -232,12 +187,7 @@ function Pills() {
     };
   }, [images.length]);
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-        document.removeEventListener('click', handleClickOutside);
-    };
-}, []);
+
 
 
   return (
@@ -266,18 +216,9 @@ function Pills() {
         </CircleContainer>
       </Banner>
 
-      <SortContainer>
-      <SortSelect onClick={toggleDropdown}>
-        <SortTitle>{selectedOption}</SortTitle>
-      </SortSelect>
-      <DropdownOptions visible={isDropdownVisible}>
-        {['어린이','청소년','성인','중년/노년','임산부'].map((option) => (
-          <DropdownOption key={option} onClick={() => handleOptionClick(option)}>
-            {option}
-          </DropdownOption>
-        ))}
-      </DropdownOptions>
-    </SortContainer>
+      <SelectContainer>
+        <SelectBox options={OPTIONS}> </SelectBox> 
+      </SelectContainer>
 
 
 
