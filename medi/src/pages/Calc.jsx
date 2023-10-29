@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
+import DrugData from "../util/drug";
+import ListDrug from "../components/list/list-calc";
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -75,8 +77,10 @@ const CalcListContainer = styled.div`
     background-color: ${colors.white};
     margin: 5% auto;
     display: flex;
-    justify-content: center; //수평정렬
+    justify-content: space-between; //수평정렬
     //align-items: center; //수직정렬
+
+    flex-direction: column;
 `
 const CalcList = styled.div`
     width: 48%;
@@ -118,9 +122,19 @@ const CalcPillsName = styled.div`
     color: black;
     font-size: 4rem;
 `
+const Array = (array) => {
+    const newArray = [...array];
+    // for (let i = newArray.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
+    //     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    // }
+    return newArray;
+}
 
 
 const Calc = () => {
+
+
     return (
 
         <div className="Calc" style={{
@@ -155,18 +169,21 @@ const Calc = () => {
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
+                {/* 흰색박스 */}
                 <CalcListContainer>
-                    <CalcList>
-                        {/* 사진, 제약사, 제품이름 */}
-                        <UserImage src={doctor} alt="doctor"/>
-                        <CalcPills>
-                            <CalcCom>shuffledData</CalcCom>
-                            <CalcPillsName>sdf</CalcPillsName>
-                        </CalcPills>
-                        
+                    {/* 회색박스 */}
+                {DrugData.map(drug => (
+                    
+                    <CalcList key={drug.id}>
+                    <UserImage src={drug.image} alt={drug.name} />
+                    <CalcPills>
+                        <CalcCom>{drug.company}</CalcCom>
+                        <CalcPillsName>{drug.name}</CalcPillsName>
+                    </CalcPills>
                     </CalcList>
-                    <CalcList></CalcList>
+                ))}
                 </CalcListContainer>
+
 
                 <CalcCheckedContainer>
 
