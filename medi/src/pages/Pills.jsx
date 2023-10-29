@@ -131,6 +131,8 @@ const Circle = styled.div`
 
 
 function Pills() {
+
+  //필터링
   const OPTIONS = [
     { value: "age", name: "나이" },
     { value: "child", name: "어린이" },
@@ -204,7 +206,6 @@ function Pills() {
           </Slides>
           <ButtonRightStyled src={buttonRight} onClick={() => handleSlideChange(1)} alt="ButtonRight" />
         </PillsBannerContainer>
-
         <CircleContainer>
           {[0, 1, 2].map((circleIndex) => (
             <Circle
