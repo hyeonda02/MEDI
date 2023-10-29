@@ -19,7 +19,7 @@ const CalcBannerP2 = styled.p`
 const CalcExplainContainer = styled.div`
     width: 50%;
     margin-top: 5rem;
-    background-color: ${colors.gray};
+    //background-color: ${colors.gray};
     
 `
 const CalcExplain = styled.div`
@@ -38,7 +38,7 @@ const CalcExplainBar = styled.div`
     background-color: ${colors.white};
 `
 const CalcBox = styled.div`
-    width: 80rem;
+    width: 60%;
     height: 150rem;
     border-radius: 5rem;
     margin-top: 5rem;
