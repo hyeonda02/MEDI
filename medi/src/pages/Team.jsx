@@ -29,7 +29,9 @@ const Team = () => {
           <TeamP style={{marginTop: "-0.8vw", fontWeight: "normal"}}>"개발하는 폼 미쳤다"</TeamP>
         </div>
       </div>
+
       <ListTeam data={teamData} />
+      
     </div>
   )
 }

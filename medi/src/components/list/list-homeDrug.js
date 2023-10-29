@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import ItemDrug from "../listItem/item-drug";
+import ItemDrug from "../listItem/item-homeDrug";
 
 const StyleGrid = styled.div`
     display: grid;

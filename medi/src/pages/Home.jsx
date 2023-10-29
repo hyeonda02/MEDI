@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 import colors from "../styles/colors";
 import { styled } from "styled-components";
-import ListDrug from "../components/list/list-drug";
+import ListDrug from "../components/list/list-homeDrug";
 import DrugData from "../util/drug";
 import homeBanner from "../assets/images/homeBanner.png";
 import user from "../assets/images/user.png";
@@ -18,6 +18,7 @@ const HomeP = styled.p`
 `
 
 const HoverHomeP = styled(HomeP)`
+    line-height: 3rem;
     &:hover {
         color: ${colors.mainBlue};
     }
@@ -83,7 +84,6 @@ const Home = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
-
             <img src={homeBanner} alt="homeBanner" style={{
                 width: "100%", 
                 height: "30vw", 
@@ -96,7 +96,7 @@ const Home = () => {
                     <div style={{width: "0.5rem", height: "10rem", backgroundColor: colors.white}} />
                     <div className="HomeExplainContainer">
                         <HomeP>임산부라 약을 먹을 때 조심해야 하는데..</HomeP>
-                        <HomeP style={{ fontSize: "2rem", fontWeight: "bold", marginTop: "-0.5rem" }}>
+                        <HomeP style={{ fontSize: "1.7rem", fontWeight: "bold", marginTop: "-0.5rem" }}>
                             "약에 어떤 성분이 있는지 모르겠어요"<br/>
                             "복용할 약 종류가 많은데 함께 먹어도 괜찮을까요?"
                         </HomeP>
@@ -105,9 +105,9 @@ const Home = () => {
                 <HomeExplain style={{justifyContent: "flex-end"}}>
                     <div className="HomeExplainContainer">
                         <HomeP style={{textAlign: "right"}}>
-                            의사와 상담을 추천드리지만, 병원에 가기 어렵다면 MEDI:가 도움 드리겠습니다.
+                            의사와 상담을 추천하지만, 병원 가기 어렵다면 MEDI:가 도움드리겠습니다.
                         </HomeP>
-                        <HomeP style={{ textAlign: "right", fontSize: "2rem", fontWeight: "bold", marginTop: "-0.5rem" }}>
+                        <HomeP style={{ textAlign: "right", fontSize: "1.7rem", fontWeight: "bold", marginTop: "-0.5rem" }}>
                             "MEDI: 알약 정보 제공으로 성분을 쉽게 확인하세요"<br />
                             "MEDI: 성분 계산으로 여러 종류의 약을 혼합해보세요."
                         </HomeP>

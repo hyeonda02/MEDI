@@ -28,15 +28,29 @@ const Member = styled.div`
     margin-top: -3vw;
 `
 
-const ItemTeam = ({ id, name, track, role, ambition, img }) => { 
+const GitLink = styled.a`
+    text-decoration: underline;
+    color: ${colors.white};
+    &: hover {
+        color: ${colors.mainBlue};
+    }
+`;
+
+const ItemTeam = ({ id, name, number, track, role, git, img }) => { 
     return (
         <StyleItem key={id}>
             <Image src={img} alt={name} />
             <Member>
-                <TeamP style={{fontSize: "1.2vw"}}>{track} {name}</TeamP>
+                <div style={{display: "flex", alignItems: "center", gap: "1vw"}}>
+                    <TeamP style={{fontSize: "1.2vw"}}>{number} {name}</TeamP>
+                    <TeamP style={{fontSize: "0.8vw"}}>{track}</TeamP>
+                </div>
                 <div>
-                    <TeamP>{role}</TeamP>
-                    <TeamP style={{marginTop: "-0.5vw"}}>{ambition}</TeamP>
+                    <TeamP style={{fontWeight: "normal"}}>{role}</TeamP>
+                    <div style={{display: "flex", alignItems: "center", gap: "0.5vw", marginTop: "-1.5vw"}}>
+                        <TeamP style={{fontWeight: "normal"}}>Github: </TeamP>
+                        <GitLink href={git} target="_blank" rel="noopener noreferrer">{git}</GitLink>
+                    </div>
                 </div>
             </Member>
         </StyleItem>
