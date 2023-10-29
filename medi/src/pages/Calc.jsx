@@ -5,7 +5,7 @@ import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
 import DrugData from "../util/drug";
-import ListDrug from "../components/list/list-calc";
+
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -81,6 +81,7 @@ const CalcListContainer = styled.div`
     //align-items: center; //수직정렬
 
     flex-direction: column;
+    overflow-y: auto;
 `
 const CalcList = styled.div`
     width: 48%;
@@ -122,18 +123,18 @@ const CalcPillsName = styled.div`
     color: black;
     font-size: 4rem;
 `
-const Array = (array) => {
-    const newArray = [...array];
-    // for (let i = newArray.length - 1; i > 0; i--) {
-    //     const j = Math.floor(Math.random() * (i + 1));
-    //     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    // }
-    return newArray;
-}
+const groupBy = (arr, groupSize) => {
+    const grouped = [];
+    for (let i = 0; i < arr.length; i += groupSize) {
+        grouped.push(arr.slice(i, i + groupSize));
+    }
+    return grouped;
+};
 
 
 const Calc = () => {
 
+    const groupedData = groupBy(DrugData, 2); // 데이터를 2개씩 그룹화
 
     return (
 
@@ -169,17 +170,18 @@ const Calc = () => {
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
+
                 {/* 흰색박스 */}
                 <CalcListContainer>
                     {/* 회색박스 */}
                 {DrugData.map(drug => (
                     
                     <CalcList key={drug.id}>
-                    <UserImage src={drug.image} alt={drug.name} />
-                    <CalcPills>
-                        <CalcCom>{drug.company}</CalcCom>
-                        <CalcPillsName>{drug.name}</CalcPillsName>
-                    </CalcPills>
+                        <UserImage src={drug.image} alt={drug.name} />
+                        <CalcPills>
+                            <CalcCom>{drug.company}</CalcCom>
+                            <CalcPillsName>{drug.name}</CalcPillsName>
+                        </CalcPills>
                     </CalcList>
                 ))}
                 </CalcListContainer>
