@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import NavButton from "./button/button-nav";
 
 const HomeNav = styled.div`

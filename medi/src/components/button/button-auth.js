@@ -4,11 +4,11 @@ import colors from "../../styles/colors";
 
 const ButtonAuth = styled.button`
     width: 100%;
-    height: 6.5rem;
+    height: 4vw;
     background-color: ${colors.mainBlue};
     border: none;
     border-radius: 0.5vw;
-    font-size: 2.5rem;
+    font-size: 2vw;
     align-items: center;
     justify-content: center;
     display: flex;

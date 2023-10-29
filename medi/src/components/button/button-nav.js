@@ -8,7 +8,7 @@ const NavButton = styled.div`
     background-color: ${colors.black};
     border: none;
     color: ${(props) =>
-        props.isActive ? colors.mainBlue : colors.white};
+        props.isclick === "true" ? colors.mainBlue : colors.white};
     font-size: 2rem;
     font-weight: 700;
     display: flex;
@@ -22,11 +22,11 @@ const NavButton = styled.div`
 
 const ButtonNav = ({ buttonText, linkTo }) => {
     const location = useLocation();
-    const isActive = location.pathname === linkTo;
+    const isclick = (location.pathname === linkTo).toString();
 
     return (
         <Link to={linkTo}>
-            <NavButton isActive={isActive}>{buttonText}</NavButton>
+            <NavButton isclick={isclick}>{buttonText}</NavButton>
         </Link>
     );
 };

@@ -10,7 +10,7 @@ const FooterDiv = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${colors.gray};
-    position: ${({ login }) => (login ? "fixed" : "relative")};
+    position: ${({ islogin }) => (islogin === "true" ? "fixed" : "relative")};
     bottom: 0;
     left: 0;
     margin-top: 10rem;
@@ -19,18 +19,18 @@ const FooterDiv = styled.div`
         width: 33.333rem;
     }
 
-    @media (max-width: 1300px) {
-        ${({ isSign }) =>
-        isSign && 
+    @media (max-width: 650px) {
+        ${({ isteam }) =>
+        isteam === "true" &&
         `
             position: fixed;
             bottom: 0;
         `}
     }
 
-    @media (max-width: 630px) {
-        ${({ isTeam }) =>
-        isTeam && 
+    @media (max-width: 1250px) {
+        ${({ issign }) =>
+        issign === "true" &&
         `
             position: fixed;
             bottom: 0;
@@ -38,17 +38,20 @@ const FooterDiv = styled.div`
     }
 `;
 
+
 const Footer = () => {
     const location = useLocation();
-    const isLogin = location.pathname === "/login";
-    const isSign = location.pathname === "/signup";
-    const isTeam = location.pathname === "/team";
+    const islogin = location.pathname === "/login";
+    const isteam = location.pathname === "/team";
+    const issign = location.pathname === "/signup";
 
     return (
-        <FooterDiv login={isLogin} isSign={isSign} isTeam={isTeam}>
-        <img src={mediFooter} alt="footer" />
+        <FooterDiv islogin={islogin.toString()} isteam={isteam.toString()} issign={issign.toString()}>
+            <img src={mediFooter} alt="footer" />
         </FooterDiv>
     );
 };
+
+
 
 export default Footer;

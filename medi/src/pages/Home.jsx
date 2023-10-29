@@ -105,7 +105,7 @@ const Home = () => {
                 <HomeExplain style={{justifyContent: "flex-end"}}>
                     <div className="HomeExplainContainer">
                         <HomeP style={{textAlign: "right"}}>
-                            의사와 상담을 추천하지만, 병원 가기 어렵다면 MEDI:가 도움드리겠습니다.
+                            의사와 상담을 추천하지만, 어렵다면 MEDI:가 도움드리겠습니다.
                         </HomeP>
                         <HomeP style={{ textAlign: "right", fontSize: "1.7rem", fontWeight: "bold", marginTop: "-0.5rem" }}>
                             "MEDI: 알약 정보 제공으로 성분을 쉽게 확인하세요"<br />
