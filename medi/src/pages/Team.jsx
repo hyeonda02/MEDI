@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import colors from "../styles/colors";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import ListTeam from "../components/list/list-team";
 import TeamData from "../util/team";
 import team from "../assets/images/team.png";

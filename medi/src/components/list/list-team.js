@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import ItemTeam from "../listItem/item-team";
 
 const StyleGrid = styled.div`
