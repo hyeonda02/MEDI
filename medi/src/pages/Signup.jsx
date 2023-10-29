@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import SignButton from "../components/button/button-auth";
 import Input from "../components/input/input-auth";
 import colors from "../styles/colors";
@@ -127,6 +128,27 @@ const handlePasswordChange = (e) => {
     setShowConfirmPass(!showConfirmPass);
   };
 
+  //서버 전송
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    axios.post('https://jsonplaceholder.typicode.com/posts', {
+      name: name,
+      birthday: birthday,
+      userId: id,
+      userPassword: password
+    })
+    .then(res => {
+      console.log(res.data);
+      // if (res.data) {
+      //   window.location.href = "/login";
+      // }
+    })
+    .catch(err => console.log("err: ", err))
+  };
+  
+
   //에러 메시지
   const nameError = "필수 입력 항목입니다 :(";
   const birthdayError = "형식에 맞게 8자리로 입력해주세요 :(";
@@ -155,7 +177,7 @@ const handlePasswordChange = (e) => {
           <Input show={showPass} isInput={isPassword} toggleShow={toggleShowPassword} handleInputChange={handlePasswordChange} placeholder="비밀번호를 입력해주세요." inputError={passwordError} inputSuccess={passwordSuccess} showInputError={passwordTouched} />
           <SignP>비밀번호 확인</SignP>
           <Input show={showConfirmPass} isInput={isConfirmPassword} toggleShow={toggleShowConfirmPassword} handleInputChange={handleConfirmPasswordChange} placeholder="비밀번호를 다시 입력해주세요." inputError={confirmPasswordError} inputSuccess={confirmPasswordSuccess} showInputError={confirmPasswordTouched} />
-          <SignButton buttonText="SIGN UP" linkTo="/login" type="submit" />
+          <SignButton buttonText="SIGN UP" onClick={handleSubmit}/>
         </div>
     </form>
   );

@@ -63,7 +63,6 @@ const ItemDrug = (props) => {
             <ImageContainer>
                 <img src={img} alt="drug" />
             </ImageContainer>
-            {console.log(img)}
         </StyleItem>
     )
 }
