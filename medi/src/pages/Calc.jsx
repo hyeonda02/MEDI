@@ -115,7 +115,7 @@ const CalcCheckedContainer = styled.div`
 
 const PillsImage = styled.img`
     width: 30%;
-    height: 30%;
+    height: 60%;
 `
 
 const CalcPills = styled.div`
@@ -177,7 +177,7 @@ const Calc = () => {
                 {DrugData.map(drug => (
                     
                     <CalcList key={drug.id}>
-                        <PillsImage src={drug.image} alt={drug.name} />
+                        <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
                         <CalcPills>
                             <CalcCom>{drug.company}</CalcCom>
                             <CalcPillsName>{drug.name}</CalcPillsName>
