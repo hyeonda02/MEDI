@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import colors from "../styles/colors";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LoginButton from "../components/button/button-auth";
 import Input from "../components/input/input-auth";

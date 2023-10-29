@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import ItemTeam from "../listItem/item-team";
 
 const StyleGrid = styled.div`
@@ -14,10 +14,11 @@ const ListTeam = ({data}) => {
                         key = {index}
                         id = {item.id}
                         name = {item.name}
+                        number = {item.number}
                         track = {item.track}
                         role = {item.role}
-                        ambition = {item.ambition}
-                        img={require(`../../assets/${item.image}`)}
+                        git = {item.git}
+                        img = {require(`../../assets/${item.image}`)}
                     />
                 )
             })}

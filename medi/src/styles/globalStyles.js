@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
         align-items: center;
         font-family: 'Pretendard';
         background-color: ${colors.bgColor};
+        // overflow-x: hidden;
     }
 
     button {

@@ -1,7 +1,7 @@
 import React from 'react'
 import ButtonLogin from "./button/button-header";
 import colors from "../styles/colors";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const HeaderNavBar = styled.div`

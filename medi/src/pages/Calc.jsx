@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
+import DrugData from "../util/drug";
+
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -19,7 +21,7 @@ const CalcBannerP2 = styled.p`
 const CalcExplainContainer = styled.div`
     width: 50%;
     margin-top: 5rem;
-    background-color: ${colors.gray};
+    //background-color: ${colors.gray};
     
 `
 const CalcExplain = styled.div`
@@ -38,7 +40,7 @@ const CalcExplainBar = styled.div`
     background-color: ${colors.white};
 `
 const CalcBox = styled.div`
-    width: 80rem;
+    width: 60%;
     height: 150rem;
     border-radius: 5rem;
     margin-top: 5rem;
@@ -75,13 +77,19 @@ const CalcListContainer = styled.div`
     background-color: ${colors.white};
     margin: 5% auto;
     display: flex;
-    justify-content: center; //수평정렬
-    //align-items: center; //수직정렬
+    justify-content: space-between; //수평정렬
+    align-items:  flex-start; //수직정렬
+
+    //flex-direction: column;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    
 `
 const CalcList = styled.div`
-    width: 48%;
+    width: 40%;
     height: 20%;
-    margin-top : 6rem;
+    margin: 4%;
+    //margin-top: 0;
     display: flex;
     text-align: justify;
     border-radius: 3rem;
@@ -105,6 +113,10 @@ const CalcCheckedContainer = styled.div`
     margin: 5% auto;
 `
 
+const PillsImage = styled.img`
+    width: 30%;
+    height: 60%;
+`
 
 const CalcPills = styled.div`
     color: black;
@@ -116,11 +128,14 @@ const CalcCom = styled.div`
 `
 const CalcPillsName = styled.div`
     color: black;
-    font-size: 4rem;
+    font-size: 3rem;
+    
 `
 
 
 const Calc = () => {
+
+
     return (
 
         <div className="Calc" style={{
@@ -155,18 +170,22 @@ const Calc = () => {
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
+
+                {/* 흰색박스 */}
                 <CalcListContainer>
-                    <CalcList>
-                        {/* 사진, 제약사, 제품이름 */}
-                        <UserImage src={doctor} alt="doctor"/>
+                    {/* 회색박스 */}
+                {DrugData.map(drug => (
+                    
+                    <CalcList key={drug.id}>
+                        <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
                         <CalcPills>
-                            <CalcCom>shuffledData</CalcCom>
-                            <CalcPillsName>sdf</CalcPillsName>
+                            <CalcCom>{drug.company}</CalcCom>
+                            <CalcPillsName>{drug.name}</CalcPillsName>
                         </CalcPills>
-                        
                     </CalcList>
-                    <CalcList></CalcList>
+                ))}
                 </CalcListContainer>
+
 
                 <CalcCheckedContainer>
 
