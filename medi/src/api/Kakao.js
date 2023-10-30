@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const { kakao } = window;
 
 const MapContainer = styled.div`
-    width: 140rem;
-    height: 65rem;
+    width: '60vw',
+    height: '30vw',
 `;
 
 const Kakao = () => {
@@ -94,9 +94,9 @@ return (
         <div
             id="map"
             style={{
-            width: '140rem',
-            height: '65rem',
-            marginTop: '10rem',
+            width: '60vw',
+            height: '30vw',
+            marginTop: '5vw',
             }}
         ></div>
     </MapContainer>

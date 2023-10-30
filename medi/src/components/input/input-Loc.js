@@ -3,15 +3,15 @@ import React,{ useState } from "react";
 import colors from "../../styles/colors";
 
 const LocInput = styled.input`
-    width: 115rem;
-    height: 6rem;
+    width: 50vw;
+    height: 3vw;
     background-color: #191B24;
     border-radius: 3rem;
     font-size: 2rem;
     font-weight: 800;
+    margin-right: 1vw;
     color:${colors.white};
     border-color:${colors.white};
-    padding-right: 20px; 
     text-indent: 30px;
 `
 const LocInputContainer = ({ type, placeholder }) => {

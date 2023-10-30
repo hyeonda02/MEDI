@@ -7,7 +7,7 @@ import LocButton from "../components/button/button-Loc";
 const LocExplainContainer = styled.div`
 `
 const LocSearchContainer = styled.div`
-    margin-top: 15rem;
+    margin-top: 5vw;
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
@@ -18,6 +18,7 @@ const SearchResult = styled.div`
 `
 const Location = () => {
     return (
+
         <div className="Location" style={{
             display: "flex",
             flexDirection: "column",
@@ -25,19 +26,14 @@ const Location = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
-
-
-            <LocExplainContainer>
-                <Kakao></Kakao>
-                <LocSearchContainer>
-                    <LocInput></LocInput>
-                    <LocButton buttonText="찾기" type="submit"/>
-                </LocSearchContainer>
-                <SearchResult>
+            <Kakao></Kakao>
+            <LocSearchContainer>
+                <LocInput></LocInput>
+                <LocButton buttonText="찾기" type="submit"/>
+            </LocSearchContainer>
+            <SearchResult>
                     
-                </SearchResult>
-
-            </LocExplainContainer>
+            </SearchResult>
         </div>
 
     );
