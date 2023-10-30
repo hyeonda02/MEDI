@@ -69,17 +69,40 @@ const CalcName = styled.div`
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
-// 흰색 박스
-const CalcListContainer = styled.div`
+// 흰박스
+const CalcListContainerBig = styled.div`
     width: 80%;
-    height: 55%;
+    height: 50%;
     border-radius: 3rem;
     gap: 0.6vw;
     background-color: ${colors.white};
     margin: 8% auto;
     display: flex;
-    justify-content: space-between; //수평정렬
-    align-items:  flex-start; //수직정렬
+    //justify-content: space-between; //수평정렬
+    //align-items:  flex-start; //수직정렬
+
+    //flex-direction: column;
+    
+    flex-wrap: wrap;
+`
+// 상품 목록, 선택 항목
+const CalcListEx = styled.div`
+    height: 3rem;
+    font-size : 3rem;
+    margin-left : 4rem;
+    margin-top: 3rem;
+    color : ${colors.silver};
+`
+// 스크롤 박스
+const CalcListContainer = styled.div`
+    width: 100%;
+    height: 95%;
+    //gap: 0.6vw;
+    background-color: ${colors.white};
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center; //수평정렬
+    align-items: center; //수직정렬
 
     //flex-direction: column;
     overflow-y: auto;
@@ -114,13 +137,12 @@ const CalcList = styled.div`
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 80%;
-    //margin-top : 5%;
-
     height: 20%;
     border-radius: 5rem;
-
     background-color: ${colors.white};
     margin: 5% auto;
+
+    align-items:  flex-start; //수직정렬
 `
 
 const PillsImage = styled.img`
@@ -156,6 +178,7 @@ const Completebutton = styled.button`
     display: block;
     margin: 0 auto;
 `
+
 
 
 const Calc = () => {
@@ -206,25 +229,31 @@ const Calc = () => {
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
+                <CalcListContainerBig>
+                    <CalcListEx>상품 목록</CalcListEx>
+                    {/* 흰색박스 */}
+                    <CalcListContainer>
+                    {/* 회색박스 */}
+                    {DrugData.map(drug => (
+                        
+                        <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
+                            <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
+                            <CalcPills>
+                                <CalcCom>{drug.company}</CalcCom>
+                                <CalcPillsName>{drug.name}</CalcPillsName>
+                            </CalcPills>
+                        </CalcList>
+                    ))}
+                    </CalcListContainer>
+                </CalcListContainerBig>
 
-                {/* 흰색박스 */}
-                <CalcListContainer>
-                {/* 회색박스 */}
-                {DrugData.map(drug => (
-                    
-                    <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
-                        <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
-                        <CalcPills>
-                            <CalcCom>{drug.company}</CalcCom>
-                            <CalcPillsName>{drug.name}</CalcPillsName>
-                        </CalcPills>
-                    </CalcList>
-                ))}
-                </CalcListContainer>
+                
 
 
                 <CalcCheckedContainer>
-
+                    
+                    <CalcListEx>선택한 항목</CalcListEx>
+                    
                 </CalcCheckedContainer>
                 
                 {/* <input type='submit' >완료</input> */}
