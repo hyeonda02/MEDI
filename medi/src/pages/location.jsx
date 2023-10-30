@@ -28,16 +28,17 @@ const Image = styled.img`
     width: 8rem;
     height: 8rem;
 `
-const LocationInfoMation = styled.div`
+const LocationInfoMation = styled.ul`
     margin-top: 2vw;
-    margin-right: 40vw;
     display: flex;
     align-items: center;
+    margin-right:40vw;
 `
 const LocationInfoContent = styled.div`
     margin-left: 1rem;
 
-
+`
+const Infolist = styled.li`
 `
 
 const Location = () => {
@@ -79,16 +80,17 @@ const Location = () => {
                 <LocButton buttonText="찾기" type="location"/>
             </LocSearchContainer>
 
-            {pharmacyInfo.map((pharmacy, index) => (
-                <LocationInfoMation key={index}>
-                    <Image src={locationMark} alt="locationMark" />
-                    <LocationInfoContent>
-                        <SearchInfoP>{pharmacy.name}</SearchInfoP>
-                        <SearchContentP>{pharmacy.address}</SearchContentP>
-                    </LocationInfoContent>
-                </LocationInfoMation>
-            ))}
-
+            <li className="Infolist">
+                {pharmacyInfo.map((pharmacy, index) => (
+                    <LocationInfoMation key={index}>
+                        <Image src={locationMark} alt="locationMark" />
+                        <LocationInfoContent>
+                            <SearchInfoP>{pharmacy.name}</SearchInfoP>
+                            <SearchContentP>{pharmacy.address}</SearchContentP>
+                        </LocationInfoContent>
+                    </LocationInfoMation>
+                ))}
+            </li>
         </div>
 
     );
