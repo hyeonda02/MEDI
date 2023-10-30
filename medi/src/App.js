@@ -9,7 +9,6 @@ import Team from "./pages/Team";
 import Home from "./pages/Home";
 import Pills from "./pages/Pills";
 import Calc from "./pages/Calc";
-import Location from "./pages/Location";
 
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/pills" element={<Pills />} />
           <Route path="/calc" element={<Calc />} />
-          <Route path="/location" element={<Location />} />
         </Routes>
         <Footer/>
       </Router>
