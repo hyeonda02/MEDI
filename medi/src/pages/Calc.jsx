@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import colors from "../styles/colors";
 import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
@@ -41,7 +41,7 @@ const CalcExplainBar = styled.div`
 `
 const CalcBox = styled.div`
     width: 60%;
-    height: 150rem;
+    height: 100vw;
     border-radius: 5rem;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -68,14 +68,14 @@ const CalcName = styled.div`
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
-
+// 흰색 박스
 const CalcListContainer = styled.div`
     width: 80%;
     height: 55%;
     border-radius: 3rem;
     gap: 0.6vw;
     background-color: ${colors.white};
-    margin: 5% auto;
+    margin: 8% auto;
     display: flex;
     justify-content: space-between; //수평정렬
     align-items:  flex-start; //수직정렬
@@ -85,6 +85,7 @@ const CalcListContainer = styled.div`
     flex-wrap: wrap;
     
 `
+// 회색 영양제 박스
 const CalcList = styled.div`
     width: 40%;
     height: 20%;
@@ -101,7 +102,15 @@ const CalcList = styled.div`
     gap: 0.6vw;
     justify-content: center; //수평정렬
     align-items: center; //수직정렬
+
+
+    ${({ isSelected }) =>
+        isSelected &&
+        `
+        box-shadow: inset 5px 5px 5px #333;
+    `}
 `
+// 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 80%;
     //margin-top : 5%;
@@ -134,7 +143,11 @@ const CalcPillsName = styled.div`
 
 
 const Calc = () => {
+    const [isBoxSelected, setBoxSelected] = useState(false);
 
+    const handleBoxClick = () => {
+        setBoxSelected(!isBoxSelected);
+    };
 
     return (
 
@@ -160,6 +173,7 @@ const Calc = () => {
                 </CalcExplain>
             </CalcExplainContainer>
 
+            {/* 하늘색박스 */}
             <CalcBox>
                 <CalcTitle>궁합 계산기</CalcTitle>
 
@@ -173,10 +187,10 @@ const Calc = () => {
 
                 {/* 흰색박스 */}
                 <CalcListContainer>
-                    {/* 회색박스 */}
+                {/* 회색박스 */}
                 {DrugData.map(drug => (
                     
-                    <CalcList key={drug.id}>
+                    <CalcList key={drug.id} isSelected={isBoxSelected} onClick={handleBoxClick}>
                         <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
                         <CalcPills>
                             <CalcCom>{drug.company}</CalcCom>
