@@ -11,6 +11,10 @@ const HomeNav = styled.div`
     @media (max-width: 950px) {
         gap: 5vw;
     }
+
+    @media (max-width: 500px) {
+        gap: 1vw;
+    }
 `
 
 const Nav = () => {

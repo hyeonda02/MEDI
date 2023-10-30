@@ -14,44 +14,37 @@ const PillsContainer = styled.div`
 `;
 
 const First= styled.div`
+  width: 54.5vw;
+  margin-top: 2vw;
   display: flex;
-  align-items: center;
-  gap:2vw;
-  margin-top: 5rem;
+  justify-content: center;
 `;
 
 const PillsSearch = styled.div`
-  width: 80%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  width: 100%;
   color: ${colors.lightgray};
 `;
 
 const SearchInput = styled.input`
   width: 25vw;
   height: 3vw;
-  font-size: 2rem;
+  font-size: 1vw;
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
-  color: #484A64;
+  color: ${colors.white};
   outline: none;
-  padding: 1.5vw 3.5vw 1.5vw 3vw;
-`;
-
-//필터링
-const SelectContainer = styled.div`
-  display: flex;
-  gap: 2vw;
+  padding: 0.5vw 2vw 0.5vw 2vw;
 `;
 
 const Select = styled.select`
   width: 100% 
-
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1vw;
   padding: 0.5vw 2vw 0.5vw 2vw;
   height: 3vw;
   border: 0.2vw solid #2A2A3A;
@@ -76,20 +69,20 @@ const Banner = styled.div`
 `;
 
 const PillsBannerContainer = styled.div`
-  width: 50vw;
-  height: 6.75vw;
+  width: 59vw;
+  height: 8.5vw;
   border-radius: 0.4vw;
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
   margin-top: 2.6vw;
   margin-bottom: 1rem;
+  gap: 1vw;
 `;
 
 const StyledImage = styled.img`
-  max-width: 200%;
-  max-height: 200%;
+  width: 100%;
+  height: 100%;
   border-radius: 0.4vw;
 `;
 
@@ -101,15 +94,9 @@ const Button = styled.img`
 `;
 
 const ButtonLeftStyled = styled(Button)`
-  position: relative;
-  top: 30%;
-  left: -10%;
 `;
 
 const ButtonRightStyled = styled(Button)`
-  position: relative;
-  top: 30%;
-  right: -10%;
 `;
 
 //배너 밑 동그라미 3개
@@ -117,7 +104,7 @@ const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rem;
+  gap: 0.5vw;
 `;
 
 const Circle = styled.div`
@@ -136,9 +123,7 @@ const Circle = styled.div`
 `;
 
 
-
-
-function Pills() {
+const Pills = () => {
 
   //필터링
   const OPTIONS = [
@@ -216,12 +201,9 @@ function Pills() {
       <First>
       <PillsSearch>
         <SearchInput type="search" placeholder="약품을 검색하세요." />
-      </PillsSearch>
-
-      <SelectContainer>
         <SelectBox options={OPTIONS}> </SelectBox> 
         <SelectBox options={OPTIONSS}> </SelectBox> 
-      </SelectContainer>
+      </PillsSearch>
       </First>
 
       <Banner>
