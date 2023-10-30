@@ -13,44 +13,38 @@ const PillsContainer = styled.div`
   align-items: center;
 `;
 
-const PillsSearch = styled.div`
-  width: 80%;
+const First= styled.div`
+  width: 54.5vw;
+  margin-top: 2vw;
   display: flex;
-  gap: 2vw;
-  align-items: center;
   justify-content: center;
+`;
+
+const PillsSearch = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   color: ${colors.lightgray};
-  margin-top: 5rem;
-  margin-left: -50rem;
 `;
 
 const SearchInput = styled.input`
   width: 25vw;
   height: 3vw;
-  font-size: 2rem;
+  font-size: 1vw;
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
-  color: #484A64;
+  color: ${colors.white};
   outline: none;
-  padding: 1.5vw 3.5vw 1.5vw 3vw;
-`;
-
-//필터링
-const SelectContainer = styled.div`
-  display: flex;
-  position: relative;
-  margin-top: -50rem;
-  margin-bottom: 50rem;
-  margin-right: -40rem;
+  padding: 0.5vw 2vw 0.5vw 2vw;
 `;
 
 const Select = styled.select`
   width: 100% 
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1vw;
   padding: 0.5vw 2vw 0.5vw 2vw;
   height: 3vw;
   border: 0.2vw solid #2A2A3A;
@@ -75,17 +69,24 @@ const Banner = styled.div`
 `;
 
 const PillsBannerContainer = styled.div`
-  width: 50vw;
-  height: 6.75vw;
+  width: 59vw;
+  height: 8.5vw;
   border-radius: 0.4vw;
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
   margin-top: 2.6vw;
   margin-bottom: 1rem;
+  gap: 1vw;
 `;
 
+const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 0.4vw;
+`;
+
+//양쪽 버튼
 const Button = styled.img`
   width: 1.2vw;
   height: 1.2vw;
@@ -93,24 +94,17 @@ const Button = styled.img`
 `;
 
 const ButtonLeftStyled = styled(Button)`
-  margin-right: 1vw;
-  position: relative;
-  left: -3%;
-  top: 50%;
 `;
 
 const ButtonRightStyled = styled(Button)`
-  margin-left: 1vw;
-  position: relative;
-  right: 5%;
-  top: 50%;
 `;
 
+//배너 밑 동그라미 3개
 const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rem;
+  gap: 0.5vw;
 `;
 
 const Circle = styled.div`
@@ -129,8 +123,7 @@ const Circle = styled.div`
 `;
 
 
-
-function Pills() {
+const Pills = () => {
 
   //필터링
   const OPTIONS = [
@@ -141,6 +134,17 @@ function Pills() {
     { value: "old", name: "중년/노년" },
     { value: "pregnant", name: "임산부" },
   ];
+
+  const OPTIONSS = [
+    { value: "Usage", name: "용도" },
+    { value: "tired", name: "피로회복" },
+    { value: "eye", name: "눈 건강" },
+    { value: "bone", name: "뼈 건강" },
+    { value: "detox", name: "해독 작용" },
+    { value: "medicine", name: "의약품" },
+    { value: "nutrients", name: "영양소 보충" },
+  ];
+
 
   const SelectBox = ({ options, defaultValue, onChange }) => {
     return (
@@ -194,15 +198,19 @@ function Pills() {
 
   return (
     <PillsContainer>
+      <First>
       <PillsSearch>
         <SearchInput type="search" placeholder="약품을 검색하세요." />
+        <SelectBox options={OPTIONS}> </SelectBox> 
+        <SelectBox options={OPTIONSS}> </SelectBox> 
       </PillsSearch>
+      </First>
 
       <Banner>
         <PillsBannerContainer>
           <ButtonLeftStyled src={buttonLeft} onClick={() => handleSlideChange(-1)} alt="ButtonLeft" />
           <Slides>
-            <img src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} id="productImage" />
+          <StyledImage src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} id="productImage" />
           </Slides>
           <ButtonRightStyled src={buttonRight} onClick={() => handleSlideChange(1)} alt="ButtonRight" />
         </PillsBannerContainer>
@@ -216,10 +224,6 @@ function Pills() {
           ))}
         </CircleContainer>
       </Banner>
-
-      <SelectContainer>
-        <SelectBox options={OPTIONS}> </SelectBox> 
-      </SelectContainer>
 
 
 

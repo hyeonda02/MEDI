@@ -9,7 +9,7 @@ const NavButton = styled.div`
     border: none;
     color: ${(props) =>
         props.isclick === "true" ? colors.mainBlue : colors.white};
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     display: flex;
     align-items: center;
