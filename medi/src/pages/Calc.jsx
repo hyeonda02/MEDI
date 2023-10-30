@@ -97,7 +97,7 @@ const CalcList = styled.div`
     color :  ${colors.black};
     background-color: ${colors.lightgray};
     &:hover {
-        box-shadow:inset 5px 5px 5px #333;
+        box-shadow: inset 5px 5px 5px #555;
     }
     gap: 0.6vw;
     justify-content: center; //수평정렬
@@ -107,7 +107,7 @@ const CalcList = styled.div`
     ${({ isSelected }) =>
         isSelected &&
         `
-        box-shadow: inset 5px 5px 5px #333;
+        box-shadow: inset 5px 5px 5px blue;
     `}
 `
 // 결과 박스
@@ -143,10 +143,16 @@ const CalcPillsName = styled.div`
 
 
 const Calc = () => {
-    const [isBoxSelected, setBoxSelected] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
-    const handleBoxClick = () => {
-        setBoxSelected(!isBoxSelected);
+    const handleBoxClick = (id) => {
+        if (selectedItems.includes(id)) {
+            // 이미 선택된 항목을 클릭하면 선택 해제
+            setSelectedItems(selectedItems.filter(item => item !== id));
+        } else {
+            // 새로운 항목을 선택
+            setSelectedItems([...selectedItems, id]);
+        }
     };
 
     return (
@@ -190,7 +196,7 @@ const Calc = () => {
                 {/* 회색박스 */}
                 {DrugData.map(drug => (
                     
-                    <CalcList key={drug.id} isSelected={isBoxSelected} onClick={handleBoxClick}>
+                    <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
                         <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
                         <CalcPills>
                             <CalcCom>{drug.company}</CalcCom>
