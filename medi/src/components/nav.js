@@ -7,6 +7,10 @@ const HomeNav = styled.div`
     justify-content: center;
     gap: 7vw;
     margin-top: 2vw;
+
+    @media (max-width: 950px) {
+        gap: 5vw;
+    }
 `
 
 const Nav = () => {
