@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
-
+import colors from "../styles/colors";
+import locationMark from "../assets/images/location.png";
 import Kakao from "../api/Kakao";
 import LocInput from "../components/input/input-Loc";
 import LocButton from "../components/button/button-Loc";
@@ -12,17 +13,31 @@ const LocSearchContainer = styled.div`
     justify-content: space-between; 
     align-items: center; 
 `
-const SearchResult = styled.div`
-    margin-top: 5vw;
-    flex-direction: column;
-
+const SearchInfoP = styled.p`
+    color: ${colors.white};
+    font-size: 3rem;
+    font-weight: 800;
 `
-const searchInfo = styled.div`
-    margin-top: 1vw;
+const SearchContentP = styled.p`
+    color: ${colors.white};
     font-size: 2rem;
     font-weight: 800;
 
 `
+const Image = styled.img`
+    width: 8rem;
+    height: 8rem;
+`
+const LocationInfoMation = styled.div`
+    margin-top: 3vw;
+    margin-right: 40vw;
+    display: flex;
+    align-items: center;
+`
+const LocationInfoContent = styled.div`
+    margin-left: 1rem;
+`
+
 const Location = () => {
     return (
 
@@ -34,26 +49,43 @@ const Location = () => {
             marginBottom: "5vw"
         }}>
             <Kakao></Kakao>
+
             <LocSearchContainer>
                 <LocInput></LocInput>
-                <LocButton buttonText="찾기" type="submit"/>
+                <LocButton buttonText="찾기" type="location"/>
             </LocSearchContainer>
-            <SearchResult>
-                <ul>
-                    <searchInfo>
-                        1.=이름이름이름=
-                        주소: 주소주소주소주소주소
-                    </searchInfo>
-                    <searchInfo>
-                        2.=이름이름이름=
-                        주소: 주소주소주소주소주소
-                    </searchInfo>
-                    <searchInfo>
-                        3.=이름이름이름=
-                        주소: 주소주소주소주소주소
-                    </searchInfo>
-                </ul>
-            </SearchResult>
+
+
+            <LocationInfoMation>
+                <Image src={locationMark} alt="locationMark"/>
+                <LocationInfoContent>
+                <SearchInfoP> OOO약국 </SearchInfoP>
+                <SearchContentP>주소 : 주소주소주소주소주소</SearchContentP>
+                </LocationInfoContent>
+            </LocationInfoMation>
+            <LocationInfoMation>
+                <Image src={locationMark} alt="locationMark"/>
+                <LocationInfoContent>
+                <SearchInfoP> OOO약국 </SearchInfoP>
+                <SearchContentP>주소 : 주소주소주소주소주소</SearchContentP>
+                </LocationInfoContent>
+            </LocationInfoMation>
+            <LocationInfoMation>
+                <Image src={locationMark} alt="locationMark"/>
+                <LocationInfoContent>
+                <SearchInfoP> OOO약국 </SearchInfoP>
+                <SearchContentP>주소 : 주소주소주소주소주소</SearchContentP>
+                </LocationInfoContent>
+            </LocationInfoMation>
+            <LocationInfoMation>
+                <Image src={locationMark} alt="locationMark"/>
+                <LocationInfoContent>
+                <SearchInfoP> OOO약국 </SearchInfoP>
+                <SearchContentP>주소 : 주소주소주소주소주소</SearchContentP>
+                </LocationInfoContent>
+            </LocationInfoMation>
+
+
         </div>
 
     );
