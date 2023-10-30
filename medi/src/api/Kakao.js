@@ -1,4 +1,5 @@
 /* global kakao */
+
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -9,40 +10,48 @@ const MapContainer = styled.div`
     height: "30vw",
 `;
 
-const Kakao = ({onPharmacyInfoChange}) => {
+const Kakao = ({ onPharmacyInfoChange }) => {
     const [map, setMap] = useState(null);
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
 
-useEffect(() => {
-    if (navigator.geolocation) {
+    useEffect(() => {
         const geoOptions = {
             enableHighAccuracy: true,
             maximumAge: 0,
             timeout: Infinity,
         };
-        navigator.geolocation.getCurrentPosition( function (position) {
-            const container = document.getElementById('map');
-            const options = {
-                center: new kakao.maps.LatLng(
-                position.coords.latitude,
-                position.coords.longitude),
-                level: 4,
-            };
-            const kakaoMap = new kakao.maps.Map(container, options);
-            setMap(kakaoMap);
 
-            const locPosition = new kakao.maps.LatLng(
-                position.coords.latitude,
-                position.coords.longitude
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const container = document.getElementById('map');
+                    const options = {
+                        center: new kakao.maps.LatLng(
+                            position.coords.latitude,
+                            position.coords.longitude
+                        ),
+                        level: 4,
+                    };
+                    const kakaoMap = new kakao.maps.Map(container, options);
+                    setMap(kakaoMap);
+
+                    const locPosition = new kakao.maps.LatLng(
+                        position.coords.latitude,
+                        position.coords.longitude
+                    );
+                    const message = '<div style="padding:5px;">내 위치</div>';
+                    displayMarker(kakaoMap, locPosition, message);
+                    searchPharmacies(kakaoMap, locPosition);
+                },
+                function (error) {
+                    console.error('Error getting Location:', error);
+                },
+                geoOptions
             );
-            const message = '<div style="padding:5px;">내 위치</div>';
-            displayMarker(kakaoMap, locPosition, message);
-            searchPharmacies(kakaoMap, locPosition);
-        }, function (error) {
-            console.error('Error getting Location:', error);
-        }, geoOptions);
-    }
-}, []);
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    }, []);
 
 function displayMarker(map, locPosition, message) {
     const marker = new kakao.maps.Marker({

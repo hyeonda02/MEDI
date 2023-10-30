@@ -36,33 +36,38 @@ const LocationInfoMation = styled.ul`
 `
 const LocationInfoContent = styled.div`
     margin-left: 1rem;
-
 `
 const Infolist = styled.li`
 `
 
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
-    // 약국 정보를 업데이트하는 함수
     const handlePharmacyInfoChange = (data) => {
         setPharmacyInfo(data);
     };
-      // useEffect를 사용하여 데이터를 가져와서 약국 정보를 설정
+
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            // 데이터를 가져오는 비동기 작업을 수행
-            const response = await fetch("API_URL_HERE");
-            const data = await response.json();
+            try {
+                const response = await fetch("APIKEY", {
+                    headers: {
+                        "Accept": "application/json",
+                    },
+                });
+                
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
 
-            // 가져온 데이터를 사용하여 약국 정보를 설정
-            setPharmacyInfo(data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
-    fetchData();
-    }, []); 
+                const data = await response.json();
+                setPharmacyInfo(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, [])
     
     return (
 
