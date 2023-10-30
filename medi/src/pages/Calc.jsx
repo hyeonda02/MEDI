@@ -85,7 +85,7 @@ const CalcListContainerBig = styled.div`
     
     flex-wrap: wrap;
 `
-// 상품 목록, 선택 항목
+// 상품 목록
 const CalcListEx = styled.div`
     height: 3rem;
     font-size : 3rem;
@@ -93,6 +93,7 @@ const CalcListEx = styled.div`
     margin-top: 3rem;
     color : ${colors.silver};
 `
+
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 100%;
@@ -134,15 +135,29 @@ const CalcList = styled.div`
         background-color: ${colors.silver};
     `}
 `
+
+// 선택 항목
+const CalcListEx2 = styled.div`
+    width: 30%;
+    height: 10%;
+    font-size : 3rem;
+    margin: 5%;
+    margin-top: 5%;
+    color : ${colors.silver};
+    background-color: ${colors.lightgray};
+`
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 80%;
-    height: 20%;
+    height: 10%;
     border-radius: 5rem;
     background-color: ${colors.white};
     margin: 5% auto;
-
-    align-items:  flex-start; //수직정렬
+    align-items: center; //수직정렬
+`
+// 선택된 영양제
+const CheckedPills = styled.div`
+    align-items: center; //수직정렬
 `
 
 const PillsImage = styled.img`
@@ -249,17 +264,22 @@ const Calc = () => {
 
                 
 
-
-                <CalcCheckedContainer>
+                {/* 체크 흰박스 */}
+                <CalcCheckedContainer>     
+                    <CalcListEx2>선택한 항목</CalcListEx2>
+                    <CheckedPills>
+                        <UserImage src={doctor} alt="doctor"/>
+                        <UserImage src={doctor} alt="doctor"/>
+                        <UserImage src={doctor} alt="doctor"/>
+                        <UserImage src={doctor} alt="doctor"/>
+                        <UserImage src={doctor} alt="doctor"/>
+                    </CheckedPills>
                     
-                    <CalcListEx>선택한 항목</CalcListEx>
                     
                 </CalcCheckedContainer>
-                
-                {/* <input type='submit' >완료</input> */}
+                    
                 <Completebutton>완료</Completebutton>
                 
-
 
             </CalcBox>
 
