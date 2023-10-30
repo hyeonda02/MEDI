@@ -42,7 +42,7 @@ const CalcExplainBar = styled.div`
 // 하늘색 박스
 const CalcBox = styled.div`
     width: 60%;
-    height: 150vw;
+    height: 100vw;
     border-radius: 5rem;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -118,7 +118,7 @@ const CalcList = styled.div`
     //margin-top: 0;
     display: flex;
     text-align: justify;
-    border-radius: 3rem;
+    border-radius: 1.5vw;
     color :  ${colors.black};
     background-color: ${colors.lightgray};
     &:hover {
@@ -144,12 +144,13 @@ const CalcListEx2 = styled.div`
     margin: 5%;
     margin-top: 5%;
     color : ${colors.silver};
-    background-color: ${colors.lightgray};
 `
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 80%;
-    height: 10%;
+    //height: 10%;
+    padding-top:0.5rem;
+    padding-bottom:3rem;
     border-radius: 5rem;
     background-color: ${colors.white};
     margin: 5% auto;
@@ -158,6 +159,10 @@ const CalcCheckedContainer = styled.div`
 // 선택된 영양제
 const CheckedPills = styled.div`
     align-items: center; //수직정렬
+    display: flex;
+    justify-content: center; //수평정렬
+    margin: auto;
+    width: 100%;
 `
 
 const PillsImage = styled.img`
