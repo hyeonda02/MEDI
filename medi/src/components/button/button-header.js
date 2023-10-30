@@ -20,10 +20,10 @@ const HomeLoginButton = styled.button`
     }
 `;
 
-const ButtonLogin = ({ buttonText, linkTo, btnbgcolor, txtcolor }) => {
+const ButtonLogin = ({ buttonText, linkTo, ...rest }) => {
     return (
         <Link to={linkTo}>
-            <HomeLoginButton btnbgcolor={btnbgcolor} txtcolor={txtcolor}>
+            <HomeLoginButton {...rest}>
                 <p>{buttonText}</p>
             </HomeLoginButton>
         </Link>

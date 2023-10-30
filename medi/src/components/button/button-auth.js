@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
@@ -21,14 +20,13 @@ const ButtonAuth = styled.button`
     }
 `
 
-const AuthButton = ({ buttonText, linkTo, type }) => {
+const AuthButton = ({ buttonText, onClick }) => {
     return (
-        <Link to={linkTo}>
-            <ButtonAuth type={type}>
-                <p>{buttonText}</p>
-            </ButtonAuth>
-        </Link>
+        <ButtonAuth type="submit" onClick={onClick}>
+            <p>{buttonText}</p>
+        </ButtonAuth>
     )
 }
+
 
 export default AuthButton

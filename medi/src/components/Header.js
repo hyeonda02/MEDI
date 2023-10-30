@@ -33,7 +33,7 @@ const Header = () => {
                 <p style={HeaderPStyle}>MEDI:</p>
             </Link>
             <div style={HeaderStyle}>
-                <ButtonLogin buttonText="팀 정보" linkTo="/team" btnbgcolor="black" txtcolor="white" />
+                <ButtonLogin buttonText="팀 정보" linkTo="/team" style={{ backgroundColor: "black", color: "white" }} />
                 <ButtonLogin buttonText="LOGIN" linkTo="/login" />
             </div>
         </HeaderNavBar>
