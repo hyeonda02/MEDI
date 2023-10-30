@@ -39,9 +39,10 @@ const CalcExplainBar = styled.div`
     height: 10rem;
     background-color: ${colors.white};
 `
+// 하늘색 박스
 const CalcBox = styled.div`
     width: 60%;
-    height: 100vw;
+    height: 150vw;
     border-radius: 5rem;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -107,7 +108,7 @@ const CalcList = styled.div`
     ${({ isSelected }) =>
         isSelected &&
         `
-        box-shadow: inset 5px 5px 5px blue;
+        background-color: ${colors.silver};
     `}
 `
 // 결과 박스
@@ -139,6 +140,21 @@ const CalcPillsName = styled.div`
     color: black;
     font-size: 3rem;
     
+`
+// 완료 버튼
+const Completebutton = styled.button`
+    width: 50%;
+    height: 5%;
+    border-radius: 3rem;
+    background-color: ${colors.mainBlue};
+    color: ${colors.white};
+    font-size: 4rem;
+    &:hover {
+        background-color: ${colors.darkBlue};
+    }
+    border: none;
+    display: block;
+    margin: 0 auto;
 `
 
 
@@ -210,6 +226,10 @@ const Calc = () => {
                 <CalcCheckedContainer>
 
                 </CalcCheckedContainer>
+                
+                {/* <input type='submit' >완료</input> */}
+                <Completebutton>완료</Completebutton>
+                
 
 
             </CalcBox>
