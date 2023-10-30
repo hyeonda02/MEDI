@@ -9,6 +9,7 @@ import Team from "./pages/Team";
 import Home from "./pages/Home";
 import Pills from "./pages/Pills";
 import Calc from "./pages/Calc";
+import Loc from "./pages/Loc";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/pills" element={<Pills />} />
           <Route path="/calc" element={<Calc />} />
+          <Route path="/location" element={<Loc />} />
         </Routes>
         <Footer/>
       </Router>
