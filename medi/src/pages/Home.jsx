@@ -121,9 +121,9 @@ const Home = () => {
                 <img src={mediLogo} alt="mediLogo" style={{
                     width: "3rem", 
                     height: "3rem", 
-                    paddingTop: "4vw"
+                    paddingTop: "3vw"
                 }}/>
-                <HomeP style={{marginTop: "0.5rem"}}>영양제 종류</HomeP>
+                <HomeP style={{marginTop: "1rem"}}>영양제 종류</HomeP>
                 <div style={{width: "90%", height: "0.5vw", backgroundColor: colors.white}}/>
                 
                 <HomeMiddleContainer>
