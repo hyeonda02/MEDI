@@ -5,11 +5,11 @@ import styled from 'styled-components';
 const { kakao } = window;
 
 const MapContainer = styled.div`
-    width: '60vw',
-    height: '30vw',
+    width: "60vw",
+    height: "30vw",
 `;
 
-const Kakao = () => {
+const Kakao = ({onPharmacyInfoChange}) => {
     const [map, setMap] = useState(null);
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
 
@@ -75,7 +75,9 @@ function searchPharmacies(map, locPosition) {
                 name: pharmacy.place_name,
                 address: pharmacy.address_name,
             }));
-            setPharmacyInfo(pharmacyData);
+            console.log('Pharmacy Data:', pharmacyData);
+
+            onPharmacyInfoChange(pharmacyData);
 
             for (let i = 0; i < data.length; i++) {
                 const pharmacyPosition = new kakao.maps.LatLng(data[i].y, data[i].x);
@@ -108,17 +110,6 @@ return (
                 marginTop: '5vw',
             }}
         ></div>
-        <div id="info">
-        <h2>약국 정보</h2>
-        <ul>
-            {pharmacyInfo.map((pharmacy, index) => (
-                <li key={index}>
-                    <strong>{pharmacy.name}</strong><br />
-                    주소: {pharmacy.address}
-                </li>
-            ))}
-        </ul>
-    </div>
     </MapContainer>
 );
 };
