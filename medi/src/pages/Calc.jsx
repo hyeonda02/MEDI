@@ -97,7 +97,7 @@ const CalcListEx = styled.div`
 
 // 스크롤 박스
 const CalcListContainer = styled.div`
-    width: 100%;
+    width: 99%;
     height: 90%;
     //gap: 0.6vw;
     background-color: ${colors.white};
