@@ -109,6 +109,21 @@ const CalcListContainer = styled.div`
     //flex-direction: column;
     overflow-y: auto;
     flex-wrap: wrap;
+
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    
+    &::-webkit-scrollbar-thumb {
+        background: ${colors.subBlue}; /* 스크롤바 색상 */
+        border-radius: 6px;
+        margin-right: 5%;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: ${colors.mainBlue}; /* 호버 상태의 스크롤바 색상 */
+    }
     
 `
 // 회색 영양제 박스
