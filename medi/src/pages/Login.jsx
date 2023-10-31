@@ -66,9 +66,9 @@ const Login = () => {
             </LoginContainer>
 
             <div style={{display: "flex", gap: "1rem", opacity: "0.5", fontSize: "0.5rem"}}>
-                <LoginP fontSize="1.5vw">아직 회원이 아니신가요?</LoginP>
+                <LoginP style={{fontSize: "0.8vw"}}>아직 회원이 아니신가요?</LoginP>
                 <StyledLink to="/signup">
-                    <LoginP fontSize="1.5vw">회원가입 하기</LoginP>
+                    <LoginP style={{fontSize: "0.8vw"}}>회원가입 하기</LoginP>
                 </StyledLink>
             </div>
         </div>

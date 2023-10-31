@@ -35,9 +35,16 @@ const ImageContainer = styled.div`
         margin-bottom: 1vw;
         margin-top: 1vw;
 
-        @media screen and (max-width:1000px) {
-            width: 90%;
+        @media (max-width: 1150px) {
             height: 16rem;
+        }
+
+        @media (max-width: 10000px) {
+            height: 15rem;
+        }
+
+        @media (max-width: 800px) {
+            height: 14.5rem;
         }
     }
 `
