@@ -1,13 +1,9 @@
-import styled from "styled-components";
 import ItemTeam from "../listItem/item-team";
 
-const StyleGrid = styled.div`
-
-`
 
 const ListTeam = ({data}) => {
     return (
-        <StyleGrid>
+        <>
             {data.map((item, index) => {
                 return (
                     <ItemTeam
@@ -22,7 +18,7 @@ const ListTeam = ({data}) => {
                     />
                 )
             })}
-        </StyleGrid>
+        </>
     )
 }
 

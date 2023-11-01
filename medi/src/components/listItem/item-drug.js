@@ -50,10 +50,10 @@ const ImageContainer = styled.div`
 `
 
 const ItemDrug = (props) => {
-    const { img, type, company } = props;
+    const { id, img, type, company } = props;
 
     return (
-        <StyleItem>
+        <StyleItem key={id}>
             <ItemContainer>
                 <div style={{
                     width: "0.5rem",

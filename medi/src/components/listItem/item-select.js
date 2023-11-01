@@ -18,9 +18,9 @@ const CalcResultP = styled.p`
     font-size: 0.8vw;
 `
 
-const ItemSelect = ({ img, type, explain}) => { 
+const ItemSelect = ({ id, img, type, explain}) => { 
     return (
-        <StyleItem>
+        <StyleItem key={id}>
             <img src={img} alt="img" style={{marginLeft: "2vw", width: "5vw", height: "6vw"}}/>
             <div style={{ padding: "0 2vw 0 2vw"}}>
                 <CalcResultP style={{fontWeight: "bold", fontSize: "1vw"}}>{type}</CalcResultP>
