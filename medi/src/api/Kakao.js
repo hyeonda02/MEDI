@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import geolib from 'geolib';
+
 
 const { kakao } = window;
 
@@ -83,7 +85,7 @@ function searchPharmacies(map, locPosition) {
             const pharmacyData = data.map((pharmacy) => ({
                 name: pharmacy.place_name,
                 address: pharmacy.address_name,
-            }));
+                }));
             console.log('Pharmacy Data:', pharmacyData);
 
             onPharmacyInfoChange(pharmacyData);
