@@ -14,23 +14,17 @@ const LocInput = styled.input`
     border-color:${colors.white};
     text-indent: 2vw;
 `
-const LocInputContainer = ({ type, placeholder }) => {
-
-    const[inputValue, setInputValue]=useState("");
-    const handleInputChange = e => {
-        setInputValue(e.target.value);
-        console.log(e.target.value);
-    }
-
-
+// LocInput 컴포넌트
+const LocInputContainer = ({ type, value, placeholder, onInputChange }) => {
     return (
-        <LocInput 
-            type={type} 
-            placeholder="지역을 입력해주세요"
-            value={inputValue}
-            onChange={handleInputChange}
+        <LocInput
+            type={type}
+            placeholder={placeholder}
+            value={value || ""}
+            onChange={(e) => onInputChange(e.target.value)}
         />
     );
 };
+
 
 export default LocInputContainer;

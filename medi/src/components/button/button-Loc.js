@@ -19,18 +19,13 @@ const LocButton = styled.button`
     }
 `
 
-const ButtonLocation = ({ buttonText, onSubmit }) => {
-    const handleClick = () => {
-        if (onSubmit) {
-            onSubmit();
-        }
-    };
-
+const ButtonLocation = ({ buttonText, onClick }) => {
     return (
-        <LocButton onClick={handleClick}>
+        <LocButton onClick={onClick}>
             <p>{buttonText}</p>
         </LocButton>
     );
 }
+
 
 export default ButtonLocation;

@@ -40,7 +40,16 @@ const Infolist = styled.li`
 
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
-    const handlePharmacyInfoChange = (data) => {
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInputValue = value => {
+        setInputValue(value);
+        console.log("인풋 필드 갱신 : ", value);
+    }
+    const submit = () => {
+        console.log("버튼 클릭 : ",inputValue);
+    }
+    const handlePharmacyInfoChange = data => {
         setPharmacyInfo(data);
     };
 
@@ -79,8 +88,8 @@ const Location = () => {
             <Kakao onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
 
             <LocSearchContainer>
-                <LocInput></LocInput>
-                <LocButton buttonText="찾기" type="location"/>
+                <LocInput value={inputValue} placeholder="지역을 입력해주세요" onInputChange={handleInputValue} />
+                <LocButton buttonText="찾기" type="location" onClick={submit} />
             </LocSearchContainer>
 
             <li className="Infolist">
