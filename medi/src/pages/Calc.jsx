@@ -219,13 +219,30 @@ const Completebutton = styled.button`
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
 
+    // const handleBoxClick = (id) => {
+    //     if (selectedItems.includes(id)) {
+    //         // 이미 선택된 항목을 클릭하면 선택 해제
+    //         setSelectedItems(selectedItems.filter(item => item !== id));
+    //     } else {
+    //         // 새로운 항목을 선택
+    //         setSelectedItems([...selectedItems, id]);
+    //     }
+    // };
+
     const handleBoxClick = (id) => {
         if (selectedItems.includes(id)) {
             // 이미 선택된 항목을 클릭하면 선택 해제
             setSelectedItems(selectedItems.filter(item => item !== id));
         } else {
-            // 새로운 항목을 선택
-            setSelectedItems([...selectedItems, id]);
+            if (selectedItems.length >= 5) {
+                // 최대 5개 항목까지만 선택 가능하도록 처리
+                // 가장 먼저 선택한 항목 제거
+                const newSelectedItems = selectedItems.slice(1);
+                setSelectedItems([...newSelectedItems, id]);
+            } else {
+                // 5개 이하의 항목을 선택할 때
+                setSelectedItems([...selectedItems, id]);
+            }
         }
     };
 
