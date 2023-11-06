@@ -98,7 +98,7 @@ const CalcListEx = styled.div`
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 90%;
+    height: 89%;
     //gap: 0.6vw;
     background-color: ${colors.white};
     border-radius: 3rem;
@@ -154,7 +154,7 @@ const CalcList = styled.div`
 
 // 선택 항목
 const CalcListEx2 = styled.div`
-    font-size : 1.5vw;
+    font-size : 2vw;
     margin: 5%;
     margin-top: 5%;
     color : ${colors.silver};
@@ -283,17 +283,23 @@ const Calc = () => {
                 </CalcListContainerBig>
 
                 {/* 체크 흰박스 */}
-                <CalcCheckedContainer>     
+                <CalcCheckedContainer>
                     <CalcListEx2>선택한 항목</CalcListEx2>
                     <CheckedPills>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
+                        {selectedItems.map(id => {
+                            const selectedDrug = DrugData.find(drug => drug.id === id);
+                            return (
+                                <UserImage
+                                    key={selectedDrug.id}
+                                    src={require(`../assets/${selectedDrug.image}`)}
+                                    alt={selectedDrug.name}
+                                    style={{ width: "15%", height: "15%" }}
+                                />
+                            );
+                        })}
                     </CheckedPills>
                 </CalcCheckedContainer>
-                    
+
                 <Completebutton>완료</Completebutton>
                 
 
