@@ -17,9 +17,11 @@ const LocInput = styled.input`
 const LocInputContainer = ({ type, placeholder }) => {
 
     const[inputValue, setInputValue]=useState("");
-    const handleInputChange = (e) => {
+    const handleInputChange = e => {
         setInputValue(e.target.value);
-    };
+        console.log(e.target.value);
+    }
+
 
     return (
         <LocInput 
