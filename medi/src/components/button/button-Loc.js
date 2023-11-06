@@ -2,10 +2,10 @@ import { styled } from "styled-components";
 import colors from "../../styles/colors";
 
 const LocButton = styled.button`
-    width: 17rem;
-    height: 6.5rem;
+    width: 10vw;
+    height: 4vw;
     background-color: #191B24;
-    border-radius: 3rem;
+    border-radius: 3vw;
     font-size: 2rem;
     font-weight: 800;
     display: flex;
@@ -19,12 +19,13 @@ const LocButton = styled.button`
     }
 `
 
-const ButtonLocation = ({ buttonText, linkTo }) => {
+const ButtonLocation = ({ buttonText, onClick }) => {
     return (
-        <LocButton>
+        <LocButton onClick={onClick}>
             <p>{buttonText}</p>
         </LocButton>
-    )
+    );
 }
 
-export default ButtonLocation
+
+export default ButtonLocation;
