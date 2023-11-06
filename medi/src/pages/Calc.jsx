@@ -98,7 +98,7 @@ const CalcListEx = styled.div`
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 90%;
+    height: 89%;
     //gap: 0.6vw;
     background-color: ${colors.white};
     border-radius: 3rem;
@@ -154,7 +154,7 @@ const CalcList = styled.div`
 
 // 선택 항목
 const CalcListEx2 = styled.div`
-    font-size : 1.5vw;
+    font-size : 2vw;
     margin: 5%;
     margin-top: 5%;
     color : ${colors.silver};
@@ -219,13 +219,30 @@ const Completebutton = styled.button`
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
 
+    // const handleBoxClick = (id) => {
+    //     if (selectedItems.includes(id)) {
+    //         // 이미 선택된 항목을 클릭하면 선택 해제
+    //         setSelectedItems(selectedItems.filter(item => item !== id));
+    //     } else {
+    //         // 새로운 항목을 선택
+    //         setSelectedItems([...selectedItems, id]);
+    //     }
+    // };
+
     const handleBoxClick = (id) => {
         if (selectedItems.includes(id)) {
             // 이미 선택된 항목을 클릭하면 선택 해제
             setSelectedItems(selectedItems.filter(item => item !== id));
         } else {
-            // 새로운 항목을 선택
-            setSelectedItems([...selectedItems, id]);
+            if (selectedItems.length >= 5) {
+                // 최대 5개 항목까지만 선택 가능하도록 처리
+                // 가장 먼저 선택한 항목 제거
+                const newSelectedItems = selectedItems.slice(1);
+                setSelectedItems([...newSelectedItems, id]);
+            } else {
+                // 5개 이하의 항목을 선택할 때
+                setSelectedItems([...selectedItems, id]);
+            }
         }
     };
 
@@ -283,17 +300,23 @@ const Calc = () => {
                 </CalcListContainerBig>
 
                 {/* 체크 흰박스 */}
-                <CalcCheckedContainer>     
+                <CalcCheckedContainer>
                     <CalcListEx2>선택한 항목</CalcListEx2>
                     <CheckedPills>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
-                        <UserImage src={doctor} alt="doctor" style={{width: "15%", height: "15%"}}/>
+                        {selectedItems.map(id => {
+                            const selectedDrug = DrugData.find(drug => drug.id === id);
+                            return (
+                                <UserImage
+                                    key={selectedDrug.id}
+                                    src={require(`../assets/${selectedDrug.image}`)}
+                                    alt={selectedDrug.name}
+                                    style={{ width: "15%", height: "15%" }}
+                                />
+                            );
+                        })}
                     </CheckedPills>
                 </CalcCheckedContainer>
-                    
+
                 <Completebutton>완료</Completebutton>
                 
 
