@@ -14,7 +14,7 @@ const LocInput = styled.input`
     border-color:${colors.white};
     text-indent: 2vw;
 `
-// LocInput 컴포넌트
+
 const LocInputContainer = ({ type, value, placeholder, onInputChange }) => {
     return (
         <LocInput
