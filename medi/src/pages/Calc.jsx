@@ -104,7 +104,7 @@ const CalcListContainer = styled.div`
     border-radius: 3rem;
     display: flex;
     justify-content: center; //수평정렬
-    align-items: center; //수직정렬
+    //align-items: center; //수직정렬
     margin-top: 3rem;
     //flex-direction: column;
     overflow-y: auto;
@@ -287,8 +287,8 @@ const Calc = () => {
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
                     {/* 검색어 입력란 */}
-                    <CalcInput onChange={handleSearchTermChange} value={searchTerm} /> 
-                    <CalcButton buttonText="+"></CalcButton> 
+                    <CalcInput onChange={handleSearchTermChange} value={searchTerm} placeholder="제약사, 상품명을 검색하세요" /> 
+                    {/* <CalcButton buttonText="+"></CalcButton>  */}
                 </CalcSearch>
 
                 <Flex>

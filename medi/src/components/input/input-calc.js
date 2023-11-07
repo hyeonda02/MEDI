@@ -13,6 +13,14 @@ const CalcInput = styled.input`
     justify-content: center;
     padding: 1.5vw;
     color: ${colors.black};
+    font-size: 2.5rem;
+    align-items: center; //수직정렬
+    &::placeholder {
+        /* 힌트 메시지 스타일링 */
+        color: ${colors.lightgray}; /* 원하는 색상으로 설정 */
+        font-size: 2.5rem;
+        
+    }
 
 `
 
