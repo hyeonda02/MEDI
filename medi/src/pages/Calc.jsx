@@ -168,6 +168,7 @@ const CalcCheckedContainer = styled.div`
     background-color: ${colors.white};
     margin: 5% auto;
     align-items: center; //수직정렬
+    
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
@@ -315,12 +316,23 @@ const Calc = () => {
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
-                                    <UserImage
-                                        key={selectedDrug.id}
-                                        src={require(`../assets/${selectedDrug.image}`)}
-                                        alt={selectedDrug.name}
-                                        style={{ width: "25%", height: "25%" }}
-                                    />
+                                    // <UserImage
+                                    //     key={selectedDrug.id}
+                                    //     src={require(`../assets/${selectedDrug.image}`)}
+                                    //     alt={selectedDrug.name}
+                                    //     style={{ width: "30%", height: "30%" }}
+                                    // />
+                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  }}>
+                                        <UserImage
+                                            src={require(`../assets/${selectedDrug.image}`)}
+                                            alt={selectedDrug.name}
+                                            style={{ width: "30%", height: "30%" }}
+                                        />
+                                        <div style={{ margin: '0 20px' }}>
+                                        <CalcPillsName>{selectedDrug.type}</CalcPillsName>
+                                        </div>
+                                        
+                                    </div>
                                 );
                             })}
                         </CheckedPills>
