@@ -42,8 +42,8 @@ const CalcExplainBar = styled.div`
 `
 // 하늘색 박스
 const CalcBox = styled.div`
-    width: 60%;
-    height: 100vw;
+    width: 85%;
+    height: 90%;
     border-radius: 2.5vw;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -72,19 +72,19 @@ const CalcName = styled.div`
 `
 // 흰박스
 const CalcListContainerBig = styled.div`
-    width: 80%;
-    height: 50%;
+    width: 70%;
+    //height: 100%;
     border-radius: 1.5vw;
-    gap: 0.6vw;
+    // gap: 1vw;
     background-color: ${colors.white};
-    margin: 8% auto;
-    display: flex;
+    margin: 5% auto;
+    // display: flex;
     //justify-content: space-between; //수평정렬
     //align-items:  flex-start; //수직정렬
 
     //flex-direction: column;
     
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
 `
 // 상품 목록
 const CalcListEx = styled.div`
@@ -98,14 +98,14 @@ const CalcListEx = styled.div`
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 89%;
+    height: 35vw;
     //gap: 0.6vw;
     background-color: ${colors.white};
     border-radius: 3rem;
     display: flex;
     justify-content: center; //수평정렬
     align-items: center; //수직정렬
-
+    margin-top: 3rem;
     //flex-direction: column;
     overflow-y: auto;
     flex-wrap: wrap;
@@ -113,7 +113,6 @@ const CalcListContainer = styled.div`
     &::-webkit-scrollbar {
         width: 12px;
     }
-    
     
     &::-webkit-scrollbar-thumb {
         background: ${colors.subBlue}; /* 스크롤바 색상 */
@@ -129,7 +128,7 @@ const CalcListContainer = styled.div`
 // 회색 영양제 박스
 const CalcList = styled.div`
     width: 40%;
-    height: 20%;
+    height: 30%;
     margin: 4%;
     //margin-top: 0;
     display: flex;
@@ -161,11 +160,11 @@ const CalcListEx2 = styled.div`
 `
 // 결과 박스
 const CalcCheckedContainer = styled.div`
-    width: 80%;
-    //height: 10%;
+    width: 20%;
+    height: 10%;
     padding-top:0.5rem;
     padding-bottom:3rem;
-    border-radius: 2.5vw;
+    border-radius: 1.5vw;
     background-color: ${colors.white};
     margin: 5% auto;
     align-items: center; //수직정렬
@@ -174,6 +173,7 @@ const CalcCheckedContainer = styled.div`
 const CheckedPills = styled.div`
     align-items: center; //수직정렬
     display: flex;
+    flex-direction: column; // 세로로 정렬
     justify-content: center; //수평정렬
     margin: auto;
     width: 100%;
@@ -181,8 +181,8 @@ const CheckedPills = styled.div`
 `
 
 const PillsImage = styled.img`
-    width: 30%;
-    height: 60%;
+    width: 35%;
+    height: 75%;
 `
 
 const CalcPills = styled.div`
@@ -201,7 +201,7 @@ const CalcPillsName = styled.div`
 // 완료 버튼
 const Completebutton = styled.button`
     width: 50%;
-    min-height: 5%;
+    //min-height: 15%;
     border-radius: 1.5vw;
     background-color: ${colors.mainBlue};
     color: ${colors.white};
@@ -211,13 +211,18 @@ const Completebutton = styled.button`
     }
     border: none;
     display: block;
-    margin: 0 auto;
+    margin: 0% auto;
+    margin-bottom: 5%;
 `
 const Warning = styled.div`
     color: red;
     text-align:right;
     margin-right:2rem;
     margin-top:2rem;
+`
+
+const Flex = styled.div`
+    display:flex;
 `
 
 
@@ -283,42 +288,46 @@ const Calc = () => {
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
-                <CalcListContainerBig>
-                    <CalcListEx>상품 목록</CalcListEx>
+                <Flex>
                     {/* 흰색박스 */}
-                    <CalcListContainer>
-                    {/* 회색박스 */}
-                    {filteredDrugData.map(drug => (
+                    <CalcListContainerBig>
+                    <CalcListEx>상품 목록</CalcListEx>
+                        <CalcListContainer>
+                        {/* 회색박스 */}
+                        {filteredDrugData.map(drug => (
+                            
+                            <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
+                                <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
+                                <CalcPills>
+                                    <CalcCom>{drug.company}</CalcCom>
+                                    <CalcPillsName>{drug.name}</CalcPillsName>
+                                </CalcPills>
+                            </CalcList>
+                        ))}
+                        </CalcListContainer>
+                    </CalcListContainerBig>
                         
-                        <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
-                            <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
-                            <CalcPills>
-                                <CalcCom>{drug.company}</CalcCom>
-                                <CalcPillsName>{drug.name}</CalcPillsName>
-                            </CalcPills>
-                        </CalcList>
-                    ))}
-                    </CalcListContainer>
-                </CalcListContainerBig>
-
-                {/* 체크 흰박스 */}
-                <CalcCheckedContainer>
-                    <CalcListEx2>선택한 항목</CalcListEx2>
-                    <CheckedPills>
-                        {selectedItems.map(id => {
-                            const selectedDrug = DrugData.find(drug => drug.id === id);
-                            return (
-                                <UserImage
-                                    key={selectedDrug.id}
-                                    src={require(`../assets/${selectedDrug.image}`)}
-                                    alt={selectedDrug.name}
-                                    style={{ width: "15%", height: "15%" }}
-                                />
-                            );
-                        })}
-                    </CheckedPills>
-                    <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
-                </CalcCheckedContainer>
+                    
+                    {/* 체크 흰박스 */}
+                    <CalcCheckedContainer>
+                        <CalcListEx2>선택한 항목</CalcListEx2>
+                        <CheckedPills>
+                            {selectedItems.map(id => {
+                                const selectedDrug = DrugData.find(drug => drug.id === id);
+                                return (
+                                    <UserImage
+                                        key={selectedDrug.id}
+                                        src={require(`../assets/${selectedDrug.image}`)}
+                                        alt={selectedDrug.name}
+                                        style={{ width: "25%", height: "25%" }}
+                                    />
+                                );
+                            })}
+                        </CheckedPills>
+                        <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
+                    </CalcCheckedContainer>
+                </Flex>
+                
 
                 <Completebutton>완료</Completebutton>
                 
