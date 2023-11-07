@@ -230,7 +230,7 @@ const Flex = styled.div`
 
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
-    const [searchText, setSearchText] = useState(""); // 검색어 상태 추가
+    
 
     const handleBoxClick = (id) => {
         if (selectedItems.includes(id)) {
@@ -245,16 +245,7 @@ const Calc = () => {
     };
 
 
-    // 검색어 입력 핸들러
-    const handleSearch = (text) => {
-        setSearchText(text);
-    };
-
-    // 검색 결과 필터링 함수
-    const filteredDrugData = DrugData.filter(drug => {
-        return drug.company.includes(searchText) || drug.name.includes(searchText);
-    });
-
+    
     return (
 
         <div className="Calc" style={{
@@ -286,7 +277,7 @@ const Calc = () => {
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
                     {/* 검색어 입력란 */}
-                    <CalcInput onInput={handleSearch} value={searchText} /> 
+                    <CalcInput /> 
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
@@ -296,7 +287,7 @@ const Calc = () => {
                     <CalcListEx>상품 목록</CalcListEx>
                         <CalcListContainer>
                         {/* 회색박스 */}
-                        {filteredDrugData.map(drug => (
+                        {DrugData.map(drug => (
                             
                             <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
                                 <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
