@@ -70,7 +70,7 @@ const CalcName = styled.div`
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
-// 흰박스
+// 상품목록 박스
 const CalcListContainerBig = styled.div`
     width: 70%;
     //height: 100%;
@@ -86,7 +86,7 @@ const CalcListContainerBig = styled.div`
     
     //flex-wrap: wrap;
 `
-// 상품 목록
+// 상품 목록 글씨
 const CalcListEx = styled.div`
     height: 3rem;
     font-size : 2vw;
@@ -98,7 +98,7 @@ const CalcListEx = styled.div`
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 35vw;
+    height: 38vw;
     //gap: 0.6vw;
     background-color: ${colors.white};
     border-radius: 3rem;
@@ -217,9 +217,10 @@ const Completebutton = styled.button`
 `
 const Warning = styled.div`
     color: red;
-    text-align:right;
+    text-align:center;
     margin-right:2rem;
     margin-top:2rem;
+    font-size:2rem;
 `
 
 const Flex = styled.div`
