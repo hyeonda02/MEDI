@@ -213,38 +213,40 @@ const Completebutton = styled.button`
     display: block;
     margin: 0 auto;
 `
-
+const Warning = styled.div`
+    color: red;
+    text-align:right;
+    margin-right:2rem;
+    margin-top:2rem;
+`
 
 
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
-
-    // const handleBoxClick = (id) => {
-    //     if (selectedItems.includes(id)) {
-    //         // 이미 선택된 항목을 클릭하면 선택 해제
-    //         setSelectedItems(selectedItems.filter(item => item !== id));
-    //     } else {
-    //         // 새로운 항목을 선택
-    //         setSelectedItems([...selectedItems, id]);
-    //     }
-    // };
+    const [searchText, setSearchText] = useState(""); // 검색어 상태 추가
 
     const handleBoxClick = (id) => {
         if (selectedItems.includes(id)) {
             // 이미 선택된 항목을 클릭하면 선택 해제
             setSelectedItems(selectedItems.filter(item => item !== id));
         } else {
-            if (selectedItems.length >= 5) {
-                // 최대 5개 항목까지만 선택 가능하도록 처리
-                // 가장 먼저 선택한 항목 제거
-                const newSelectedItems = selectedItems.slice(1);
-                setSelectedItems([...newSelectedItems, id]);
-            } else {
-                // 5개 이하의 항목을 선택할 때
+            if (selectedItems.length < 5) {
+                // 5개 미만일 때만 새로운 항목을 선택
                 setSelectedItems([...selectedItems, id]);
             }
         }
     };
+
+
+    // 검색어 입력 핸들러
+    const handleSearch = (text) => {
+        setSearchText(text);
+    };
+
+    // 검색 결과 필터링 함수
+    const filteredDrugData = DrugData.filter(drug => {
+        return drug.company.includes(searchText) || drug.name.includes(searchText);
+    });
 
     return (
 
@@ -276,8 +278,8 @@ const Calc = () => {
 
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
-                    <CalcInput ></CalcInput>
-    
+                    {/* 검색어 입력란 */}
+                    <CalcInput onInput={handleSearch} value={searchText} /> 
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
@@ -286,7 +288,7 @@ const Calc = () => {
                     {/* 흰색박스 */}
                     <CalcListContainer>
                     {/* 회색박스 */}
-                    {DrugData.map(drug => (
+                    {filteredDrugData.map(drug => (
                         
                         <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
                             <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
@@ -315,6 +317,7 @@ const Calc = () => {
                             );
                         })}
                     </CheckedPills>
+                    <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
                 </CalcCheckedContainer>
 
                 <Completebutton>완료</Completebutton>
