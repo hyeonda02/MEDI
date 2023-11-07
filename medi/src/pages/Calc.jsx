@@ -230,7 +230,17 @@ const Flex = styled.div`
 
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
-    
+    const [searchTerm, setSearchTerm] = useState(''); // 사용자의 입력 값을 저장할 상태
+    // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
+    const filteredDrugs = DrugData.filter(drug =>
+        drug.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        drug.company.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    // 사용자의 입력을 업데이트하는 함수
+    const handleSearchTermChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
 
     const handleBoxClick = (id) => {
         if (selectedItems.includes(id)) {
@@ -277,17 +287,17 @@ const Calc = () => {
                 <CalcSearch>
                     <CalcName>제품명</CalcName>
                     {/* 검색어 입력란 */}
-                    <CalcInput /> 
+                    <CalcInput onChange={handleSearchTermChange} value={searchTerm} /> 
                     <CalcButton buttonText="+"></CalcButton> 
                 </CalcSearch>
 
                 <Flex>
                     {/* 흰색박스 */}
                     <CalcListContainerBig>
-                    <CalcListEx>상품 목록</CalcListEx>
+                        <CalcListEx>상품 목록</CalcListEx>
                         <CalcListContainer>
                         {/* 회색박스 */}
-                        {DrugData.map(drug => (
+                        {filteredDrugs.map(drug => (
                             
                             <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
                                 <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
