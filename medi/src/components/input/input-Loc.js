@@ -3,32 +3,28 @@ import React,{ useState } from "react";
 import colors from "../../styles/colors";
 
 const LocInput = styled.input`
-    width: 50vw;
-    height: 3vw;
+    width: 48vw;
+    height: 4vw;
     background-color: #191B24;
-    border-radius: 3rem;
+    border-radius: 3vw;
     font-size: 2rem;
     font-weight: 800;
-    margin-right: 1vw;
+    margin-right: 1.5vw;
     color:${colors.white};
     border-color:${colors.white};
-    text-indent: 30px;
+    text-indent: 2vw;
 `
-const LocInputContainer = ({ type, placeholder }) => {
 
-    const[inputValue, setInputValue]=useState("");
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value);
-    };
-
+const LocInputContainer = ({ type, value, placeholder, onInputChange }) => {
     return (
-        <LocInput 
-            type={type} 
-            placeholder="지역을 입력해주세요"
-            value={inputValue}
-            onChange={handleInputChange}
+        <LocInput
+            type={type}
+            placeholder={placeholder}
+            value={value || ""}
+            onChange={(e) => onInputChange(e.target.value)}
         />
     );
 };
+
 
 export default LocInputContainer;

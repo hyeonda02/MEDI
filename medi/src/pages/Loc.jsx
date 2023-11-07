@@ -10,8 +10,6 @@ import LocButton from "../components/button/button-Loc";
 const LocSearchContainer = styled.div`
     margin-top: 5vw;
     display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
 `
 const SearchInfoP = styled.p`
     color: ${colors.white};
@@ -32,24 +30,33 @@ const LocationInfoMation = styled.ul`
     margin-top: 2vw;
     display: flex;
     align-items: center;
-    margin-right:40vw;
+    margin-right:50vw;
 `
 const LocationInfoContent = styled.div`
-    margin-left: 1rem;
+    margin-left: 0.5vw;
 `
 const Infolist = styled.li`
 `
 
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
-    const handlePharmacyInfoChange = (data) => {
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInputValue = value => {
+        setInputValue(value);
+        console.log("인풋 필드 갱신 : ", value);
+    }
+    const submit = () => {
+        console.log("버튼 클릭 : ",inputValue);
+    }
+    const handlePharmacyInfoChange = data => {
         setPharmacyInfo(data);
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("APIKEY", {
+                const response = await fetch("49738cc210b9e6c7d60c49f5d00321ce", {
                     headers: {
                         "Accept": "application/json",
                     },
@@ -81,8 +88,8 @@ const Location = () => {
             <Kakao onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
 
             <LocSearchContainer>
-                <LocInput></LocInput>
-                <LocButton buttonText="찾기" type="location"/>
+                <LocInput value={inputValue} placeholder="지역을 입력해주세요" onInputChange={handleInputValue} />
+                <LocButton buttonText="찾기" type="location" onClick={submit} />
             </LocSearchContainer>
 
             <li className="Infolist">
