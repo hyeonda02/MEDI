@@ -31,20 +31,11 @@ const ImageContainer = styled.div`
 
     img {
         width: 90%;
-        height: 18rem;
-        margin-bottom: 1vw;
-        margin-top: 1vw;
+        height: 10vw;
+        margin: 1vw 0 1vw 0;
 
-        @media (max-width: 1150px) {
-            height: 16rem;
-        }
-
-        @media (max-width: 10000px) {
-            height: 15rem;
-        }
-
-        @media (max-width: 800px) {
-            height: 14.5rem;
+        @media (max-width: 600px) {
+            height: 17vw;
         }
     }
 `
