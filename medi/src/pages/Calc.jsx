@@ -154,7 +154,7 @@ const CalcList = styled.div`
     `}
 `
 
-// 선택 항목
+// 선택한 항목
 const CalcListEx2 = styled.div`
     font-size : 2vw;
     margin: 5%;
@@ -164,7 +164,7 @@ const CalcListEx2 = styled.div`
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 20%;
-    height: 10%;
+    height: 40vw;
     padding-top:0.5rem;
     padding-bottom:3rem;
     border-radius: 1.5vw;
@@ -226,9 +226,8 @@ const Completebutton = styled.button`
 `
 const Warning = styled.div`
     color: red;
-    text-align:center;
-    margin-top:2vw;
-    font-size:1vw;
+    text-align: center;
+    font-size: 1vw;
 `
 
 const Flex = styled.div`
@@ -344,6 +343,7 @@ const Calc = () => {
                             <DeleteCalc buttonText="전체삭제" onClick={handleDeleteAll}></DeleteCalc> 
                         </Flex2>
                         <CheckedPills>
+                            <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
@@ -361,7 +361,7 @@ const Calc = () => {
                                 );
                             })}
                         </CheckedPills>
-                        <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
+                        
                     </CalcCheckedContainer>
                 </Flex>
                 
