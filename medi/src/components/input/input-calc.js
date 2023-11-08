@@ -3,23 +3,23 @@ import colors from "../../styles/colors";
 
 const CalcInput = styled.input`
     width: 50%;
-    height: 2rem;
+    height: 1vw;
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 0.5vw;
     outline: none;
     box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
     padding: 1.5vw;
     color: ${colors.black};
-    font-size: 2.5rem;
-    align-items: center; //수직정렬
+    font-size: 1.5vw;
     &::placeholder {
         /* 힌트 메시지 스타일링 */
-        color: ${colors.lightgray}; /* 원하는 색상으로 설정 */
-        font-size: 2.5rem;
-        
+        color: ${colors.lightgray};
+        font-size: 1.5vw;
+        line-height: 1.5vw;
     }
 
 `
@@ -41,7 +41,5 @@ const CalcInputContainer = ({ type, placeholder, onChange, value }) => {
 };
 
 export default CalcInputContainer;
-
-
 
 

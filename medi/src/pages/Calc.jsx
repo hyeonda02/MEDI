@@ -4,6 +4,8 @@ import { styled } from "styled-components";
 import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
+import DeleteCalc from "../components/button/button-delete";
+
 import DrugData from "../util/drug";
 
 
@@ -90,8 +92,9 @@ const CalcListContainerBig = styled.div`
 const CalcListEx = styled.div`
     height: 3rem;
     font-size : 2vw;
-    margin-left : 4rem;
-    margin-top: 3rem;
+    margin-left : 4vw;
+    margin-top: 2vw;
+    
     color : ${colors.silver};
 `
 
@@ -105,7 +108,7 @@ const CalcListContainer = styled.div`
     display: flex;
     justify-content: center; //수평정렬
     //align-items: center; //수직정렬
-    margin-top: 3rem;
+    margin-top: 1vw;
     //flex-direction: column;
     overflow-y: auto;
     flex-wrap: wrap;
@@ -155,7 +158,7 @@ const CalcList = styled.div`
 const CalcListEx2 = styled.div`
     font-size : 2vw;
     margin: 5%;
-    margin-top: 5%;
+    //margin-top: 5%;
     color : ${colors.silver};
 `
 // 결과 박스
@@ -172,11 +175,12 @@ const CalcCheckedContainer = styled.div`
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
-    align-items: center; //수직정렬
     display: flex;
+    align-items: center; //수직정렬
     flex-direction: column; // 세로로 정렬
     justify-content: center; //수평정렬
     margin: auto;
+    margin-top:1vw;
     width: 100%;
     gap: 2vw;
 `
@@ -197,7 +201,12 @@ const CalcCom = styled.div`
 const CalcPillsName = styled.div`
     color: black;
     font-size: 1.5vw;
-    
+`
+
+const CalcPillsName2 = styled.div`
+    color: black;
+    width:5vw;
+    font-size: 1.2vw;
 `
 // 완료 버튼
 const Completebutton = styled.button`
@@ -218,14 +227,23 @@ const Completebutton = styled.button`
 const Warning = styled.div`
     color: red;
     text-align:center;
-    margin-right:2rem;
-    margin-top:2rem;
-    font-size:2rem;
+    margin-top:2vw;
+    font-size:1vw;
 `
 
 const Flex = styled.div`
     display:flex;
+
 `
+const Flex2 = styled.div`
+    display:flex;
+    width:15vw;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+
+`
+
 
 
 const Calc = () => {
@@ -254,8 +272,16 @@ const Calc = () => {
         }
     };
 
+    // 선택 항목 전체 삭제
+    const handleDeleteAll = () => {
+        setSelectedItems([]); // 선택한 항목 초기화
+    };
 
-    
+    //선택 항목 하나 삭제
+    const handleDeleteItem = (id) => {
+        setSelectedItems(selectedItems.filter((item) => item !== id));
+    };
+
     return (
 
         <div className="Calc" style={{
@@ -313,27 +339,24 @@ const Calc = () => {
                     
                     {/* 체크 흰박스 */}
                     <CalcCheckedContainer>
-                        <CalcListEx2>선택한 항목</CalcListEx2>
+                        <Flex2>
+                            <CalcListEx2>선택한 항목</CalcListEx2>
+                            <DeleteCalc buttonText="전체삭제" onClick={handleDeleteAll}></DeleteCalc> 
+                        </Flex2>
                         <CheckedPills>
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
-                                    // <UserImage
-                                    //     key={selectedDrug.id}
-                                    //     src={require(`../assets/${selectedDrug.image}`)}
-                                    //     alt={selectedDrug.name}
-                                    //     style={{ width: "30%", height: "30%" }}
-                                    // />
-                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  }}>
+                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <CalcButton buttonText="-"  onClick={() => handleDeleteItem(selectedDrug.id)} ></CalcButton>
                                         <UserImage
                                             src={require(`../assets/${selectedDrug.image}`)}
                                             alt={selectedDrug.name}
-                                            style={{ width: "30%", height: "30%" }}
+                                            style={{ width: "30%", height: "30%", margin: "0 5%"}}
                                         />
-                                        <div style={{ margin: '0 20px' }}>
-                                        <CalcPillsName>{selectedDrug.type}</CalcPillsName>
+                                        <div>
+                                            <CalcPillsName2>{selectedDrug.type}</CalcPillsName2>
                                         </div>
-                                        
                                     </div>
                                 );
                             })}

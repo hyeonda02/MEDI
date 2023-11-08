@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import colors from "../../styles/colors";
 
 const HomeCalcButton = styled.button`
-    width: 1.5vw;
+    width: 4.3vw;
     height: 1.5vw;
     background-color: ${colors.lightgray};
     border-radius: 3rem;
@@ -11,7 +11,7 @@ const HomeCalcButton = styled.button`
     //font-weight: 700;
     
     color : ${colors.silver};
-    font-size : 2vw;
+    font-size : 0.8vw;
 
     display: flex;
     align-items: center;
@@ -26,7 +26,7 @@ const HomeCalcButton = styled.button`
     }
 `
 
-const CalcButton = ({ buttonText, onClick }) => {
+const DeleteCalc = ({ buttonText, onClick }) => {
     return (
         <HomeCalcButton onClick={onClick}>
             <p>{buttonText}</p>
@@ -34,4 +34,4 @@ const CalcButton = ({ buttonText, onClick }) => {
     );
 };
 
-export default CalcButton
+export default DeleteCalc
