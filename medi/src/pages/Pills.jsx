@@ -38,13 +38,17 @@ const PillsSearch = styled.div`
 const SearchInput = styled.input`
   width: 25vw;
   height: 3vw;
-  font-size: 2rem;
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
   color: #484A64;
   outline: none;
   padding: 1.5vw 3.5vw 1.5vw 3vw;
+  font-size: 2rem; /* 기본 글꼴 크기 설정 */
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
+  }
 `
 const SearchImage = styled.img`
   width: 1.5vw;
@@ -72,6 +76,10 @@ const Select = styled.select`
   background: #191B24;
   color: ${colors.darkslateblue};
   font-size: 2rem;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
+  }
 `
 
 //배너 슬라이드
@@ -86,13 +94,13 @@ const Banner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  width: 100%; 
+  max-width: 100%; 
 `
-
 const PillsBannerContainer = styled.div`
-  width: 50vw;
-  height: 6.75vw;
-  border-radius: 0.4vw;
+  width: 70%; /* 너비를 100%로 설정하여 화면 폭에 맞게 확장 */
+  // max-width: 50vw; /* 최대 너비 설정 */
+  height: auto; /* 높이를 자동으로 조절하여 이미지 비율 유지 */
   display: flex;
   justify-content: center;
   text-align: center;
@@ -100,38 +108,62 @@ const PillsBannerContainer = styled.div`
   margin-top: 2.6vw;
   margin-bottom: 1rem;
 `
-//배너 이미지
-const StyledImage = styled.img`
+
+// 배너 이미지
+const Image = styled.img`
+  width: 100%; /* 이미지 전체 너비를 사용 */
+  max-height: 100%;
   max-width: 100%;
-  max-height: 200%;
-  border-radius: 0.4vw;
-`
-//배너 양쪽 버튼
+  border-radius: 0.5vw;
+
+  @media screen and (max-width: 600px) {
+    width: 80%; /* 화면이 작을 때 이미지 크기를 줄임 */
+  }
+`;
+
+// 배너 양쪽 버튼
 const Button = styled.img`
   width: 1.2vw;
   height: 1.2vw;
   cursor: pointer;
-`
+
+  @media screen and (max-width: 600px) {
+    width: 1vw; /* 화면이 작을 때 버튼 크기를 줄임 */
+    height: 1vw;
+  }
+`;
 
 const ButtonLeftStyled = styled(Button)`
   position: relative;
   top: 30%;
   left: -10%;
-`
+
+  @media screen and (max-width: 600px) {
+    top: 20%; /* 화면이 작을 때 버튼 위치를 조절 */
+  }
+`;
 
 const ButtonRightStyled = styled(Button)`
   position: relative;
   top: 30%;
   right: -10%;
-`
 
-//배너 밑 동그라미 3개
+  @media screen and (max-width: 600px) {
+    top: 20%; /* 화면이 작을 때 버튼 위치를 조절 */
+  }
+`;
+
+// 배너 밑 동그라미 3개
 const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20rem;
-`
+  margin-top: 5rem;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 3rem; /* 화면이 작을 때 동그라미 위치를 조절 */
+  }
+`;
 
 const Circle = styled.div`
   width: 0.5vw;
@@ -146,7 +178,12 @@ const Circle = styled.div`
   &.active {
     background: #484A64;
   }
-`
+
+  @media screen and (max-width: 600px) {
+    width: 0.3vw; /* 화면이 작을 때 동그라미 크기를 줄임 */
+    height: 0.3vw;
+  }
+`;
 //약 상자 설명
 const PillsBoxContainer = styled.div`
     display : flex;
@@ -213,6 +250,9 @@ function Pills() {
     return () => {clearInterval(autoSlideTimer);};
   }, [images.length]);
 
+
+
+
   //약 리스트
   const [drugs, setDrugData] = useState(DrugData);
 
@@ -229,6 +269,7 @@ function Pills() {
   
     
   return (
+
     <PillsContainer>
       <First>
         <PillsSearch> 
@@ -257,7 +298,8 @@ function Pills() {
         <PillsBannerContainer>
           <ButtonLeftStyled src={buttonLeft} onClick={() => handleSlideChange(-1)} alt="ButtonLeft" />
           <Slides>
-          <StyledImage src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} id="productImage" />
+          <Image src={images[currentSlide]} alt="Banner" />
+          {/* <StyledImage src={images[currentSlide]} alt={`Slide ${currentSlide + 1}`} id="productImage" /> */}
           </Slides>
           <ButtonRightStyled src={buttonRight} onClick={() => handleSlideChange(1)} alt="ButtonRight" />
         </PillsBannerContainer>
@@ -276,6 +318,8 @@ function Pills() {
       <PillsBoxContainer>
       <PillsList data={drugs}/>
       </PillsBoxContainer>
+
+     
 
 
     </PillsContainer>

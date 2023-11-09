@@ -7,7 +7,6 @@ const StyleGrid = styled.div`
     justify-content: center; /*수평 가운데 정렬*/
     align-items: center;
     gap: 4rem;
-    text-align: center; /* 수평 가운데 정렬을 위해 추가 */
 
     /* 화면 너비가 600px 이하일 때 아래 스타일을 적용*/
     @media screen and (max-width:600px) {
@@ -27,6 +26,8 @@ const PillsList = ({data}) => {
                         img={require(`../../assets/${item.image}`)}
                         company = {item.company}
                         type = {item.type}
+                        name={item.name}
+                        modalExplain={item.modalExplain}
                     />
                 )
             })}
