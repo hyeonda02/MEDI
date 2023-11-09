@@ -7,6 +7,9 @@ import Banner2 from "../assets/images/Banner2.png";
 import Banner3 from "../assets/images/Banner3.png";
 import buttonLeft from "../assets/images/ButtonLeft.png";
 import buttonRight from "../assets/images/ButtonRight.png";
+import PillsList from "../components/list/list-pills";
+
+import DrugData from "../util/drug";
 
 
 const PillsContainer = styled.div`
@@ -21,6 +24,7 @@ const First= styled.div`
   align-items: center;
   margin-top: 5rem;
   gap:2vw;
+  height: 3vw;
 `
 
 //검색
@@ -66,7 +70,8 @@ const Select = styled.select`
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
-  color: #484A64;
+  color: ${colors.darkslateblue};
+  font-size: 2rem;
 `
 
 //배너 슬라이드
@@ -142,27 +147,33 @@ const Circle = styled.div`
     background: #484A64;
   }
 `
-
+//약 상자 설명
+const PillsBoxContainer = styled.div`
+    display : flex;
+    justify-content :space-between;
+    flex-wrap : wrap; 
+    gap: 1vw;
+    padding-top: 2vw;
+`
 
 
 function Pills() {
 
   //필터링
   const OPTIONS1 = [
-    { value: "child", name: "어린이" },
-    { value: "Teenager", name: "청소년" },
-    { value: "adult", name: "성인" },
-    { value: "old", name: "중년/노년" },
-    { value: "pregnant", name: "임산부" },
+    { value: "vitamin", name: "비타민" },
+    { value: "zinc", name: "아연" },
+    { value: "lutein", name: "루테인" },
+    { value: "Calcium/Magnesium", name: "칼슘/마그네슘" },
+    { value: "Iron supplements/Omega 3", name: "철분제/오메가3" },
   ];
 
   const OPTIONS2 = [
     { value: "tired", name: "피로회복" },
     { value: "eye", name: "눈 건강" },
     { value: "bone", name: "뼈 건강" },
-    { value: "detox", name: "해독 작용" },
-    { value: "medicine", name: "의약품" },
-    { value: "nutrients", name: "영양소 보충" },
+    { value: "vascular health", name: "혈관 건강" },
+    { value: "pregnant", name: "임산부 추천" },
   ];
 
 
@@ -176,9 +187,6 @@ function Pills() {
   const handleUsageOptionChange = (event) => {
     setSelectedUsageOption(event.target.value);
   };
-
-
-
 
   //배너
   const images = [Banner1, Banner2, Banner3];
@@ -205,9 +213,21 @@ function Pills() {
     return () => {clearInterval(autoSlideTimer);};
   }, [images.length]);
 
+  //약 리스트
+  const [drugs, setDrugData] = useState(DrugData);
 
+  useEffect(() => {
+    setDrugData(DrugData);
+}, []);
+  // useEffect(() => {
+  //   fetch("../drugs.js")
+  //     .then((response) => response.json())
+  //     .then((data) => setDrugs(data))
+  //     .catch((error) => console.error("데이터 로딩 오류: ", error));
+  // }, []);
 
-
+  
+    
   return (
     <PillsContainer>
       <First>
@@ -216,7 +236,7 @@ function Pills() {
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
         <Select value={selectedAgeOption} onChange={handleAgeOptionChange}>
-          <option value="">나이</option>
+          <option value="">종류</option>
           {OPTIONS1.map((option) => (
             <option key={option.value} value={option.value}>
               {option.name}
@@ -252,6 +272,10 @@ function Pills() {
         </CircleContainer>
       </Banner>
 
+
+      <PillsBoxContainer>
+      <PillsList data={drugs}/>
+      </PillsBoxContainer>
 
 
     </PillsContainer>
