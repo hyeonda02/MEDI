@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import colors from "../styles/colors";
 import locationMark from "../assets/images/location.png";
-import Kakao from "../api/Kakao";
+import Kakao  from "../api/Kakao";
 import LocInput from "../components/input/input-Loc";
 import LocButton from "../components/button/button-Loc";
 
@@ -41,7 +41,8 @@ const Infolist = styled.li`
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [center, setCenter] = useState({});
+    const [centerProp, setLocation] = useState({ latitude: null, longitude: null });
+
 
 
     const handleInputValue = value => {
@@ -50,12 +51,11 @@ const Location = () => {
     }
     const submit = () => {
         if (inputValue) {
-            // 예를 들어, inputValue가 주소라고 가정하고 이를 경위도 좌표로 변환하는 로직을 추가
-            // 경위도 좌표 계산 로직 추가
             const latitude = 33.450701; // 위도
             const longitude = 126.570667; // 경도
             console.log(`${latitude},${longitude}`);
-            setCenter({ latitude, longitude }); // center 상태 업데이트
+            setLocation([ latitude, longitude ]);
+            console.log("새로운 centerProp:", { latitude, longitude });
         }
     };
     
@@ -96,7 +96,7 @@ const Location = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
-            <Kakao onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
+            <Kakao centerProp={centerProp} onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
 
             <LocSearchContainer>
                 <LocInput value={inputValue} placeholder="지역을 입력해주세요" onInputChange={handleInputValue} />

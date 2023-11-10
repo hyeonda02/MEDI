@@ -14,30 +14,33 @@ const MapContainer = styled.div`
     height: "30vw",
 `;
 
-const Kakao = ({ centerProp, pharmacyInfo,onPharmacyInfoChange }) => {
+const Kakao = ({ centerProp, pharmacyInfo, onPharmacyInfoChange }) => {
 
     const [map, setMap] = useState(null);
     const [center, setCenter] = useState({ latitude: null, longitude: null });
 
 
     useEffect(() => {
+        console.log("useEffect 실행");
         const geoOptions = {
             enableHighAccuracy: true,
             maximumAge: 0,
             timeout: Infinity,
         };
-        if (center.latitude !== null && center.longitude !== null) {
+        if (centerProp.latitude !== null && centerProp.longitude !== null) {
             console.log("지도 검색 기능 활성화");
             const container = document.getElementById('map');
             const options = {
-                center: new kakao.maps.LatLng(center.latitude, center.longitude),
+                center: new kakao.maps.LatLng(centerProp.latitude, centerProp.longitude),
                 level: 4,
             };
             const kakaoMap = new kakao.maps.Map(container, options);
-            setMap(kakaoMap);
-            if (pharmacyInfo.length > 0) {
-                displayMarker(kakaoMap, pharmacyInfo);
-            }
+
+            const locPosition = new kakao.maps.LatLng(centerProp?.latitude, centerProp?.longitude);
+            const message = '<div style="padding:5px;">검색한 위치</div>';
+            displayMarker(kakaoMap,locPosition,message);
+            searchPharmacies(kakaoMap, locPosition);
+
         } else {
             if (navigator.geolocation) {
                 console.log("현재 위치 기준 검색 기능 활성화");
@@ -73,81 +76,80 @@ const Kakao = ({ centerProp, pharmacyInfo,onPharmacyInfoChange }) => {
         }
     }, [centerProp]);
 
-function displayMarker(map, locPosition, message) {
-    const redMarkerImageSrc = MyLocation
-    const MarKerImage = new kakao.maps.MarkerImage(
-        redMarkerImageSrc,
-        new kakao.maps.Size(35, 35),
-        { offset: new kakao.maps.Point(17, 35) }
-    );
-    const marker = new kakao.maps.Marker({
-        map: map,
-        position: locPosition,
-        image:MarKerImage,
-    });
-    const iwContent = message;
-    const iwRemovable = true;
 
-    const infowindow = new kakao.maps.InfoWindow({
-        content: iwContent,
-        removable: iwRemovable,
-    });
-    infowindow.open(map, marker);
-    map.setCenter(locPosition);
-}
+        function displayMarker(map, locPosition, message) {
+            const redMarkerImageSrc = MyLocation
+            const MarKerImage = new kakao.maps.MarkerImage(
+                redMarkerImageSrc,
+                new kakao.maps.Size(35, 35),
+                { offset: new kakao.maps.Point(17, 35) }
+            );
+            const marker = new kakao.maps.Marker({
+                map: map,
+                position: locPosition,
+                image:MarKerImage,
+            });
+            const iwContent = message;
+            const iwRemovable = true;
 
-function searchPharmacies(map, locPosition) {
-    let arr = [];
-    const places = new kakao.maps.services.Places();
-    const searchOptions = {
-        location: locPosition,
-        radius: 10000, // 10km
-        sort: kakao.maps.services.SortBy.DISTANCE,
-    };
-
-    places.keywordSearch('약', function (data, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            const pharmacyData = data.map((pharmacy) => ({
-                name: pharmacy.place_name,
-                address: pharmacy.address_name,
-                }));
-            console.log('Pharmacy Data:', pharmacyData);
-
-            onPharmacyInfoChange(pharmacyData);
-
-            for (let i = 0; i < data.length; i++) {
-                const pharmacyPosition = new kakao.maps.LatLng(data[i].y, data[i].x);
-                const pharmacyMarker = new kakao.maps.Marker({
-                    map: map,
-                    position: pharmacyPosition,
-                });
-
-                kakao.maps.event.addListener(pharmacyMarker, 'click', function () {
-                        const infoMessage = `<div><strong>${data[i].place_name}</strong><br>주소: ${data[i].address_name}</div>`;
-                        const infoWindow = new kakao.maps.InfoWindow({
-                            content: infoMessage,
-                        });
-                        infoWindow.open(map, pharmacyMarker);
-                    });
-                }
+            const infowindow = new kakao.maps.InfoWindow({
+                content: iwContent,
+                removable: iwRemovable,
+            });
+            infowindow.open(map, marker);
+            map.setCenter(locPosition);
         }
-    }, searchOptions);
-}
 
+        function searchPharmacies(map, locPosition) {
+            let arr = [];
+            const places = new kakao.maps.services.Places();
+            const searchOptions = {
+                location: locPosition,
+                radius: 10000,
+                sort: kakao.maps.services.SortBy.DISTANCE,
+            };
 
+            places.keywordSearch('약', function (data, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    const pharmacyData = data.map((pharmacy) => ({
+                        name: pharmacy.place_name,
+                        address: pharmacy.address_name,
+                        }));
+                    console.log('Pharmacy Data:', pharmacyData);
 
-return (
-    <MapContainer>
-        <div
-            id="map"
-            style={{
-                width: '60vw',
-                height: '30vw',
-                marginTop: '5vw',
-            }}
-        ></div>
-    </MapContainer>
-);
+                    onPharmacyInfoChange(pharmacyData);
+
+                    for (let i = 0; i < data.length; i++) {
+                        const pharmacyPosition = new kakao.maps.LatLng(data[i].y, data[i].x);
+                        const pharmacyMarker = new kakao.maps.Marker({
+                            map: map,
+                            position: pharmacyPosition,
+                        });
+
+                        kakao.maps.event.addListener(pharmacyMarker, 'click', function () {
+                                const infoMessage = `<div><strong>${data[i].place_name}</strong><br>주소: ${data[i].address_name}</div>`;
+                                const infoWindow = new kakao.maps.InfoWindow({
+                                    content: infoMessage,
+                                });
+                                infoWindow.open(map, pharmacyMarker);
+                            });
+                        }
+                }
+            }, searchOptions);
+        }
+
+        return (
+            <MapContainer>
+                <div
+                    id="map"
+                    style={{
+                        width: '60vw',
+                        height: '30vw',
+                        marginTop: '5vw',
+                    }}
+                ></div>
+            </MapContainer>
+        );
 };
 
 export default Kakao;
