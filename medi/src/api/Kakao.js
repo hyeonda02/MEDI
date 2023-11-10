@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import MyLocation from "../assets/images/MyLocation.png";
 import geolib from 'geolib';
+
 
 
 const { kakao } = window;
@@ -12,9 +14,11 @@ const MapContainer = styled.div`
     height: "30vw",
 `;
 
-const Kakao = ({ onPharmacyInfoChange }) => {
+const Kakao = ({ centerProp, pharmacyInfo,onPharmacyInfoChange }) => {
+
     const [map, setMap] = useState(null);
-    const [pharmacyInfo, setPharmacyInfo] = useState([]);
+    const [center, setCenter] = useState({ latitude: null, longitude: null });
+
 
     useEffect(() => {
         const geoOptions = {
@@ -22,43 +26,64 @@ const Kakao = ({ onPharmacyInfoChange }) => {
             maximumAge: 0,
             timeout: Infinity,
         };
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    const container = document.getElementById('map');
-                    const options = {
-                        center: new kakao.maps.LatLng(
+        if (center.latitude !== null && center.longitude !== null) {
+            console.log("지도 검색 기능 활성화");
+            const container = document.getElementById('map');
+            const options = {
+                center: new kakao.maps.LatLng(center.latitude, center.longitude),
+                level: 4,
+            };
+            const kakaoMap = new kakao.maps.Map(container, options);
+            setMap(kakaoMap);
+            if (pharmacyInfo.length > 0) {
+                displayMarker(kakaoMap, pharmacyInfo);
+            }
+        } else {
+            if (navigator.geolocation) {
+                console.log("현재 위치 기준 검색 기능 활성화");
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        const container = document.getElementById('map');
+                        const options = {
+                            center: new kakao.maps.LatLng(
+                                position.coords.latitude,
+                                position.coords.longitude
+                            ),
+                            level: 4,
+                        };
+                        const kakaoMap = new kakao.maps.Map(container, options);
+                        setMap(kakaoMap);
+    
+                        const locPosition = new kakao.maps.LatLng(
                             position.coords.latitude,
                             position.coords.longitude
-                        ),
-                        level: 4,
-                    };
-                    const kakaoMap = new kakao.maps.Map(container, options);
-                    setMap(kakaoMap);
-
-                    const locPosition = new kakao.maps.LatLng(
-                        position.coords.latitude,
-                        position.coords.longitude
-                    );
-                    const message = '<div style="padding:5px;">내 위치</div>';
-                    displayMarker(kakaoMap, locPosition, message);
-                    searchPharmacies(kakaoMap, locPosition);
-                },
-                function (error) {
-                    console.error('Error getting Location:', error);
-                },
-                geoOptions
-            );
-        } else {
-            console.error('Geolocation is not supported by this browser.');
+                        );
+                        const message = '<div style="padding:5px;">내 위치</div>';
+                        displayMarker(kakaoMap, locPosition, message);
+                        searchPharmacies(kakaoMap, locPosition);
+                    },
+                    function (error) {
+                        console.error('Error getting Location:', error);
+                    },
+                    geoOptions
+                );
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
         }
-    }, []);
+    }, [centerProp]);
 
 function displayMarker(map, locPosition, message) {
+    const redMarkerImageSrc = MyLocation
+    const MarKerImage = new kakao.maps.MarkerImage(
+        redMarkerImageSrc,
+        new kakao.maps.Size(35, 35),
+        { offset: new kakao.maps.Point(17, 35) }
+    );
     const marker = new kakao.maps.Marker({
         map: map,
         position: locPosition,
+        image:MarKerImage,
     });
     const iwContent = message;
     const iwRemovable = true;
