@@ -41,19 +41,30 @@ const Infolist = styled.li`
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const [center, setCenter] = useState({});
+
 
     const handleInputValue = value => {
         setInputValue(value);
         console.log("인풋 필드 갱신 : ", value);
     }
     const submit = () => {
-        console.log("버튼 클릭 : ",inputValue);
-    }
+        if (inputValue) {
+            // 예를 들어, inputValue가 주소라고 가정하고 이를 경위도 좌표로 변환하는 로직을 추가
+            // 경위도 좌표 계산 로직 추가
+            const latitude = 33.450701; // 위도
+            const longitude = 126.570667; // 경도
+            console.log(`${latitude},${longitude}`);
+            setCenter({ latitude, longitude }); // center 상태 업데이트
+        }
+    };
+    
     const handlePharmacyInfoChange = data => {
         setPharmacyInfo(data);
     };
 
     useEffect(() => {
+        console.log("테스트용 콘솔 찍기");
         const fetchData = async () => {
             try {
                 const response = await fetch("49738cc210b9e6c7d60c49f5d00321ce", {
