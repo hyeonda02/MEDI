@@ -35,6 +35,13 @@ const HomeExplain = styled.div`
     gap: 2vw;
 `
 
+
+const HomeMiddleContainer = styled.div`
+    padding-top: 2vw;
+    padding-bottom: 1vw;
+    display: flex;
+    justify-content: space-between;
+`
 const HomeMiddle = styled.div`
     width: 100%;
     background-color: ${colors.subBlue};
@@ -43,12 +50,6 @@ const HomeMiddle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
-const HomeMiddleContainer = styled.div`
-    padding-top: 2vw;
-    padding-bottom: 1vw;
-    display: flex;
-    justify-content: space-between;
 `
 
 const shuffleArray = (array) => {

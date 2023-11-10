@@ -17,7 +17,6 @@ const MapContainer = styled.div`
 const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
 
     const [map, setMap] = useState(null);
-    const [center, setCenter] = useState("");
 
 
     useEffect(() => {
@@ -27,11 +26,11 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
             maximumAge: 0,
             timeout: Infinity,
         };
-        if (inputValue !== null ) {
+        if (inputValue !== "" ) {
             console.log("지도 검색 기능 활성화");
             const container = document.getElementById('map');
             const geocoder =  new kakao.maps.services.Geocoder();
-            geocoder.addressSearch( "책향기로 319", function(result,status){
+            geocoder.addressSearch( inputValue, function(result,status){
                 if(status === kakao.maps.services.Status.OK){
                     console.log("위치 좌표 변환 완료");
                     const options = {
@@ -40,7 +39,7 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
                     };
                     const kakaoMap = new kakao.maps.Map(container, options);
                     const locPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-                    const message= "검색완료 좌표";
+                    const message= "검색 좌표 추출 성귱";
                     console.log(message);
 
                     displayMarker(kakaoMap,locPosition,message);

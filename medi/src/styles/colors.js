@@ -2,7 +2,7 @@ const colors = {
     bgColor: "#000000",
     red: "#FF0101",
     mainBlue: "#63ABE5",
-    c: "#A5C1F1",
+    subBlue: "#A5C1F1",
     darkBlue: "#5295CA",
     green: "#12C338",
     gray: "#191B24",
