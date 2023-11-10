@@ -41,7 +41,7 @@ const Infolist = styled.li`
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [centerProp, setLocation] = useState({ latitude: null, longitude: null });
+    const [centerProp, setLocation] = useState("");
 
 
 
@@ -51,11 +51,9 @@ const Location = () => {
     }
     const submit = () => {
         if (inputValue) {
-            const latitude = 33.450701; // 위도
-            const longitude = 126.570667; // 경도
-            console.log(`${latitude},${longitude}`);
-            setLocation([ latitude, longitude ]);
-            console.log("새로운 centerProp:", { latitude, longitude });
+            console.log(`${inputValue}`);
+            setLocation(inputValue);
+            console.log("새로운 centerProp 문자열 값:",inputValue);
         }
     };
     
@@ -78,7 +76,7 @@ const Location = () => {
                 }
 
                 const data = await response.json();
-                setPharmacyInfo(data);
+                setPharmacyInfo(data);  
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -96,10 +94,10 @@ const Location = () => {
             alignItems: "center",
             marginBottom: "5vw"
         }}>
-            <Kakao centerProp={centerProp} onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
+            <Kakao inputValue={inputValue} onPharmacyInfoChange={handlePharmacyInfoChange}></Kakao>
 
             <LocSearchContainer>
-                <LocInput value={inputValue} placeholder="지역을 입력해주세요" onInputChange={handleInputValue} />
+                <LocInput value={inputValue} placeholder="도로명 주소를 입력해주세요." onInputChange={handleInputValue} />
                 <LocButton buttonText="찾기" type="location" onClick={submit} />
             </LocSearchContainer>
 

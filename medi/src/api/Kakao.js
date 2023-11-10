@@ -14,10 +14,10 @@ const MapContainer = styled.div`
     height: "30vw",
 `;
 
-const Kakao = ({ centerProp, pharmacyInfo, onPharmacyInfoChange }) => {
+const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
 
     const [map, setMap] = useState(null);
-    const [center, setCenter] = useState({ latitude: null, longitude: null });
+    const [center, setCenter] = useState("");
 
 
     useEffect(() => {
@@ -27,19 +27,27 @@ const Kakao = ({ centerProp, pharmacyInfo, onPharmacyInfoChange }) => {
             maximumAge: 0,
             timeout: Infinity,
         };
-        if (centerProp.latitude !== null && centerProp.longitude !== null) {
+        if (inputValue !== null ) {
             console.log("지도 검색 기능 활성화");
             const container = document.getElementById('map');
-            const options = {
-                center: new kakao.maps.LatLng(centerProp.latitude, centerProp.longitude),
-                level: 4,
-            };
-            const kakaoMap = new kakao.maps.Map(container, options);
+            const geocoder =  new kakao.maps.services.Geocoder();
+            geocoder.addressSearch( "책향기로 319", function(result,status){
+                if(status === kakao.maps.services.Status.OK){
+                    console.log("위치 좌표 변환 완료");
+                    const options = {
+                        center: new kakao.maps.LatLng(result[0].y, result[0].x),
+                        level: 4,
+                    };
+                    const kakaoMap = new kakao.maps.Map(container, options);
+                    const locPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    const message= "검색완료 좌표";
+                    console.log(message);
 
-            const locPosition = new kakao.maps.LatLng(centerProp?.latitude, centerProp?.longitude);
-            const message = '<div style="padding:5px;">검색한 위치</div>';
-            displayMarker(kakaoMap,locPosition,message);
-            searchPharmacies(kakaoMap, locPosition);
+                    displayMarker(kakaoMap,locPosition,message);
+                    searchPharmacies(kakaoMap,locPosition);
+                }
+
+            });
 
         } else {
             if (navigator.geolocation) {
@@ -74,7 +82,9 @@ const Kakao = ({ centerProp, pharmacyInfo, onPharmacyInfoChange }) => {
                 console.error('Geolocation is not supported by this browser.');
             }
         }
-    }, [centerProp]);
+    }, [inputValue]);
+
+
 
 
         function displayMarker(map, locPosition, message) {
