@@ -42,17 +42,9 @@ const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
 
-
-
     const handleInputValue = value => {
         setInputValue(value);
     }
-    const submit = () => {
-        if (inputValue) {
-            console.log(`${inputValue}`);
-            console.log("새로운 inputValue 문자열 값:", inputValue);
-        }
-    };
     
     const handlePharmacyInfoChange = data => {
         setPharmacyInfo(data);
@@ -71,7 +63,6 @@ const Location = () => {
 
             <LocSearchContainer>
                 <LocInput value={inputValue} placeholder="도로명 주소를 입력해주세요." onInputChange={handleInputValue} />
-                <LocButton buttonText="찾기" type="location" onClick={submit} />
             </LocSearchContainer>
 
             <li className="Infolist">

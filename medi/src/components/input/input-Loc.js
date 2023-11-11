@@ -3,7 +3,7 @@ import React,{ useState } from "react";
 import colors from "../../styles/colors";
 
 const LocInput = styled.input`
-    width: 48vw;
+    width: 60vw;
     height: 4vw;
     background-color: #191B24;
     border-radius: 3vw;
