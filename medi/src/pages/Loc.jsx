@@ -41,19 +41,16 @@ const Infolist = styled.li`
 const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [centerProp, setLocation] = useState("");
 
 
 
     const handleInputValue = value => {
         setInputValue(value);
-        console.log("인풋 필드 갱신 : ", value);
     }
     const submit = () => {
         if (inputValue) {
             console.log(`${inputValue}`);
-            setLocation(inputValue);
-            console.log("새로운 centerProp 문자열 값:",inputValue);
+            console.log("새로운 inputValue 문자열 값:", inputValue);
         }
     };
     
@@ -61,30 +58,6 @@ const Location = () => {
         setPharmacyInfo(data);
     };
 
-    useEffect(() => {
-        console.log("테스트용 콘솔 찍기");
-        const fetchData = async () => {
-            try {
-                const response = await fetch("49738cc210b9e6c7d60c49f5d00321ce", {
-                    headers: {
-                        "Accept": "application/json",
-                    },
-                });
-                
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
-                const data = await response.json();
-                setPharmacyInfo(data);  
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-    }, [])
-    
     return (
 
         <div className="Location" style={{
