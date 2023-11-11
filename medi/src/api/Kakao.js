@@ -17,18 +17,17 @@ const MapContainer = styled.div`
 const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
 
     const [map, setMap] = useState(null);
-
-
     useEffect(() => {
-        console.log("useEffect 실행");
         const geoOptions = {
             enableHighAccuracy: true,
             maximumAge: 0,
             timeout: Infinity,
         };
+        const container = document.getElementById('map');
+
+
         if (inputValue !== "" ) {
             console.log("지도 검색 기능 활성화");
-            const container = document.getElementById('map');
             const geocoder =  new kakao.maps.services.Geocoder();
             geocoder.addressSearch( inputValue, function(result,status){
                 if(status === kakao.maps.services.Status.OK){
@@ -39,21 +38,17 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
                     };
                     const kakaoMap = new kakao.maps.Map(container, options);
                     const locPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-                    const message= "검색 좌표 추출 성귱";
+                    const message= "검색한 위치 : " + inputValue;;
                     console.log(message);
-
                     displayMarker(kakaoMap,locPosition,message);
                     searchPharmacies(kakaoMap,locPosition);
                 }
-
             });
-
         } else {
             if (navigator.geolocation) {
                 console.log("현재 위치 기준 검색 기능 활성화");
                 navigator.geolocation.getCurrentPosition(
                     function (position) {
-                        const container = document.getElementById('map');
                         const options = {
                             center: new kakao.maps.LatLng(
                                 position.coords.latitude,
@@ -63,17 +58,16 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
                         };
                         const kakaoMap = new kakao.maps.Map(container, options);
                         setMap(kakaoMap);
-    
                         const locPosition = new kakao.maps.LatLng(
                             position.coords.latitude,
                             position.coords.longitude
                         );
-                        const message = '<div style="padding:5px;">내 위치</div>';
+                        const message = '<div style="padding:5px;">현재 내 위치</div>';
                         displayMarker(kakaoMap, locPosition, message);
                         searchPharmacies(kakaoMap, locPosition);
                     },
                     function (error) {
-                        console.error('Error getting Location:', error);
+                        console.error('현재 위치 받아올 수 없음 :', error);
                     },
                     geoOptions
                 );
@@ -82,9 +76,6 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
             }
         }
     }, [inputValue]);
-
-
-
 
         function displayMarker(map, locPosition, message) {
             const redMarkerImageSrc = MyLocation
