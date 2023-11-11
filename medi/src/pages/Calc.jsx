@@ -5,7 +5,7 @@ import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
 import DeleteCalc from "../components/button/button-delete";
-
+import Completebutton from "../components/button/button-nav";
 import DrugData from "../util/drug";
 
 
@@ -209,21 +209,21 @@ const CalcPillsName2 = styled.div`
     font-size: 1.2vw;
 `
 // 완료 버튼
-const Completebutton = styled.button`
-    width: 50%;
-    //min-height: 15%;
-    border-radius: 1.5vw;
-    background-color: ${colors.mainBlue};
-    color: ${colors.white};
-    font-size: 2vw;
-    &:hover {
-        background-color: ${colors.darkBlue};
-    }
-    border: none;
-    display: block;
-    margin: 0% auto;
-    margin-bottom: 5%;
-`
+// const Completebutton = styled.button`
+//     width: 50%;
+//     //min-height: 15%;
+//     border-radius: 1.5vw;
+//     background-color: ${colors.mainBlue};
+//     color: ${colors.white};
+//     font-size: 2vw;
+//     &:hover {
+//         background-color: ${colors.darkBlue};
+//     }
+//     border: none;
+//     display: block;
+//     margin: 0% auto;
+//     margin-bottom: 5%;
+//`
 const Warning = styled.div`
     color: red;
     text-align: center;
@@ -366,7 +366,24 @@ const Calc = () => {
                 </Flex>
                 
 
-                <Completebutton>완료</Completebutton>
+                <Completebutton
+                    buttonText="완료"
+                    linkTo="/result"
+                    style={{
+                        width: '50%',
+                        borderRadius: '1.5vw',
+                        backgroundColor: colors.mainBlue,
+                        color: colors.white,
+                        fontSize: '2vw',
+                        border: 'none',
+                        display: 'block',
+                        margin: '0% auto',
+                        marginBottom: '5%',
+                    }}
+                    >
+                    완료
+                    </Completebutton>
+
                 
 
             </CalcBox>
