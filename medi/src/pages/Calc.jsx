@@ -5,7 +5,7 @@ import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
 import DeleteCalc from "../components/button/button-delete";
-import Completebutton from "../components/button/button-nav";
+import Completebutton from "../components/button/button-header";
 import DrugData from "../util/drug";
 
 
@@ -371,8 +371,8 @@ const Calc = () => {
                     linkTo="/result"
                     style={{
                         width: '50%',
+                        height: "7vw",
                         borderRadius: '1.5vw',
-                        backgroundColor: colors.mainBlue,
                         color: colors.white,
                         fontSize: '2vw',
                         border: 'none',
@@ -380,10 +380,7 @@ const Calc = () => {
                         margin: '0% auto',
                         marginBottom: '5%',
                     }}
-                    >
-                    완료
-                    </Completebutton>
-
+                    />
                 
 
             </CalcBox>
