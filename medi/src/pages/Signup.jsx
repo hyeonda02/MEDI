@@ -127,28 +127,7 @@ const handlePasswordChange = (e) => {
   const toggleShowConfirmPassword = () => {
     setShowConfirmPass(!showConfirmPass);
   };
-
-  //서버 전송
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    axios.post('https://jsonplaceholder.typicode.com/posts', {
-      name: name,
-      birthday: birthday,
-      userId: id,
-      userPassword: password
-    })
-    .then(res => {
-      console.log(res.data);
-      // if (res.data) {
-      //   window.location.href = "/login";
-      // }
-    })
-    .catch(err => console.log("err: ", err))
-  };
   
-
   //에러 메시지
   const nameError = "필수 입력 항목입니다 :(";
   const birthdayError = "형식에 맞게 8자리로 입력해주세요 :(";
@@ -162,6 +141,40 @@ const handlePasswordChange = (e) => {
   const idSuccess = "올바른 형식입니다 :)";
   const passwordSuccess = "올바른 형식입니다 :)";
   const confirmPasswordSuccess = "비밀번호와 일치합니다 :)";
+
+  const isFormValid =
+    isName &&
+    isBirthday &&
+    isId &&
+    isPassword &&
+    isConfirmPassword &&
+    nameSuccess === "올바른 형식입니다 :)" &&
+    birthdaySuccess === "올바른 형식입니다 :)" &&
+    idSuccess === "올바른 형식입니다 :)" &&
+    passwordSuccess === "올바른 형식입니다 :)" &&
+    confirmPasswordSuccess === "비밀번호와 일치합니다 :)";
+
+
+  //서버 전송
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if(isFormValid) {
+      try {
+        const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+          name: name,
+          birthday: birthday,
+          userId: id,
+          userPassword: password,
+        });
+        console.log(response.data);
+        window.location.href = "/login";
+      } catch (error) {
+        console.error("error: ", error);
+      }
+    }
+  };
 
   return (
     <form style={{width: "100%", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -177,7 +190,7 @@ const handlePasswordChange = (e) => {
           <Input show={showPass} isInput={isPassword} toggleShow={toggleShowPassword} handleInputChange={handlePasswordChange} placeholder="비밀번호를 입력해주세요." inputError={passwordError} inputSuccess={passwordSuccess} showInputError={passwordTouched} />
           <SignP>비밀번호 확인</SignP>
           <Input show={showConfirmPass} isInput={isConfirmPassword} toggleShow={toggleShowConfirmPassword} handleInputChange={handleConfirmPasswordChange} placeholder="비밀번호를 다시 입력해주세요." inputError={confirmPasswordError} inputSuccess={confirmPasswordSuccess} showInputError={confirmPasswordTouched} />
-          <SignButton buttonText="SIGN UP" onClick={handleSubmit}/>
+          <SignButton buttonText="SIGN UP" onClick={handleSubmit} disabled={!isFormValid}/>
         </div>
     </form>
   );
