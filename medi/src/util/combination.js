@@ -22,7 +22,7 @@ const CombinationData = [
     },
     {
         "id": 4,
-        "type1": "비타민B",
+        "type1": "비타민B1",
         "type2": "아연",
         "title": '"적절함"',
         "explain": "비타민 B가 아연의 흡수를 증가시키는 데 도움을 줍니다."
