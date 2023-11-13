@@ -5,6 +5,7 @@ import ListSelect from "../components/list/list-select";
 import DrugData from "../util/drug";
 import mediLogo from "../assets/images/mediLogo.png";
 import medi from "../assets/images/medi.png";
+import { useParams, useLocation } from 'react-router-dom';
 
 const SelectContainer = styled.div`
     width: 70%;
@@ -54,18 +55,11 @@ const Patient = styled.div`
 
 const CalcResult = () => {
     const [drugData, setDrugData] = useState(DrugData);
-    const [slicedData, setSlicedData] = useState([]);
-
+    const location = useLocation();
+    const selectedDataCalcs = { ...location.state};
     useEffect(() => {
-        setDrugData(DrugData);
-    }, []);
-
-    useEffect(() => {
-        setSlicedData(drugData.slice(0, 5));
-    }, [drugData]);
-
-    useEffect(() => {
-        setDrugData(DrugData);
+        console.log(selectedDataCalcs);
+        setDrugData(selectedDataCalcs);
     }, []);
 
     return (
@@ -75,9 +69,7 @@ const CalcResult = () => {
                     <ResultBar/>
                     <CalcResultP>혼합된 약의 리스트</CalcResultP>
                 </div>
-                {drugData.length > 0 && 
-                    <ListSelect data={slicedData}/>
-                }
+                    <ListSelect data={drugData}/>
             </SelectContainer>
 
             <ResultContainer>

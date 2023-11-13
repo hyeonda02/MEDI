@@ -5,9 +5,9 @@ import doctor from "../assets/images/doctor.png";
 import CalcInput from "../components/input/input-calc";
 import CalcButton from "../components/button/button-calc";
 import DeleteCalc from "../components/button/button-delete";
-import Completebutton from "../components/button/button-header";
+import Completebutton from "../components/button/button-result";
 import DrugData from "../util/drug";
-
+import { useNavigate } from 'react-router-dom';
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -147,8 +147,8 @@ const CalcList = styled.div`
     align-items: center; //수직정렬
 
 
-    ${({ isSelected }) =>
-        isSelected &&
+    ${({ isselected }) =>
+        isselected &&
         `
         background-color: ${colors.silver};
     `}
@@ -248,6 +248,20 @@ const Flex2 = styled.div`
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // 사용자의 입력 값을 저장할 상태
+    const navigate = useNavigate();
+    
+    const submit = () => {
+        console.log("submit 버튼 동작 ");
+        console.log("선택된 약들 항목들 : " + selectedItems);
+        const selectedDataCalcs = selectedItems.map( selectedId =>{
+            return DrugData.find(item =>item.id === selectedId)
+        });
+        selectedDataCalcs.forEach( item =>{
+            console.log(item)
+        });
+        navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
+    };
+
     // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
     const filteredDrugs = DrugData.filter(drug =>
         drug.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -263,10 +277,12 @@ const Calc = () => {
         if (selectedItems.includes(id)) {
             // 이미 선택된 항목을 클릭하면 선택 해제
             setSelectedItems(selectedItems.filter(item => item !== id));
+            console.log(selectedItems);
         } else {
             if (selectedItems.length < 5) {
                 // 5개 미만일 때만 새로운 항목을 선택
                 setSelectedItems([...selectedItems, id]);
+                console.log(selectedItems);
             }
         }
     };
@@ -324,7 +340,7 @@ const Calc = () => {
                         {/* 회색박스 */}
                         {filteredDrugs.map(drug => (
                             
-                            <CalcList key={drug.id} isSelected={selectedItems.includes(drug.id)} onClick={() => handleBoxClick(drug.id)}>
+                            <CalcList key={drug.id}   isselected={selectedItems.includes(drug.id) ? true : undefined} onClick={() => handleBoxClick(drug.id)}>
                                 <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
                                 <CalcPills>
                                     <CalcCom>{drug.company}</CalcCom>
@@ -360,7 +376,7 @@ const Calc = () => {
                                     </div>
                                 );
                             })}
-                        </CheckedPills>
+                        </CheckedPills>                                          
                         
                     </CalcCheckedContainer>
                 </Flex>
@@ -368,7 +384,7 @@ const Calc = () => {
 
                 <Completebutton
                     buttonText="완료"
-                    linkTo="/result"
+                    onClick = {submit}
                     style={{
                         width: '50%',
                         height: "7vw",
@@ -379,10 +395,7 @@ const Calc = () => {
                         display: 'block',
                         margin: '0% auto',
                         marginBottom: '5%',
-                    }}
-                    />
-                
-
+                    }}/>
             </CalcBox>
 
         </div>

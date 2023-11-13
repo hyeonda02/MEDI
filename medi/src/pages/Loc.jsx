@@ -4,7 +4,7 @@ import colors from "../styles/colors";
 import locationMark from "../assets/images/location.png";
 import Kakao  from "../api/Kakao";
 import LocInput from "../components/input/input-Loc";
-import LocButton from "../components/button/button-Loc";
+
 
 
 const LocSearchContainer = styled.div`
@@ -42,8 +42,9 @@ const Location = () => {
     const [pharmacyInfo, setPharmacyInfo] = useState([]);
     const [inputValue, setInputValue] = useState("");
 
-    const handleInputValue = value => {
+    const handleInputValue = value => {  
         setInputValue(value);
+
     }
     
     const handlePharmacyInfoChange = data => {

@@ -152,4 +152,4 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
         );
 };
 
-export default Kakao;
+export default Kakao; 
