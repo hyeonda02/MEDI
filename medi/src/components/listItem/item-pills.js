@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
+// 전체 틀 스타일
 const StyleItem = styled.div`
   margin-top: 5rem;
   width: 12vw;
@@ -15,11 +16,12 @@ const StyleItem = styled.div`
   align-items: center;
 
   @media screen and (max-width: 600px) {
-    width: 80%; /* Adjust as needed */
+    width: 80%;
     min-height: 21vw;
   }
 `;
 
+//모달 상자
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -34,10 +36,11 @@ const ImageContainer = styled.div`
     }
   }
   &:hover img {
-    transform: scale(2); /* 마우스 오버 시 이미지 확대 효과 */
+    transform: scale(1.5);
   }
 `;
 
+// 각 아이템을 감싸는 틀
 const ItemContainer = styled.div`
   display: flex;
   margin-top: 10px;
@@ -45,14 +48,14 @@ const ItemContainer = styled.div`
   box-sizing: border-box;
   position: relative;
   border-radius: 3px;
-  overflow: hidden; /*이미지가 확대될 때 넘치는 부분을 가림 */
+  overflow: hidden;
 
   &:hover {
     .MovieDetail {
       display: block;
     }
     ${ImageContainer} img {
-      transform: scale(2); /*마우스 오버 시 이미지 확대 효과 */
+      transform: scale(1.5);
     }
   }
 
@@ -67,6 +70,7 @@ const ItemContainer = styled.div`
   }
 `;
 
+// 아이템 정보를 나타내는 문단
 const StyledParagraph = styled.p`
   color: ${colors.white};
   font-size: 2rem;
@@ -80,10 +84,11 @@ const StyledParagraph = styled.p`
   cursor: pointer;
 
   @media screen and (max-width: 600px) {
-    font-size: 1.5rem; /* Adjust as needed */
+    font-size: 1.5rem;
   }
 `;
 
+// 모달 스타일
 export const PillsModal = styled.div`
   position: fixed;
   top: 50%;
@@ -98,10 +103,10 @@ export const PillsModal = styled.div`
   text-align: left;
   z-index: 999;
   letter-spacing: 2px;
-  font-size: 25px;
+  font-size: 2.2rem;
 
   @media screen and (max-width: 600px) {
-    font-size: 14px;
+    font-size: 2rem;
     padding: 10px;
   }
 
@@ -117,6 +122,7 @@ export const PillsModal = styled.div`
   }
 `;
 
+// 이미지를 나타내는 부분
 const ResponsiveImage = styled.div`
   display: flex;
   justify-content: space-between;
@@ -131,6 +137,7 @@ const ResponsiveImage = styled.div`
   }
 `;
 
+// 모달을 덮는 배경
 const StyledOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -141,6 +148,7 @@ const StyledOverlay = styled.div`
   z-index: 998;
 `;
 
+// 각각의 약품을 나타내는 컴포넌트
 const DrugListItem = (props) => {
   const {
     id,
@@ -165,9 +173,14 @@ const DrugListItem = (props) => {
     setIsModalOpen(false);
   };
 
+  //마침표를 기준으로 문단 나누기
   const formattedModalExplain = modalExplain
     .split(".")
-    .map((paragraph, index) => <p key={index}>{paragraph.trim() + "."}</p>);
+    .map((paragraph, index, array) => (
+      <p key={index}>
+        {index === array.length - 1 ? paragraph.trim() : paragraph.trim() + "."}
+      </p>
+    ));
 
   return (
     <StyleItem key={id}>
