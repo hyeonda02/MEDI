@@ -67,7 +67,7 @@ const CalcResult = () => {
         const combinationCalcs = [];
         calcs.forEach(selectedItem =>{
             CombinationData.forEach(item =>{
-                if(selectedItem.type === item.type1){
+                if(selectedItem.type === item.type1 && !combinationCalcs.some(existingItem =>existingItem.id === item.id)){
                     combinationCalcs.push(item);
                 }
             });
