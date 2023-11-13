@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import colors from "../styles/colors";
 import locationMark from "../assets/images/location.png";
@@ -33,7 +33,7 @@ const LocationInfoMation = styled.ul`
 const LocationInfoContent = styled.div`
   margin-left: 0.5vw;
 `;
-const Infolist = styled.li``;
+
 
 const Location = () => {
   const [pharmacyInfo, setPharmacyInfo] = useState([]);

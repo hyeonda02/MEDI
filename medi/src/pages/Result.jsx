@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import colors from "../styles/colors";
 import ListSelect from "../components/list/list-select";
-import DrugData from "../util/drug";
 import mediLogo from "../assets/images/mediLogo.png";
 import medi from "../assets/images/medi.png";
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SelectContainer = styled.div`
     width: 70%;
@@ -54,13 +53,13 @@ const Patient = styled.div`
 `
 
 const CalcResult = () => {
-    const [drugData, setDrugData] = useState(DrugData);
+    const [selectedDataCalcs, setSelectedDataCalcs] = useState([]);
     const location = useLocation();
-    const selectedDataCalcs = { ...location.state};
     useEffect(() => {
-        console.log(selectedDataCalcs);
-        setDrugData(selectedDataCalcs);
-    }, []);
+        const calcs = location.state.selectCalcs;
+        setSelectedDataCalcs(calcs);
+        console.log("선택된 약 항목들" + calcs);
+    }, [location.state]);
 
     return (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", width: "100%"}}>
@@ -69,7 +68,7 @@ const CalcResult = () => {
                     <ResultBar/>
                     <CalcResultP>혼합된 약의 리스트</CalcResultP>
                 </div>
-                    <ListSelect data={drugData}/>
+                    <ListSelect data={selectedDataCalcs}/>
             </SelectContainer>
 
             <ResultContainer>
