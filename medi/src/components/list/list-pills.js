@@ -28,6 +28,10 @@ const PillsList = ({data}) => {
                         type = {item.type}
                         name={item.name}
                         modalExplain={item.modalExplain}
+                        modalImage1={require(`../../assets/${item.image}`)}
+                        modalImage2={require(`../../assets/${item.image}`)}
+                        modalImage3={require(`../../assets/${item.image}`)}
+                        modalImage4={require(`../../assets/${item.image}`)}
                     />
                 )
             })}
