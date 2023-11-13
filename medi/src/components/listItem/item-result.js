@@ -18,10 +18,11 @@ const CalcResultP = styled.p`
     font-size: 0.8vw;
 `
 
-const ItemResult = ({id, type1, type2, explain}) => {
+const ItemResult = ({id, type1, title, type2, explain}) => {
     return(
         <StyleItem key={id}>
             <div style={{ padding: "0 2vw 0 2vw"}}>
+                <CalcResultP>{title}</CalcResultP>
                 <CalcResultP style={{fontWeight: "bold", fontSize: "1vw"}}>{type1}{type2}</CalcResultP>
                 <CalcResultP>{explain}</CalcResultP>
             </div>

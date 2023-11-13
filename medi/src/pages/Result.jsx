@@ -65,15 +65,18 @@ const CalcResult = () => {
         setSelectedDataCalcs(calcs);
         console.log("선택된 약 항목들" + calcs);
         const combinationCalcs = [];
-        calcs.forEach(selectedItem =>{
-            CombinationData.forEach(item =>{
-                if(selectedItem.type === item.type1 && !combinationCalcs.some(existingItem =>existingItem.id === item.id)){
+        calcs.forEach(selectedItem => {
+            CombinationData.forEach(item => {
+                if (selectedItem.type === item.type1 && !combinationCalcs.some(existingItem => existingItem.id === item.id)) {
                     combinationCalcs.push(item);
                 }
             });
         });
         console.log("선택된 약 항목들 조합", JSON.stringify(combinationCalcs, null, 2));
-        setSelectedDataCombi(combinationCalcs);
+
+        const filteredCombicationCalcs = combinationCalcs.filter(item => calcs.some(selectedItem => selectedItem.type === item.type2));
+        console.log("필터링한 약 항목들의 조합 : ",JSON.stringify(filteredCombicationCalcs, null, 2));
+        setSelectedDataCombi(filteredCombicationCalcs);
 
     }, [location.state.selectCalcs]);
 
