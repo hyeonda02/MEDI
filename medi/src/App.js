@@ -11,6 +11,7 @@ import Pills from "./pages/Pills";
 import Calc from "./pages/Calc";
 import Result from "./pages/Result";
 import Loc from "./pages/Loc";
+import Loading from "./pages/Loading";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/calc" element={<Calc />} />
           <Route path="/result" element={<Result />} />
           <Route path="/location" element={<Loc />} />
+          <Route path="/loading" element={<Loading />} />
         </Routes>
         <Footer/>
       </Router>
