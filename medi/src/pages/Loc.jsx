@@ -38,15 +38,13 @@ const LocationInfoContent = styled.div`
 const Location = () => {
   const [pharmacyInfo, setPharmacyInfo] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
-    const handleInputValue = value => {  
-        setInputValue(value);
-
-    }
+  const handleInputValue = value => {  
+      setInputValue(value);
+  }
     
-    const handlePharmacyInfoChange = data => {
-        setPharmacyInfo(data);
-    };
+  const handlePharmacyInfoChange = data => {
+      setPharmacyInfo(data);
+  };
 
   return (
     <div

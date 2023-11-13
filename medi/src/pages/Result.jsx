@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import colors from "../styles/colors";
 import ListSelect from "../components/list/list-select";
+import ListResult from '../components/list/list-result';
 import mediLogo from "../assets/images/mediLogo.png";
 import medi from "../assets/images/medi.png";
 import { useLocation } from 'react-router-dom';
+import CombinationData from '../util/combination';
 
 const SelectContainer = styled.div`
     width: 70%;
@@ -54,12 +56,27 @@ const Patient = styled.div`
 
 const CalcResult = () => {
     const [selectedDataCalcs, setSelectedDataCalcs] = useState([]);
+    const [selectedDataCombi, setSelectedDataCombi] = useState([]);
     const location = useLocation();
+
+
     useEffect(() => {
         const calcs = location.state.selectCalcs;
         setSelectedDataCalcs(calcs);
         console.log("선택된 약 항목들" + calcs);
-    }, [location.state]);
+        const combinationCalcs = [];
+        calcs.forEach(selectedItem =>{
+            CombinationData.forEach(item =>{
+                if(selectedItem.type === item.type1){
+                    combinationCalcs.push(item);
+                }
+            });
+        });
+        console.log("선택된 약 항목들 조합", JSON.stringify(combinationCalcs, null, 2));
+        setSelectedDataCombi(combinationCalcs);
+
+    }, [location.state.selectCalcs]);
+
 
     return (
         <div style={{display: "flex", flexDirection: "column", alignItems: "center", width: "100%"}}>
@@ -98,12 +115,13 @@ const CalcResult = () => {
                                 <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>강다현</CalcResultP>
                             </Patient>
                             <Patient>
-                                <CalcResultP style={{marginLeft: "3vw", fontWeight: "bold", fontSize: "1vw"}}>생년월일</CalcResultP>
+                                <CalcResultP style={{marginLeft: "3vw", fontWeight: "bold", fontSize: "1vw"}}>환자명</CalcResultP>
                                 <ResultBar style={{height: "100%", marginLeft: "3vw"}}/>
-                                <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>2023.10.31</CalcResultP>
+                                <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>강다현</CalcResultP>
                             </Patient>
                         </PatientContainer>
                         <CalcResultP style={{fontWeight: "bold", marginTop: "2vw", fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.</CalcResultP>
+                        <ListResult data  ={selectedDataCombi}/>
                     </div>
                 </div>
             </ResultContainer>
