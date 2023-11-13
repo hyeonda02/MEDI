@@ -33,8 +33,6 @@ const UserImage = styled.img`
 `
 
 const Loading = () => {
-
-
     return (
 
         <div className="Loading" style={{
