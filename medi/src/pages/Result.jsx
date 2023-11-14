@@ -123,7 +123,7 @@ const CalcResult = () => {
                                 <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>강다현</CalcResultP>
                             </Patient>
                         </PatientContainer>
-                        <CalcResultP style={{fontWeight: "bold", marginTop: "2vw", fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.</CalcResultP>
+                        <CalcResultP style={{fontWeight: "bold", marginTop: "2vw", fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.<br/>서로 영향을 주지 않는 영양제는 띄우지 않았어요!</CalcResultP>
                         <ListResult data  ={selectedDataCombi}/>
                     </div>
                 </div>
