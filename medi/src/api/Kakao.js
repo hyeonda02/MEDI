@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MyLocation from "../assets/images/MyLocation.png";
-import geolib from 'geolib';
 
 
 
@@ -152,4 +151,4 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
         );
 };
 
-export default Kakao;
+export default Kakao; 
