@@ -156,7 +156,7 @@ const CalcList = styled.div`
 
 // 선택한 항목
 const CalcListEx2 = styled.div`
-    font-size : 2vw;
+    font-size : 1.5vw;
     margin: 5%;
     //margin-top: 5%;
     color : ${colors.silver};
@@ -164,7 +164,7 @@ const CalcListEx2 = styled.div`
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 20%;
-    height: 40vw;
+    min-height: 40vw;
     padding-top:0.5rem;
     padding-bottom:3rem;
     border-radius: 1.5vw;
@@ -385,17 +385,7 @@ const Calc = () => {
                 <Completebutton
                     buttonText="완료"
                     onClick = {submit}
-                    style={{
-                        width: '50%',
-                        height: "7vw",
-                        borderRadius: '1.5vw',
-                        color: colors.white,
-                        fontSize: '2vw',
-                        border: 'none',
-                        display: 'block',
-                        margin: '0% auto',
-                        marginBottom: '5%',
-                    }}/>
+                />
             </CalcBox>
 
         </div>

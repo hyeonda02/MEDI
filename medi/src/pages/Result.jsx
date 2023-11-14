@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import CombinationData from '../util/combination';
 
 const SelectContainer = styled.div`
-    width: 70%;
+    width: 50%;
 `
 const ResultBar = styled.div`
     width: 0.3vw;
@@ -25,7 +25,7 @@ const CalcResultP = styled.p`
 const ResultContainer = styled.div`
     width: 100%;
     background-color: ${colors.subBlue};
-    margin-top: 2.5vw;
+    margin-top: 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,9 +98,9 @@ const CalcResult = () => {
                     paddingTop: "3vw"
                 }}/>
                 <CalcResultP style={{marginTop: "1rem"}}>영양제 종류</CalcResultP>
-                <div style={{width: "90%", height: "0.5vw", backgroundColor: colors.white}}/>
+                <div style={{width: "80%", height: "0.5vw", backgroundColor: colors.white}}/>
 
-                <div style={{width: "90%", display: "flex", marginTop: "1.5vw"}}>
+                <div style={{width: "80%", display: "flex", marginTop: "1.5vw"}}>
                     <div className="left" style={{ width: "25%", display: "flex", flexDirection: "column"}}>
                         <DoctorContainer>
                             <img src={medi} alt="medi" style={{width: "12vw", height: "12vw"}}/>
