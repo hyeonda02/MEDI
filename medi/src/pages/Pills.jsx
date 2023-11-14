@@ -100,15 +100,16 @@ const Banner = styled.div`
   max-width: 100%;
 `;
 const PillsBannerContainer = styled.div`
-  width: 70%; /* 너비를 100%로 설정하여 화면 폭에 맞게 확장 */
+  width: 70%;
   // max-width: 50vw; /* 최대 너비 설정 */
-  height: auto; /* 높이를 자동으로 조절하여 이미지 비율 유지 */
+  height:  9vw;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   margin-top: 2.6vw;
   margin-bottom: 1rem;
+  background-color: pink;
 `;
 
 // 배너 이미지
@@ -161,7 +162,7 @@ const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 2rem;
 
   @media screen and (max-width: 600px) {
     margin-top: 3rem; /* 화면이 작을 때 동그라미 위치를 조절 */

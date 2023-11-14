@@ -14,6 +14,7 @@ const StyleItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   @media screen and (max-width: 600px) {
     width: 80%;
