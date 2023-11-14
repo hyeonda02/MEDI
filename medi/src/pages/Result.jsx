@@ -110,7 +110,7 @@ const CalcResult = () => {
                             </div>
                         </DoctorContainer>
                     </div>
-                    <div className="right" style={{backgroundColor: "blue", width: "75%"}}>
+                    <div className="right" style={{width: "75%", marginBottom:"5%"}}>
                         <PatientContainer>
                             <Patient>
                                 <CalcResultP style={{marginLeft: "3vw", fontWeight: "bold", fontSize: "1vw"}}>환자명</CalcResultP>
