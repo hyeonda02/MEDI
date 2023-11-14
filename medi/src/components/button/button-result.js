@@ -23,6 +23,7 @@ import colors from "../../styles/colors";
 const HomeLoginButton = styled.button`
     width: 40%;
     height: 3vw;
+    font-size: 1.5vw;
     border-radius: 1.5vw;
     color: ${colors.white};
     background-color: ${colors.mainBlue};
@@ -30,7 +31,7 @@ const HomeLoginButton = styled.button`
     display: block;
     margin: 0% auto;
     margin-bottom: 5%;
-    display: flex; /* 수직 가운데 정렬을 위해 flex 사용 */
+    display: flex; 
     align-items: center;
     justify-content: center;
 `
