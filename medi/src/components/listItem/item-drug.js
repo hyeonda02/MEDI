@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 const StyleItem = styled.div`
-    width: 12vw;
+    width: 11.2vw;
     min-height: 16vw;
     border: none;
     background-color: ${colors.mainBlue};

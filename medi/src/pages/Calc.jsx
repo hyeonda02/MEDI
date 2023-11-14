@@ -44,8 +44,7 @@ const CalcExplainBar = styled.div`
 `
 // 하늘색 박스
 const CalcBox = styled.div`
-    width: 85%;
-    height: 90%;
+    width: 65%;
     border-radius: 2.5vw;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -59,7 +58,7 @@ const CalcTitle = styled.div`
 `
 const CalcSearch = styled.div`
     width: 100%;
-    margin-top : 3vw;
+    margin-top : 1vw;
     display: flex;
     gap: 2vw;
     align-items: center;
@@ -79,7 +78,7 @@ const CalcListContainerBig = styled.div`
     border-radius: 1.5vw;
     // gap: 1vw;
     background-color: ${colors.white};
-    margin: 5% auto;
+    margin: 3% auto;
     // display: flex;
     //justify-content: space-between; //수평정렬
     //align-items:  flex-start; //수직정렬
@@ -91,9 +90,9 @@ const CalcListContainerBig = styled.div`
 // 상품 목록 글씨
 const CalcListEx = styled.div`
     height: 3rem;
-    font-size : 2vw;
+    font-size : 1vw;
     margin-left : 4vw;
-    margin-top: 2vw;
+    margin-top: 1vw;
     
     color : ${colors.silver};
 `
@@ -101,15 +100,13 @@ const CalcListEx = styled.div`
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 38vw;
-    //gap: 0.6vw;
+    height: 18vw;
     background-color: ${colors.white};
     border-radius: 3rem;
     display: flex;
     justify-content: center; //수평정렬
     //align-items: center; //수직정렬
     margin-top: 1vw;
-    //flex-direction: column;
     overflow-y: auto;
     flex-wrap: wrap;
 
@@ -156,7 +153,7 @@ const CalcList = styled.div`
 
 // 선택한 항목
 const CalcListEx2 = styled.div`
-    font-size : 2vw;
+    font-size : 1vw;
     margin: 5%;
     //margin-top: 5%;
     color : ${colors.silver};
@@ -164,12 +161,12 @@ const CalcListEx2 = styled.div`
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 20%;
-    height: 40vw;
+    min-height: 20vw;
     padding-top:0.5rem;
     padding-bottom:3rem;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 5% auto;
+    margin: 3% auto;
     align-items: center; //수직정렬
     
 `
@@ -236,11 +233,10 @@ const Flex = styled.div`
 `
 const Flex2 = styled.div`
     display:flex;
-    width:15vw;
+    width:10vw;
     align-items: center;
     justify-content: space-between;
     margin: auto;
-
 `
 
 
@@ -256,10 +252,12 @@ const Calc = () => {
         const selectedDataCalcs = selectedItems.map( selectedId =>{
             return DrugData.find(item =>item.id === selectedId)
         });
-        selectedDataCalcs.forEach( item =>{
-            console.log(item)
-        });
-        navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
+        if(selectedDataCalcs.length > 0){
+            selectedDataCalcs.forEach( item =>{
+                console.log(item)
+            });
+            navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
+        }
     };
 
     // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
@@ -385,17 +383,7 @@ const Calc = () => {
                 <Completebutton
                     buttonText="완료"
                     onClick = {submit}
-                    style={{
-                        width: '50%',
-                        height: "7vw",
-                        borderRadius: '1.5vw',
-                        color: colors.white,
-                        fontSize: '2vw',
-                        border: 'none',
-                        display: 'block',
-                        margin: '0% auto',
-                        marginBottom: '5%',
-                    }}/>
+                />
             </CalcBox>
 
         </div>
