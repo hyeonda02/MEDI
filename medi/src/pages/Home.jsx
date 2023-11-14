@@ -87,7 +87,6 @@ const Home = () => {
         }}>
             <img src={homeBanner} alt="homeBanner" style={{
                 width: "100%", 
-                height: "30vw", 
                 marginTop:"3rem"
             }}/>
 
@@ -125,7 +124,7 @@ const Home = () => {
                     paddingTop: "3vw"
                 }}/>
                 <HomeP style={{marginTop: "1rem"}}>영양제 종류</HomeP>
-                <div style={{width: "90%", height: "0.5vw", backgroundColor: colors.white}}/>
+                <div style={{width: "80%", height: "0.5vw", backgroundColor: colors.white}}/>
                 
                 <HomeMiddleContainer>
                     {drugData.length > 0 &&
