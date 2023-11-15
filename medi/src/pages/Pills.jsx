@@ -37,6 +37,7 @@ const PillsSearch = styled.div`
   justify-content: center;
   color: ${colors.lightgray};
 `;
+
 const SearchInput = styled.input`
   width: 25vw;
   height: 3vw;
@@ -100,8 +101,7 @@ const Banner = styled.div`
   max-width: 100%;
 `;
 const PillsBannerContainer = styled.div`
-  width: 70%;
-  // max-width: 50vw; /* 최대 너비 설정 */
+  width: 65%;
   height:  9vw;
   display: flex;
   justify-content: center;
@@ -109,7 +109,7 @@ const PillsBannerContainer = styled.div`
   align-items: center;
   margin-top: 2.6vw;
   margin-bottom: 1rem;
-  background-color: pink;
+  gap: 1vw;
 `;
 
 // 배너 이미지
@@ -138,23 +138,9 @@ const Button = styled.img`
 `;
 
 const ButtonLeftStyled = styled(Button)`
-  position: relative;
-  top: 30%;
-  left: -10%;
-
-  @media screen and (max-width: 600px) {
-    top: 20%; /* 화면이 작을 때 버튼 위치를 조절 */
-  }
 `;
 
 const ButtonRightStyled = styled(Button)`
-  position: relative;
-  top: 30%;
-  right: -10%;
-
-  @media screen and (max-width: 600px) {
-    top: 20%; /* 화면이 작을 때 버튼 위치를 조절 */
-  }
 `;
 
 // 배너 밑 동그라미 3개
