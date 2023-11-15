@@ -154,15 +154,6 @@ const CalcCheckedContainer = styled.div`
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
-    // display: flex;
-    // align-items: center; //수직정렬
-    // flex-direction: column; // 세로로 정렬
-    // justify-content: center; //수평정렬
-    // margin: auto;
-    // margin-top:1vw;
-    // width: 100%;
-    // gap: 2vw;
-
     display: flex;
     flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
     justify-content: center; 
@@ -174,7 +165,7 @@ const CheckedPills = styled.div`
 `
 
 const PillsImage = styled.img`
-    width: 35%;
+    width: auto;
     height: 75%;
 `
 
