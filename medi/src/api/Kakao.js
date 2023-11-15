@@ -100,7 +100,6 @@ const Kakao = ({ inputValue, onPharmacyInfoChange }) => {
         }
 
         function searchPharmacies(map, locPosition) {
-            let arr = [];
             const places = new kakao.maps.services.Places();
             const searchOptions = {
                 location: locPosition,
