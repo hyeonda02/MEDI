@@ -113,10 +113,9 @@ const CalcListContainer = styled.div`
 `
 // 회색 영양제 박스
 const CalcList = styled.div`
-    width: 40%;
+    width: 45%;
     height: 30%;
-    margin: 4%;
-    //margin-top: 0;
+    margin: 2%;
     display: flex;
     text-align: justify;
     border-radius: 1.5vw;
