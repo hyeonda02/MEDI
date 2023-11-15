@@ -44,7 +44,7 @@ const CalcExplainBar = styled.div`
 `
 // 하늘색 박스
 const CalcBox = styled.div`
-    width: 95%;
+    width: 80%;
     border-radius: 2.5vw;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -184,11 +184,12 @@ const CalcPills = styled.div`
     
 `
 const CalcCom = styled.div`
+font-size: 0.8vw;
     color: black;
 `
 const CalcPillsName = styled.div`
     color: black;
-    font-size: 1.5vw;
+    font-size: 1vw;
 `
 
 const CalcPillsName2 = styled.div`
@@ -253,7 +254,7 @@ const Calc = () => {
             setSelectedItems(selectedItems.filter(item => item !== id));
             console.log(selectedItems);
         } else {
-            if (selectedItems.length < 4) {
+            if (selectedItems.length < 6) {
                 // 5개 미만일 때만 새로운 항목을 선택
                 setSelectedItems([...selectedItems, id]);
                 console.log(selectedItems);
@@ -281,7 +282,7 @@ const Calc = () => {
             marginBottom: "5vw"
         }}>
 
-            {/* <CalcExplainContainer>
+            <CalcExplainContainer>
                 <CalcExplain>
                     <UserImage src={doctor} alt="doctor"/>
                     <CalcExplainBar/>
@@ -293,7 +294,7 @@ const Calc = () => {
                         </CalcBannerP2>
                     </div>
                 </CalcExplain>
-            </CalcExplainContainer> */}
+            </CalcExplainContainer>
 
             {/* 하늘색박스 */}
             <CalcBox>
@@ -344,13 +345,17 @@ const Calc = () => {
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
-                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48%'  }}>
-                                        <CalcButton buttonText="-"  onClick={() => handleDeleteItem(selectedDrug.id)} ></CalcButton>
-                                        <UserImage
-                                            src={require(`../assets/${selectedDrug.image}`)}
-                                            alt={selectedDrug.name}
-                                            style={{ width: "30%", height: "30%", margin: "0 1%"}}
-                                        />
+                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' ,  width: '30%'  }}>
+                                        
+                                        <div style={{ display: 'flex',  justifyContent: 'center',  alignItems: 'center'}}>
+                                            <CalcButton buttonText="-"  onClick={() => handleDeleteItem(selectedDrug.id)} ></CalcButton>
+                                            <UserImage
+                                                src={require(`../assets/${selectedDrug.image}`)}
+                                                alt={selectedDrug.name}
+                                                style={{ width: "50%", height: "50%", margin: "0 1%"}}
+                                            />
+                                        </div>
+                                        
                                         <div>
                                             <CalcPillsName2>{selectedDrug.type}</CalcPillsName2>
                                         </div>
