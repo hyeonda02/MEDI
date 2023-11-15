@@ -22,24 +22,24 @@ const PillsContainer = styled.div`
 
 //검색과 필터링 박스
 const First = styled.div`
+  width: 60%;
   display: flex;
   align-items: center;
   margin-top: 5rem;
   gap: 2vw;
-  height: 3vw;
+  height: 3vw; 
 `;
 
 //검색
 const PillsSearch = styled.div`
-  width: 80%;
+  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
   color: ${colors.lightgray};
 `;
 
 const SearchInput = styled.input`
-  width: 25vw;
+  width: 100%;
   height: 3vw;
   border: 0.2vw solid #2a2a3a;
   border-radius: 1.5vw;
@@ -57,33 +57,25 @@ const SearchImage = styled.img`
   width: 1.5vw;
   height: 1.5vw;
   position: absolute;
-  margin-top: 0vw;
-  margin-right: 21vw;
+  margin-left: 1vw;
   z-index: 1;
 `;
 
-// //필터링
-
-const sortContainer = styled.div`
-  width: 100% 
-  align-items: center;
-  justify-content: center;
+//필터링
+const SortContainer = styled.div`
+  width: 20%;
   font-size: 2rem;
-  padding: 0.5vw 2vw 0.5vw 2vw;
   height: 3vw;
   border: 0.2vw solid #2A2A3A;
   border-radius: 1.5vw;
   background: #191B24;
   color: ${colors.darkslateblue};
   font-size: 2rem;
- 
 
   @media screen and (max-width: 600px) {
     font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
   }
 `;
-
-//셀렉트박스
 
 //배너 슬라이드
 const Slides = styled.div`
@@ -114,27 +106,15 @@ const PillsBannerContainer = styled.div`
 
 // 배너 이미지
 const Image = styled.img`
-  width: 100%; /* 이미지 전체 너비를 사용 */
-  max-height: 100%;
-  max-width: 100%;
+  width: 100%;
   border-radius: 0.5vw;
-
-  @media screen and (max-width: 600px) {
-    width: 80%; /* 화면이 작을 때 이미지 크기를 줄임 */
-  }
 `;
-//배너크기에 이미지를 맞춰
 
 // 배너 양쪽 버튼
 const Button = styled.img`
   width: 1.2vw;
   height: 1.2vw;
   cursor: pointer;
-
-  @media screen and (max-width: 600px) {
-    width: 1vw; /* 화면이 작을 때 버튼 크기를 줄임 */
-    height: 1vw;
-  }
 `;
 
 const ButtonLeftStyled = styled(Button)`
@@ -148,11 +128,7 @@ const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
-
-  @media screen and (max-width: 600px) {
-    margin-top: 3rem; /* 화면이 작을 때 동그라미 위치를 조절 */
-  }
+  margin-top: 1.5vw;
 `;
 
 const Circle = styled.div`
@@ -299,37 +275,13 @@ function Pills() {
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
-        <div
-          className="sortContainer"
-          style={{
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "2rem",
-            padding: "0.5vw 2vw 0.5vw 2vw",
-            height: "3vw",
-            color: "white",
-            border: "0.2vw solid #2A2A3A",
-            borderRadius: "1.5vw",
-            background: "#191B24",
-            zIndex: 9999,
-          }}
-        >
+        <SortContainer>
           <div
             className="sortSelect"
             onClick={toggleDropdown}
-            style={{ position: "relative" }}
+            style={{ position: "relative", display: "flex"}}
           >
-            <img
-              src={icon_down}
-              alt="icon_down"
-              id="icon_down"
-              style={{
-                width: "30px",
-                height: "30px",
-                marginRight: "20px",
-              }}
-            />
+            <img src={icon_down} alt="icon_down" id="icon_down" style={{ width: "1.5vw" }} />
             <p id="sortTitle">{selectedOption}</p>
           </div>
           {isDropdownVisible && (
@@ -353,25 +305,10 @@ function Pills() {
               ))}
             </div>
           )}
-        </div>
-        <div
-          className="sortContainer"
-          style={{
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "2rem",
-            padding: "0.5vw 2vw 0.5vw 2vw",
-            height: "3vw",
-            color: "white",
-            border: "0.2vw solid #2A2A3A",
-            borderRadius: "1.5vw",
-            background: "#191B24",
-            zIndex: 9999,
-          }}
-        >
+        </SortContainer>
+        <SortContainer>
           <div className="sortSelect" onClick={toggleDropdown}>
-            <img src={icon_down} alt="icon_down" id="icon_down" />
+            <img src={icon_down} alt="icon_down" id="icon_down" style={{width: "1.5vw"}}/>
             <p id="sortTitle">{selectedOption}</p>
           </div>
           {isDropdownVisible && (
@@ -395,29 +332,16 @@ function Pills() {
               ))}
             </div>
           )}
-        </div>
+        </SortContainer>
       </First>
-      {/* <p></p> <p></p> <p></p> <p></p> <p></p>
-      <p></p> <p></p> <p></p> <p></p> <p></p> */}
+
       <Banner>
         <PillsBannerContainer>
-          <ButtonLeftStyled
-            src={buttonLeft}
-            onClick={() => handleSlideChange(-1)}
-            alt="ButtonLeft"
-          />
+          <ButtonLeftStyled src={buttonLeft} onClick={() => handleSlideChange(-1)} alt="ButtonLeft" />
           <Slides>
-            <Image
-              src={images[currentSlide]}
-              alt="Banner"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            />
+            <Image src={images[currentSlide]} alt="Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </Slides>
-          <ButtonRightStyled
-            src={buttonRight}
-            onClick={() => handleSlideChange(1)}
-            alt="ButtonRight"
-          />
+          <ButtonRightStyled src={buttonRight} onClick={() => handleSlideChange(1)} alt="ButtonRight" />
         </PillsBannerContainer>
         <CircleContainer>
           {[0, 1, 2].map((circleIndex) => (
