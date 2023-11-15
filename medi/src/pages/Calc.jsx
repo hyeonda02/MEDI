@@ -281,7 +281,7 @@ const Calc = () => {
             marginBottom: "5vw"
         }}>
 
-            <CalcExplainContainer>
+            {/* <CalcExplainContainer>
                 <CalcExplain>
                     <UserImage src={doctor} alt="doctor"/>
                     <CalcExplainBar/>
@@ -293,7 +293,7 @@ const Calc = () => {
                         </CalcBannerP2>
                     </div>
                 </CalcExplain>
-            </CalcExplainContainer>
+            </CalcExplainContainer> */}
 
             {/* 하늘색박스 */}
             <CalcBox>
