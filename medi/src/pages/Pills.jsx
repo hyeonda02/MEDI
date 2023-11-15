@@ -50,7 +50,7 @@ const SearchInput = styled.input`
   font-size: 2rem; /* 기본 글꼴 크기 설정 */
 
   @media screen and (max-width: 600px) {
-    font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
+    font-size: 1.5rem;
   }
 `;
 const SearchImage = styled.img`
@@ -62,6 +62,27 @@ const SearchImage = styled.img`
 `;
 
 //필터링
+const SortDiv = styled.div`
+  width: 22%;
+  height: 3vw;
+  border: 0.2vw solid #2a2a3a;
+  border-radius: 1.5vw;
+  background: #191b24;
+  color: #484a64;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+
+  @media screen and (max-width: 600px) {
+    font-size: 1.5rem;
+  }
+`
+
+const SortP = styled.p`
+`
+
 
 //배너 슬라이드
 const Slides = styled.div`
@@ -190,6 +211,14 @@ function Pills() {
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
+        <SortDiv>
+          <SortP>종류</SortP>
+          <img src={icon_down} alt="icon_down" style={{width: "1.5vw", height: "1vw", cursor: "pointer"}}/>        
+        </SortDiv>
+        <SortDiv>
+          <SortP>용도</SortP>
+          <img src={icon_down} alt="icon_down" style={{width: "1.5vw", height: "1vw", cursor: "pointer"}}/>        
+        </SortDiv>
       </First>
 
       <Banner>
