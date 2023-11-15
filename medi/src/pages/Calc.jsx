@@ -67,7 +67,6 @@ const CalcSearch = styled.div`
 // 제품명
 const CalcName = styled.div`
     font-size : 1.5vw;
-    //margin-left : 5rem;
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
@@ -80,23 +79,20 @@ const CalcListContainerBig = styled.div`
 `
 // 상품 목록 글씨
 const CalcListEx = styled.div`
-    height: 3rem;
     font-size : 1vw;
-    margin-left : 4vw;
-    margin-top: 1vw;
     color : ${colors.silver};
 `
 
 // 스크롤 박스
 const CalcListContainer = styled.div`
     width: 99%;
-    height: 18vw;
+    height: 15vw;
     background-color: ${colors.white};
     border-radius: 3rem;
     display: flex;
     justify-content: center; //수평정렬
     //align-items: center; //수직정렬
-    margin-top: 1vw;
+    // margin-top: 1vw;
     overflow-y: auto;
     flex-wrap: wrap;
 
@@ -144,16 +140,12 @@ const CalcList = styled.div`
 // 선택한 항목
 const CalcListEx2 = styled.div`
     font-size : 1vw;
-    margin: 5%;
-    //margin-top: 5%;
     color : ${colors.silver};
 `
 // 결과 박스
 const CalcCheckedContainer = styled.div`
     width: 45%;
     min-height: 20vw;
-    padding-top:0.5rem;
-    padding-bottom:3rem;
     border-radius: 1.5vw;
     background-color: ${colors.white};
     margin: 1% auto;
@@ -173,9 +165,9 @@ const CheckedPills = styled.div`
 
     display: flex;
     flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
-    justify-content: space-between; // 아이템 사이에 공간 추가
-
-    @media (max-width: 768px) {
+    justify-content: space-between; 
+    height: 15vw;
+    @media (min-height: 30%) {
         flex-direction: column; // 작은 화면에서는 세로로 정렬되도록 변경
         align-items: center;
     }
@@ -216,7 +208,8 @@ const Flex = styled.div`
 `
 const Flex2 = styled.div`
     display:flex;
-    width:10vw;
+    width:90%;
+    height: 20%;
     align-items: center;
     justify-content: space-between;
     margin: auto;
@@ -260,7 +253,7 @@ const Calc = () => {
             setSelectedItems(selectedItems.filter(item => item !== id));
             console.log(selectedItems);
         } else {
-            if (selectedItems.length < 5) {
+            if (selectedItems.length < 4) {
                 // 5개 미만일 때만 새로운 항목을 선택
                 setSelectedItems([...selectedItems, id]);
                 console.log(selectedItems);
@@ -316,40 +309,47 @@ const Calc = () => {
                 <Flex>
                     {/* 흰색박스 */}
                     <CalcListContainerBig>
-                        <CalcListEx>상품 목록</CalcListEx>
-                        <CalcListContainer>
+                        
+                        <Flex2>
+                            <CalcListEx>상품 목록</CalcListEx>
+                            <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
+                        </Flex2>
+                        
                         {/* 회색박스 */}
-                        {filteredDrugs.map(drug => (
-                            
-                            <CalcList key={drug.id}   isselected={selectedItems.includes(drug.id) ? true : undefined} onClick={() => handleBoxClick(drug.id)}>
-                                <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
-                                <CalcPills>
-                                    <CalcCom>{drug.company}</CalcCom>
-                                    <CalcPillsName>{drug.name}</CalcPillsName>
-                                </CalcPills>
-                            </CalcList>
-                        ))}
+                        <CalcListContainer>
+                            {filteredDrugs.map(drug => (
+                                <CalcList key={drug.id}   isselected={selectedItems.includes(drug.id) ? true : undefined} onClick={() => handleBoxClick(drug.id)}>
+                                    <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
+                                    <CalcPills>
+                                        <CalcCom>{drug.company}</CalcCom>
+                                        <CalcPillsName>{drug.name}</CalcPillsName>
+                                    </CalcPills>
+                                </CalcList>
+                            ))}
                         </CalcListContainer>
+
                     </CalcListContainerBig>
                         
                     
                     {/* 선택한 항목 흰박스 */}
                     <CalcCheckedContainer>
+
                         <Flex2>
                             <CalcListEx2>선택한 항목</CalcListEx2>
                             <DeleteCalc buttonText="전체삭제" onClick={handleDeleteAll}></DeleteCalc> 
                         </Flex2>
+
                         <CheckedPills>
-                            <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
+                            
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
-                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48%' }}>
+                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48%'  }}>
                                         <CalcButton buttonText="-"  onClick={() => handleDeleteItem(selectedDrug.id)} ></CalcButton>
                                         <UserImage
                                             src={require(`../assets/${selectedDrug.image}`)}
                                             alt={selectedDrug.name}
-                                            style={{ width: "30%", height: "30%", margin: "0 5%"}}
+                                            style={{ width: "30%", height: "30%", margin: "0 1%"}}
                                         />
                                         <div>
                                             <CalcPillsName2>{selectedDrug.type}</CalcPillsName2>
@@ -358,6 +358,7 @@ const Calc = () => {
                                 );
                             })}
                         </CheckedPills>                                          
+                        
                     </CalcCheckedContainer>
                 </Flex>
                 
