@@ -27,7 +27,7 @@ const First = styled.div`
   align-items: center;
   margin-top: 5rem;
   gap: 2vw;
-  height: 3vw; 
+  height: 3vw;
 `;
 
 //검색
@@ -62,20 +62,6 @@ const SearchImage = styled.img`
 `;
 
 //필터링
-const SortContainer = styled.div`
-  width: 20%;
-  font-size: 2rem;
-  height: 3vw;
-  border: 0.2vw solid #2A2A3A;
-  border-radius: 1.5vw;
-  background: #191B24;
-  color: ${colors.darkslateblue};
-  font-size: 2rem;
-
-  @media screen and (max-width: 600px) {
-    font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
-  }
-`;
 
 //배너 슬라이드
 const Slides = styled.div`
@@ -94,7 +80,7 @@ const Banner = styled.div`
 `;
 const PillsBannerContainer = styled.div`
   width: 65%;
-  height:  9vw;
+  height: 9vw;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -117,11 +103,9 @@ const Button = styled.img`
   cursor: pointer;
 `;
 
-const ButtonLeftStyled = styled(Button)`
-`;
+const ButtonLeftStyled = styled(Button)``;
 
-const ButtonRightStyled = styled(Button)`
-`;
+const ButtonRightStyled = styled(Button)``;
 
 // 배너 밑 동그라미 3개
 const CircleContainer = styled.div`
@@ -160,69 +144,6 @@ const PillsBoxContainer = styled.div`
 `;
 
 function Pills() {
-  //필터링
-  const OPTIONS1 = [
-    { value: "vitamin", name: "비타민" },
-    { value: "zinc", name: "아연" },
-    { value: "lutein", name: "루테인" },
-    { value: "Calcium/Magnesium", name: "칼슘/마그네슘" },
-    { value: "Iron supplements/Omega 3", name: "철분제/오메가3" },
-  ];
-
-  const OPTIONS2 = [
-    { value: "tired", name: "피로회복" },
-    { value: "eye", name: "눈 건강" },
-    { value: "bone", name: "뼈 건강" },
-    { value: "vascular health", name: "혈관 건강" },
-    { value: "pregnant", name: "임산부 추천" },
-  ];
-
-  const [selectedAgeOption, setSelectedAgeOption] = useState("");
-  const [selectedUsageOption, setSelectedUsageOption] = useState("");
-
-  const handleAgeOptionChange = (event) => {
-    setSelectedAgeOption(event.target.value);
-  };
-
-  const handleUsageOptionChange = (event) => {
-    setSelectedUsageOption(event.target.value);
-  };
-
-  const [selectedOption, setSelectedOption] = useState("종류");
-  const [clickStatus, setClickStatus] = useState({
-    비타민: true,
-    아연: false,
-    루테인: false,
-    "칼슘/마그네슘": false,
-    "철분제/오메가3": false,
-  });
-
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-
-    const updatedClickStatus = {
-      비타민: false,
-      아연: false,
-      루테인: false,
-      "칼슘/마그네슘": false,
-      "철분제/오메가3": false,
-    };
-    updatedClickStatus[option] = true;
-    setClickStatus(updatedClickStatus);
-  };
-
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
-  const dropdownRef = useRef(null);
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownVisible(false);
-    }
-  };
-
   //배너
   const images = [Banner1, Banner2, Banner3];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -261,12 +182,6 @@ function Pills() {
   useEffect(() => {
     setDrugData(DrugData);
   }, []);
-  // useEffect(() => {
-  //   fetch("../drugs.js")
-  //     .then((response) => response.json())
-  //     .then((data) => setDrugs(data))
-  //     .catch((error) => console.error("데이터 로딩 오류: ", error));
-  // }, []);
 
   return (
     <PillsContainer>
@@ -275,73 +190,27 @@ function Pills() {
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
-        <SortContainer>
-          <div
-            className="sortSelect"
-            onClick={toggleDropdown}
-            style={{ position: "relative", display: "flex"}}
-          >
-            <img src={icon_down} alt="icon_down" id="icon_down" style={{ width: "1.5vw" }} />
-            <p id="sortTitle">{selectedOption}</p>
-          </div>
-          {isDropdownVisible && (
-            <div className="dropdown-options" id="dropdown-options">
-              {OPTIONS1.map((option) => (
-                <div
-                  style={{ fontSize: "2rem", margin: "10px 0" }}
-                  className="dropdown-option"
-                  key={option.value}
-                  onClick={() => handleOptionClick(option.value)}
-                >
-                  <img
-                    src={
-                      clickStatus[option.value] ? yescheck_radio : nocheck_radio
-                    }
-                    alt="radio"
-                    id={`radio_${option.value}`}
-                  />
-                  {option.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </SortContainer>
-        <SortContainer>
-          <div className="sortSelect" onClick={toggleDropdown}>
-            <img src={icon_down} alt="icon_down" id="icon_down" style={{width: "1.5vw"}}/>
-            <p id="sortTitle">{selectedOption}</p>
-          </div>
-          {isDropdownVisible && (
-            <div className="dropdown-options" id="dropdown-options">
-              {OPTIONS2.map((option) => (
-                <div
-                  style={{ fontSize: "2rem", margin: "10px 0" }}
-                  className="dropdown-option"
-                  key={option.value}
-                  onClick={() => handleOptionClick(option.value)}
-                >
-                  <img
-                    src={
-                      clickStatus[option.value] ? yescheck_radio : nocheck_radio
-                    }
-                    alt="radio"
-                    id={`radio_${option.value}`}
-                  />
-                  {option.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </SortContainer>
       </First>
 
       <Banner>
         <PillsBannerContainer>
-          <ButtonLeftStyled src={buttonLeft} onClick={() => handleSlideChange(-1)} alt="ButtonLeft" />
+          <ButtonLeftStyled
+            src={buttonLeft}
+            onClick={() => handleSlideChange(-1)}
+            alt="ButtonLeft"
+          />
           <Slides>
-            <Image src={images[currentSlide]} alt="Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <Image
+              src={images[currentSlide]}
+              alt="Banner"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </Slides>
-          <ButtonRightStyled src={buttonRight} onClick={() => handleSlideChange(1)} alt="ButtonRight" />
+          <ButtonRightStyled
+            src={buttonRight}
+            onClick={() => handleSlideChange(1)}
+            alt="ButtonRight"
+          />
         </PillsBannerContainer>
         <CircleContainer>
           {[0, 1, 2].map((circleIndex) => (
