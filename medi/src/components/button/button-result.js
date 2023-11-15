@@ -30,7 +30,7 @@ const HomeLoginButton = styled.button`
     border: none;
     display: block;
     margin: 0% auto;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
     display: flex; 
     align-items: center;
     justify-content: center;

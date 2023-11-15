@@ -44,7 +44,7 @@ const CalcExplainBar = styled.div`
 `
 // 하늘색 박스
 const CalcBox = styled.div`
-    width: 65%;
+    width: 95%;
     border-radius: 2.5vw;
     margin-top: 5rem;
     background-color: ${colors.subBlue};
@@ -58,7 +58,7 @@ const CalcTitle = styled.div`
 `
 const CalcSearch = styled.div`
     width: 100%;
-    margin-top : 1vw;
+    margin-top : 0.5vw;
     display: flex;
     gap: 2vw;
     align-items: center;
@@ -73,19 +73,10 @@ const CalcName = styled.div`
 `
 // 상품목록 박스
 const CalcListContainerBig = styled.div`
-    width: 70%;
-    //height: 100%;
+    width: 45%;
     border-radius: 1.5vw;
-    // gap: 1vw;
     background-color: ${colors.white};
-    margin: 3% auto;
-    // display: flex;
-    //justify-content: space-between; //수평정렬
-    //align-items:  flex-start; //수직정렬
-
-    //flex-direction: column;
-    
-    //flex-wrap: wrap;
+    margin: 1% auto;
 `
 // 상품 목록 글씨
 const CalcListEx = styled.div`
@@ -93,7 +84,6 @@ const CalcListEx = styled.div`
     font-size : 1vw;
     margin-left : 4vw;
     margin-top: 1vw;
-    
     color : ${colors.silver};
 `
 
@@ -160,26 +150,35 @@ const CalcListEx2 = styled.div`
 `
 // 결과 박스
 const CalcCheckedContainer = styled.div`
-    width: 20%;
+    width: 45%;
     min-height: 20vw;
     padding-top:0.5rem;
     padding-bottom:3rem;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 3% auto;
+    margin: 1% auto;
     align-items: center; //수직정렬
     
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
+    // display: flex;
+    // align-items: center; //수직정렬
+    // flex-direction: column; // 세로로 정렬
+    // justify-content: center; //수평정렬
+    // margin: auto;
+    // margin-top:1vw;
+    // width: 100%;
+    // gap: 2vw;
+
     display: flex;
-    align-items: center; //수직정렬
-    flex-direction: column; // 세로로 정렬
-    justify-content: center; //수평정렬
-    margin: auto;
-    margin-top:1vw;
-    width: 100%;
-    gap: 2vw;
+    flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
+    justify-content: space-between; // 아이템 사이에 공간 추가
+
+    @media (max-width: 768px) {
+        flex-direction: column; // 작은 화면에서는 세로로 정렬되도록 변경
+        align-items: center;
+    }
 `
 
 const PillsImage = styled.img`
@@ -205,22 +204,6 @@ const CalcPillsName2 = styled.div`
     width:5vw;
     font-size: 1.2vw;
 `
-// 완료 버튼
-// const Completebutton = styled.button`
-//     width: 50%;
-//     //min-height: 15%;
-//     border-radius: 1.5vw;
-//     background-color: ${colors.mainBlue};
-//     color: ${colors.white};
-//     font-size: 2vw;
-//     &:hover {
-//         background-color: ${colors.darkBlue};
-//     }
-//     border: none;
-//     display: block;
-//     margin: 0% auto;
-//     margin-bottom: 5%;
-//`
 const Warning = styled.div`
     color: red;
     text-align: center;
@@ -350,7 +333,7 @@ const Calc = () => {
                     </CalcListContainerBig>
                         
                     
-                    {/* 체크 흰박스 */}
+                    {/* 선택한 항목 흰박스 */}
                     <CalcCheckedContainer>
                         <Flex2>
                             <CalcListEx2>선택한 항목</CalcListEx2>
@@ -361,7 +344,7 @@ const Calc = () => {
                             {selectedItems.map(id => {
                                 const selectedDrug = DrugData.find(drug => drug.id === id);
                                 return (
-                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <div key={selectedDrug.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '48%' }}>
                                         <CalcButton buttonText="-"  onClick={() => handleDeleteItem(selectedDrug.id)} ></CalcButton>
                                         <UserImage
                                             src={require(`../assets/${selectedDrug.image}`)}
@@ -375,7 +358,6 @@ const Calc = () => {
                                 );
                             })}
                         </CheckedPills>                                          
-                        
                     </CalcCheckedContainer>
                 </Flex>
                 
