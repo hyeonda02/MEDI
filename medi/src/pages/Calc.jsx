@@ -165,7 +165,7 @@ const CheckedPills = styled.div`
 
     display: flex;
     flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
-    justify-content: space-between; 
+    justify-content: center; 
     height: 15vw;
     @media (min-height: 30%) {
         flex-direction: column; // 작은 화면에서는 세로로 정렬되도록 변경
