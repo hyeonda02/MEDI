@@ -53,6 +53,13 @@ const CalcTitle = styled.div`
     font-size : 1.5vw;
     margin-left : 5rem;
     margin-top : 4rem;
+
+    // margin : 1.5% auto;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+
+
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
@@ -75,7 +82,7 @@ const CalcListContainerBig = styled.div`
     width: 45%;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 1% auto;
+    margin: 1.5% auto;
 `
 // 상품 목록 글씨
 const CalcListEx = styled.div`
@@ -147,7 +154,7 @@ const CalcCheckedContainer = styled.div`
     min-height: 20vw;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 1% auto;
+    margin: 1.5% auto;
     align-items: center; //수직정렬
     
 `
