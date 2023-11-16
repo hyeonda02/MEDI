@@ -8,6 +8,7 @@ import DeleteCalc from "../components/button/button-delete";
 import Completebutton from "../components/button/button-result";
 import DrugData from "../util/drug";
 import { useNavigate } from 'react-router-dom';
+import Loading from "../pages/Loading";
 
 const CalcBannerP1 = styled.p`
     color: ${colors.white};
@@ -218,6 +219,7 @@ const Flex2 = styled.div`
 const Calc = () => {
     const [selectedItems, setSelectedItems] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // 사용자의 입력 값을 저장할 상태
+    const [loading, setLoading] = useState('');
     const navigate = useNavigate();
     
     const submit = () => {
@@ -226,13 +228,19 @@ const Calc = () => {
         const selectedDataCalcs = selectedItems.map( selectedId =>{
             return DrugData.find(item =>item.id === selectedId)
         });
+
         if(selectedDataCalcs.length > 0){
             selectedDataCalcs.forEach( item =>{
                 console.log(item)
             });
-            navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
+            navigate("/loading");
+            setTimeout(() => {
+                navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
+            }, 3000);
+
         }
-    };
+
+    }
 
     // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
     const filteredDrugs = DrugData.filter(drug =>
@@ -375,7 +383,6 @@ const Calc = () => {
 
         
     )
-}
 
-
+};
 export default Calc
