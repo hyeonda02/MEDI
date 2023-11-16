@@ -54,6 +54,13 @@ const CalcTitle = styled.div`
     font-size : 1.5vw;
     margin-left : 5rem;
     margin-top : 4rem;
+
+    // margin : 1.5% auto;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+
+
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
@@ -76,7 +83,7 @@ const CalcListContainerBig = styled.div`
     width: 45%;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 1% auto;
+    margin: 1.5% auto;
 `
 // 상품 목록 글씨
 const CalcListEx = styled.div`
@@ -114,10 +121,9 @@ const CalcListContainer = styled.div`
 `
 // 회색 영양제 박스
 const CalcList = styled.div`
-    width: 40%;
+    width: 45%;
     height: 30%;
-    margin: 4%;
-    //margin-top: 0;
+    margin: 2%;
     display: flex;
     text-align: justify;
     border-radius: 1.5vw;
@@ -149,24 +155,15 @@ const CalcCheckedContainer = styled.div`
     min-height: 20vw;
     border-radius: 1.5vw;
     background-color: ${colors.white};
-    margin: 1% auto;
+    margin: 1.5% auto;
     align-items: center; //수직정렬
     
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
-    // display: flex;
-    // align-items: center; //수직정렬
-    // flex-direction: column; // 세로로 정렬
-    // justify-content: center; //수평정렬
-    // margin: auto;
-    // margin-top:1vw;
-    // width: 100%;
-    // gap: 2vw;
-
     display: flex;
     flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
-    justify-content: space-between; 
+    justify-content: center; 
     height: 15vw;
     @media (min-height: 30%) {
         flex-direction: column; // 작은 화면에서는 세로로 정렬되도록 변경
@@ -175,7 +172,7 @@ const CheckedPills = styled.div`
 `
 
 const PillsImage = styled.img`
-    width: 35%;
+    width: auto;
     height: 75%;
 `
 
