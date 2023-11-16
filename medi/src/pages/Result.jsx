@@ -54,6 +54,9 @@ const Patient = styled.div`
     align-items: center;
 `
 
+
+
+
 const CalcResult = () => {
     const [selectedDataCalcs, setSelectedDataCalcs] = useState([]);
     const [selectedDataCombi, setSelectedDataCombi] = useState([]);
@@ -124,7 +127,9 @@ const CalcResult = () => {
                             </Patient>
                         </PatientContainer>
                         <CalcResultP style={{fontWeight: "bold", marginTop: "2vw", fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.<br/>이곳에 나타나지 않는 조합들은 안심하고 같이 복용해도 된답니다!</CalcResultP>
+
                         <ListResult data  ={selectedDataCombi}/>
+
                     </div>
                 </div>
             </ResultContainer>
