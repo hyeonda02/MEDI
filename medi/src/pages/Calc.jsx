@@ -233,23 +233,14 @@ const Calc = () => {
             selectedDataCalcs.forEach( item =>{
                 console.log(item)
             });
-
+            navigate("/loading");
             setTimeout(() => {
-                <Loading />;
                 navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
             }, 3000);
 
         }
 
-            navigate( "/result", { state: { selectCalcs: selectedDataCalcs } });
-        }
-
-
-
-
-
-
-
+    }
 
     // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
     const filteredDrugs = DrugData.filter(drug =>
