@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import colors from "../styles/colors";
 import styled from "styled-components";
 import searchkey from "../assets/images/searchkey.png";
+import icon_down from "../assets/images/icon_down.png";
+import yescheck_radio from "../assets/images/yescheck_radio.png";
+import nocheck_radio from "../assets/images/nocheck_radio.png";
 import Banner1 from "../assets/images/Banner1.png";
 import Banner2 from "../assets/images/Banner2.png";
 import Banner3 from "../assets/images/Banner3.png";
@@ -59,11 +62,8 @@ const SearchImage = styled.img`
 `;
 
 // //필터링
-// const SelectContainer = styled.div`
-//   display: flex;
-// `;
 
-const Select = styled.select`
+const sortContainer = styled.div`
   width: 100% 
   align-items: center;
   justify-content: center;
@@ -75,6 +75,7 @@ const Select = styled.select`
   background: #191B24;
   color: ${colors.darkslateblue};
   font-size: 2rem;
+ 
 
   @media screen and (max-width: 600px) {
     font-size: 1.5rem; /* 화면이 작을 때 글꼴 크기 조절 */
@@ -99,15 +100,16 @@ const Banner = styled.div`
   max-width: 100%;
 `;
 const PillsBannerContainer = styled.div`
-  width: 70%; /* 너비를 100%로 설정하여 화면 폭에 맞게 확장 */
+  width: 70%;
   // max-width: 50vw; /* 최대 너비 설정 */
-  height: auto; /* 높이를 자동으로 조절하여 이미지 비율 유지 */
+  height:  9vw;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
   margin-top: 2.6vw;
   margin-bottom: 1rem;
+  background-color: pink;
 `;
 
 // 배너 이미지
@@ -121,6 +123,7 @@ const Image = styled.img`
     width: 80%; /* 화면이 작을 때 이미지 크기를 줄임 */
   }
 `;
+//배너크기에 이미지를 맞춰
 
 // 배너 양쪽 버튼
 const Button = styled.img`
@@ -159,7 +162,7 @@ const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 2rem;
 
   @media screen and (max-width: 600px) {
     margin-top: 3rem; /* 화면이 작을 때 동그라미 위치를 조절 */
@@ -223,12 +226,39 @@ function Pills() {
     setSelectedUsageOption(event.target.value);
   };
 
-  const YourComponent = () => {
-    const [optionsVisible, setOptionsVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("종류");
+  const [clickStatus, setClickStatus] = useState({
+    비타민: true,
+    아연: false,
+    루테인: false,
+    "칼슘/마그네슘": false,
+    "철분제/오메가3": false,
+  });
 
-    const handleSelectClick = () => {
-      setOptionsVisible(!optionsVisible);
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+
+    const updatedClickStatus = {
+      비타민: false,
+      아연: false,
+      루테인: false,
+      "칼슘/마그네슘": false,
+      "철분제/오메가3": false,
     };
+    updatedClickStatus[option] = true;
+    setClickStatus(updatedClickStatus);
+  };
+
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+  const dropdownRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownVisible(false);
+    }
   };
 
   //배너
@@ -283,56 +313,106 @@ function Pills() {
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
-
-        <Select value={selectedAgeOption} onChange={handleAgeOptionChange}>
-          <option value="" style={{ display: "none" }}>
-            종류
-          </option>
-          {OPTIONS1.map((option) => (
-            <div key={option.value}>
-              <input
-                type="checkbox"
-                value={option.value}
-                checked={selectedAgeOption.includes(option.value)}
-                onChange={() => handleAgeOptionChange(option.value)}
-              />
-              <label style={{ color: "white" }}>{option.name}</label>
-            </div>
-          ))}
-        </Select>
-
-        <div className="custom-select">
-          <div className="select-wrapper">
-            <select
-              value={selectedUsageOption}
-              onChange={handleUsageOptionChange}
-            >
-              <option value="" style={{ display: "none" }}>
-                용도
-              </option>
-              {OPTIONS2.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-            <div className="checkbox-options">
-              {OPTIONS2.map((option) => (
-                <div key={option.value}>
-                  <input
-                    type="checkbox"
-                    value={option.value}
-                    checked={selectedUsageOption.includes(option.value)}
-                    onChange={() => handleUsageOptionChange(option.value)}
+        <div
+          className="sortContainer"
+          style={{
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "2rem",
+            padding: "0.5vw 2vw 0.5vw 2vw",
+            height: "3vw",
+            color: "white",
+            border: "0.2vw solid #2A2A3A",
+            borderRadius: "1.5vw",
+            background: "#191B24",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            className="sortSelect"
+            onClick={toggleDropdown}
+            style={{ position: "relative" }}
+          >
+            <img
+              src={icon_down}
+              alt="icon_down"
+              id="icon_down"
+              style={{
+                width: "30px",
+                height: "30px",
+                marginRight: "20px",
+              }}
+            />
+            <p id="sortTitle">{selectedOption}</p>
+          </div>
+          {isDropdownVisible && (
+            <div className="dropdown-options" id="dropdown-options">
+              {OPTIONS1.map((option) => (
+                <div
+                  style={{ fontSize: "2rem", margin: "10px 0" }}
+                  className="dropdown-option"
+                  key={option.value}
+                  onClick={() => handleOptionClick(option.value)}
+                >
+                  <img
+                    src={
+                      clickStatus[option.value] ? yescheck_radio : nocheck_radio
+                    }
+                    alt="radio"
+                    id={`radio_${option.value}`}
                   />
-                  <label style={{ color: "white" }}>{option.name}</label>
+                  {option.name}
                 </div>
               ))}
             </div>
+          )}
+        </div>
+        <div
+          className="sortContainer"
+          style={{
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "2rem",
+            padding: "0.5vw 2vw 0.5vw 2vw",
+            height: "3vw",
+            color: "white",
+            border: "0.2vw solid #2A2A3A",
+            borderRadius: "1.5vw",
+            background: "#191B24",
+            zIndex: 9999,
+          }}
+        >
+          <div className="sortSelect" onClick={toggleDropdown}>
+            <img src={icon_down} alt="icon_down" id="icon_down" />
+            <p id="sortTitle">{selectedOption}</p>
           </div>
+          {isDropdownVisible && (
+            <div className="dropdown-options" id="dropdown-options">
+              {OPTIONS2.map((option) => (
+                <div
+                  style={{ fontSize: "2rem", margin: "10px 0" }}
+                  className="dropdown-option"
+                  key={option.value}
+                  onClick={() => handleOptionClick(option.value)}
+                >
+                  <img
+                    src={
+                      clickStatus[option.value] ? yescheck_radio : nocheck_radio
+                    }
+                    alt="radio"
+                    id={`radio_${option.value}`}
+                  />
+                  {option.name}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </First>
-
+      {/* <p></p> <p></p> <p></p> <p></p> <p></p>
+      <p></p> <p></p> <p></p> <p></p> <p></p> */}
       <Banner>
         <PillsBannerContainer>
           <ButtonLeftStyled
@@ -363,7 +443,6 @@ function Pills() {
           ))}
         </CircleContainer>
       </Banner>
-
       <PillsBoxContainer>
         <PillsList data={drugs} />
       </PillsBoxContainer>

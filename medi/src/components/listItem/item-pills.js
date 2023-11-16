@@ -14,6 +14,7 @@ const StyleItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   @media screen and (max-width: 600px) {
     width: 80%;
@@ -103,10 +104,10 @@ export const PillsModal = styled.div`
   text-align: left;
   z-index: 999;
   letter-spacing: 2px;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
 
   @media screen and (max-width: 600px) {
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 10px;
   }
 
@@ -118,7 +119,7 @@ export const PillsModal = styled.div`
     border-radius: 4px;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 5rem;
+    font-size: 4rem;
   }
 `;
 
@@ -197,7 +198,7 @@ const DrugListItem = (props) => {
       {isModalOpen && (
         <>
           <PillsModal>
-            <h4 style={{ fontSize: "3rem", fontWeight: "bold" }}>{name}</h4>
+            <h4 style={{ fontSize: "2rem", fontWeight: "bold" }}>{name}</h4>
             <p style={{ fontWeight: "bold" }}>{formattedModalExplain}</p>
             <br />
             <ResponsiveImage>
