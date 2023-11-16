@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import colors from "../styles/colors";
 import styled from "styled-components";
 import searchkey from "../assets/images/searchkey.png";
+import icon_up from "../assets/images/icon_up.png";
 import icon_down from "../assets/images/icon_down.png";
 import yescheck_radio from "../assets/images/yescheck_radio.png";
 import nocheck_radio from "../assets/images/nocheck_radio.png";
@@ -74,6 +75,7 @@ const SortDiv = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2vw;
+  cursor: pointer;
 
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
@@ -81,6 +83,18 @@ const SortDiv = styled.div`
 `
 
 const SortP = styled.p`
+  color: #949494;
+  font-size: 1vw;
+`
+
+const SelectDiv = styled.div`
+  min-width: 12.5vw;
+  border: 0.05vw solid ${colors.white};
+  border-radius: 2.5vw;
+  background-color: #191B24;
+  position: absolute;
+  margin-top: 7.5%;
+  margin-left: 16.5vw;
 `
 
 
@@ -204,6 +218,58 @@ function Pills() {
     setDrugData(DrugData);
   }, []);
 
+  // 셀렉트
+  const [checkedItems, setCheckedItems] = useState({
+    vitamin: false,
+    zinc: false,
+    lutein: false,
+    calciumMagnesium: false,
+    ironOmega3: false,
+  });
+
+  const handleItemClick = (itemName) => {
+    setCheckedItems((prevCheckedItems) => ({
+      vitamin: false,
+      zinc: false,
+      lutein: false,
+      calciumMagnesium: false,
+      ironOmega3: false,
+      [itemName]: !prevCheckedItems[itemName],
+    }));
+  };
+
+  const [checkedItems2, setCheckedItems2] = useState({
+    fatigue: false,
+    eyes: false,
+    bone: false,
+    blood: false,
+    pregnantWomen: false,
+  });
+
+  const handleItemClick2 = (itemName) => {
+    setCheckedItems2((prevCheckedItems) => ({
+      fatigue: false,
+      eyes: false,
+      bone: false,
+      blood: false,
+      pregnantWomen: false,
+      [itemName]: !prevCheckedItems[itemName],
+    }));
+  };
+
+  // 셀렉트 보이기 안보이기
+  const [selectDivVisible, setSelectDivVisible] = useState(false);
+
+  const handleSortDivClick = () => {
+    setSelectDivVisible(!selectDivVisible);
+  };
+
+  const [selectDivVisible2, setSelectDivVisible2] = useState(false);
+
+  const handleSortDivClick2 = () => {
+    setSelectDivVisible2(!selectDivVisible2);
+  };
+
   return (
     <PillsContainer>
       <First>
@@ -211,15 +277,70 @@ function Pills() {
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
           <SearchInput type="search" placeholder="약품을 검색하세요." />
         </PillsSearch>
-        <SortDiv>
-          <SortP>종류</SortP>
-          <img src={icon_down} alt="icon_down" style={{width: "1.5vw", height: "1vw", cursor: "pointer"}}/>        
+        <SortDiv onClick={handleSortDivClick}>
+          <SortP>
+            {checkedItems.vitamin ? "비타민" : checkedItems.zinc ? "아연" : checkedItems.lutein ? "루테인" : checkedItems.calciumMagnesium ? "칼슘/마그네슘" : checkedItems.ironOmega3 ? "철분제/오메가3" : "종류"}
+          </SortP>
+          <img src={selectDivVisible ? icon_up : icon_down} alt="icon" style={{ width: "1.8vw", height: "1vw", cursor: "pointer" }}/>
         </SortDiv>
-        <SortDiv>
-          <SortP>용도</SortP>
-          <img src={icon_down} alt="icon_down" style={{width: "1.5vw", height: "1vw", cursor: "pointer"}}/>        
+
+        <SortDiv onClick={handleSortDivClick2}>
+          <SortP>
+            {checkedItems2.fatigue ? "피로회복" : checkedItems2.eyes ? "눈 건강" : checkedItems2.bone ? "뺘 건강" : checkedItems2.blood ? "혈관 건강" : checkedItems2.pregnantWomen ? "임산부 추천" : "용도"}
+          </SortP>
+          <img src={selectDivVisible2 ? icon_up : icon_down} alt="icon" style={{width: "1.8vw", height: "1vw", cursor: "pointer"}}/>        
         </SortDiv>
       </First>
+
+      {selectDivVisible && (
+        <SelectDiv>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('vitamin')}>
+            <img src={checkedItems.vitamin ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems.vitamin ? colors.white : "#949494", cursor: "pointer" }}>비타민</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('zinc')}>
+            <img src={checkedItems.zinc ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems.zinc ? colors.white : "#949494", cursor: "pointer" }}>아연</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('lutein')}>
+            <img src={checkedItems.lutein ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems.lutein ? colors.white : "#949494", cursor: "pointer" }}>루테인</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('calciumMagnesium')}>
+            <img src={checkedItems.calciumMagnesium ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems.calciumMagnesium ? colors.white : "#949494", cursor: "pointer" }}>칼슘/마그네슘</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw", marginBottom: "1vw" }} onClick={() => handleItemClick('ironOmega3')}>
+            <img src={checkedItems.ironOmega3 ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems.ironOmega3 ? colors.white : "#949494", cursor: "pointer" }}>철분제/오메가3</SortP>
+          </div>
+        </SelectDiv>
+      )}
+
+      {selectDivVisible2 && (
+        <SelectDiv style={{ marginLeft: "47vw" }}>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('fatigue')}>
+            <img src={checkedItems2.fatigue ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems2.fatigue ? colors.white : "#949494", cursor: "pointer" }}>피로회복</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('eyes')}>
+            <img src={checkedItems2.eyes ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems2.eyes ? colors.white : "#949494", cursor: "pointer" }}>눈 건강</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('bone')}>
+            <img src={checkedItems2.bone ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems2.bone ? colors.white : "#949494", cursor: "pointer" }}>뼈 건강</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('blood')}>
+            <img src={checkedItems2.blood ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems2.blood ? colors.white : "#949494", cursor: "pointer" }}>혈관 건강</SortP>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw", marginBottom: "1vw" }} onClick={() => handleItemClick2('pregnantWomen')}>
+            <img src={checkedItems2.pregnantWomen ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+            <SortP style={{ marginLeft: "1vw", color: checkedItems2.pregnantWomen ? colors.white : "#949494", cursor: "pointer" }}>임산부 추천</SortP>
+          </div>
+        </SelectDiv>
+      )}
 
       <Banner>
         <PillsBannerContainer>
