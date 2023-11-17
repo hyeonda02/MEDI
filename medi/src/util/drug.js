@@ -223,7 +223,7 @@ const DrugData = [
         "modalImage3": "images/food-butter.png",
         "modalImage4": "images/food-milk.png",
 
-        "selectType": "칼슘",
+        "selectType": "칼슘/마그네슘",
         "selectExplain": "뼈건강"
     },
     {
@@ -240,7 +240,7 @@ const DrugData = [
         "modalImage3": "images/food-butter.png",
         "modalImage4": "images/food-milk.png",
 
-        "selectType": "칼슘",
+        "selectType": "칼슘/마그네슘",
         "selectExplain": "뼈건강"
     },
     {
@@ -258,7 +258,7 @@ const DrugData = [
         "modalImage3": "images/food-dailyproduct.png",
         "modalImage4": "images/food-chocolate.png",
 
-        "selectType": "마그네슘",
+        "selectType": "칼슘/마그네슘",
         "selectExplain": "뼈건강"
     },
     {
@@ -275,7 +275,7 @@ const DrugData = [
         "modalImage3": "images/food-dailyproduct.png",
         "modalImage4": "images/food-chocolate.png",
         
-        "selectType": "마그네슘",
+        "selectType": "칼슘/마그네슘",
         "selectExplain": "뼈건강"
     },
     {
@@ -293,7 +293,7 @@ const DrugData = [
         "modalImage3": "images/food-bean.png",
         "modalImage4": "images/food-fish.png",
 
-        "selectType": "철분제",
+        "selectType": "철분제/오메가3",
         "selectExplain": "임산부추천"
     }, 
     {
@@ -310,7 +310,7 @@ const DrugData = [
         "modalImage3": "images/food-bean.png",
         "modalImage4": "images/food-fish.png",
 
-        "selectType": "철분제",
+        "selectType": "철분제/오메가3",
         "selectExplain": "임산부추천"
     },
     {
@@ -328,7 +328,7 @@ const DrugData = [
         "modalImage3": "images/food-seaweed.png",
         "modalImage4": "images/food-fish.png",
 
-        "selectType": "오메가3",
+        "selectType": "철분제/오메가3",
         "selectExplain": "혈관건강"
     },
     {
@@ -345,7 +345,7 @@ const DrugData = [
         "modalImage3": "images/food-seaweed.png",
         "modalImage4": "images/food-fish.png",
 
-        "selectType": "오메가3",
+        "selectType": "철분제/오메가3",
         "selectExplain": "혈관건강"
     }
 ]

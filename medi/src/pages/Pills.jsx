@@ -12,8 +12,8 @@ import Banner3 from "../assets/images/Banner3.png";
 import buttonLeft from "../assets/images/ButtonLeft.png";
 import buttonRight from "../assets/images/ButtonRight.png";
 import PillsList from "../components/list/list-pills";
-
 import DrugData from "../util/drug";
+import SearchInput from "../components/input/input-pills";
 
 const PillsContainer = styled.div`
   display: flex;
@@ -24,11 +24,11 @@ const PillsContainer = styled.div`
 //검색과 필터링 박스
 const First = styled.div`
   width: 60%;
+  height: 3vw;
   display: flex;
   align-items: center;
   margin-top: 5rem;
   gap: 2vw;
-  height: 3vw;
 `;
 
 //검색
@@ -39,21 +39,7 @@ const PillsSearch = styled.div`
   color: ${colors.lightgray};
 `;
 
-const SearchInput = styled.input`
-  width: 100%;
-  height: 3vw;
-  border: 0.2vw solid #2a2a3a;
-  border-radius: 1.5vw;
-  background: #191b24;
-  color: #484a64;
-  outline: none;
-  padding: 1.5vw 3.5vw 1.5vw 3vw;
-  font-size: 2rem; /* 기본 글꼴 크기 설정 */
 
-  @media screen and (max-width: 600px) {
-    font-size: 1.5rem;
-  }
-`;
 const SearchImage = styled.img`
   width: 1.5vw;
   height: 1.5vw;
@@ -76,10 +62,6 @@ const SortDiv = styled.div`
   justify-content: center;
   gap: 2vw;
   cursor: pointer;
-
-  @media screen and (max-width: 600px) {
-    font-size: 1.5rem;
-  }
 `
 
 const SortP = styled.p`
@@ -95,8 +77,21 @@ const SelectDiv = styled.div`
   position: absolute;
   margin-top: 7.5%;
   margin-left: 16.5vw;
+  z-index: 1;
 `
 
+const SelectContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1vw;
+`
+
+const SelectImage = styled.img`
+  width: 1vw;
+  height: 1vw;
+  margin-left: 2vw;
+  cursor: pointer;
+`
 
 //배너 슬라이드
 const Slides = styled.div`
@@ -163,12 +158,8 @@ const Circle = styled.div`
   &.active {
     background: #484a64;
   }
-
-  @media screen and (max-width: 600px) {
-    width: 0.3vw; /* 화면이 작을 때 동그라미 크기를 줄임 */
-    height: 0.3vw;
-  }
 `;
+
 //약 상자 설명
 const PillsBoxContainer = styled.div`
   display: flex;
@@ -178,7 +169,7 @@ const PillsBoxContainer = styled.div`
   padding-top: 2vw;
 `;
 
-function Pills() {
+const Pills = () => {
   //배너
   const images = [Banner1, Banner2, Banner3];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -211,12 +202,6 @@ function Pills() {
     };
   }, [images.length]);
 
-  //약 리스트
-  const [drugs, setDrugData] = useState(DrugData);
-
-  useEffect(() => {
-    setDrugData(DrugData);
-  }, []);
 
   // 셀렉트
   const [checkedItems, setCheckedItems] = useState({
@@ -236,6 +221,21 @@ function Pills() {
       ironOmega3: false,
       [itemName]: !prevCheckedItems[itemName],
     }));
+
+    const type =
+      itemName === "vitamin"
+        ? "비타민"
+        : itemName === "zinc"
+        ? "아연"
+        : itemName === "lutein"
+        ? "루테인"
+        : itemName === "calciumMagnesium"
+        ? "칼슘/마그네슘"
+        : itemName === "ironOmega3"
+        ? "철분제/오메가3"
+        : "";
+
+    setSelectedType(type);
   };
 
   const [checkedItems2, setCheckedItems2] = useState({
@@ -255,6 +255,21 @@ function Pills() {
       pregnantWomen: false,
       [itemName]: !prevCheckedItems[itemName],
     }));
+
+    const type =
+      itemName === "fatigue"
+        ? "피로회복"
+        : itemName === "eyes"
+        ? "눈건강"
+        : itemName === "bone"
+        ? "뼈건강"
+        : itemName === "blood"
+        ? "혈관건강"
+        : itemName === "pregnantWomen"
+        ? "임산부추천"
+        : "";
+
+    setSelectedExplain(type);
   };
 
   // 셀렉트 보이기 안보이기
@@ -270,12 +285,53 @@ function Pills() {
     setSelectDivVisible2(!selectDivVisible2);
   };
 
+  // 데이터 다 출력
+  const [drugs, setDrugData] = useState(DrugData);
+
+  useEffect(() => {
+    setDrugData(DrugData);
+  }, []);
+
+  // 검색
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // 셀렉트
+  const [selectedType, setSelectedType] = useState([]);
+  const [selectedExplain, setSelectedExplain] = useState([]);
+
+  const filteredDrugs = drugs.filter(drug => {
+    const isSelectedType =
+      selectedType.length === 0 ||
+      (Array.isArray(selectedType)
+        ? selectedType.includes(drug.selectType)
+        : selectedType === drug.selectType);
+
+    const isSelectedExplain =
+    selectedExplain.length === 0 ||
+    (Array.isArray(selectedExplain)
+      ? selectedExplain.some(explain => drug.selectExplain.split(',').includes(explain))
+      : selectedExplain.split(',').some(explain => drug.selectExplain.split(',').includes(explain)));
+
+    return (
+      isSelectedType &&
+      isSelectedExplain &&
+      (drug.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        drug.company.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+
   return (
     <PillsContainer>
       <First>
         <PillsSearch>
           <SearchImage id="icon_search" src={searchkey} alt="searchkey" />
-          <SearchInput type="search" placeholder="약품을 검색하세요." />
+          <SearchInput onChange={handleSearchTermChange} value={searchTerm} placeholder="약품을 검색하세요."/>
         </PillsSearch>
         <SortDiv onClick={handleSortDivClick}>
           <SortP>
@@ -294,51 +350,51 @@ function Pills() {
 
       {selectDivVisible && (
         <SelectDiv>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('vitamin')}>
-            <img src={checkedItems.vitamin ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          <SelectContainer onClick={() => handleItemClick('vitamin')}>
+            <SelectImage src={checkedItems.vitamin ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems.vitamin ? colors.white : "#949494", cursor: "pointer" }}>비타민</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('zinc')}>
-            <img src={checkedItems.zinc ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick('zinc')}>
+            <SelectImage src={checkedItems.zinc ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems.zinc ? colors.white : "#949494", cursor: "pointer" }}>아연</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('lutein')}>
-            <img src={checkedItems.lutein ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick('lutein')}>
+            <SelectImage src={checkedItems.lutein ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems.lutein ? colors.white : "#949494", cursor: "pointer" }}>루테인</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick('calciumMagnesium')}>
-            <img src={checkedItems.calciumMagnesium ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick('calciumMagnesium')}>
+            <SelectImage src={checkedItems.calciumMagnesium ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems.calciumMagnesium ? colors.white : "#949494", cursor: "pointer" }}>칼슘/마그네슘</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw", marginBottom: "1vw" }} onClick={() => handleItemClick('ironOmega3')}>
-            <img src={checkedItems.ironOmega3 ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer style={{ marginBottom: "1vw" }} onClick={() => handleItemClick('ironOmega3')}>
+            <SelectImage src={checkedItems.ironOmega3 ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems.ironOmega3 ? colors.white : "#949494", cursor: "pointer" }}>철분제/오메가3</SortP>
-          </div>
+          </SelectContainer>
         </SelectDiv>
       )}
 
       {selectDivVisible2 && (
         <SelectDiv style={{ marginLeft: "47vw" }}>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('fatigue')}>
-            <img src={checkedItems2.fatigue ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          <SelectContainer onClick={() => handleItemClick2('fatigue')}>
+            <SelectImage src={checkedItems2.fatigue ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems2.fatigue ? colors.white : "#949494", cursor: "pointer" }}>피로회복</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('eyes')}>
-            <img src={checkedItems2.eyes ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick2('eyes')}>
+            <SelectImage src={checkedItems2.eyes ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems2.eyes ? colors.white : "#949494", cursor: "pointer" }}>눈 건강</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('bone')}>
-            <img src={checkedItems2.bone ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick2('bone')}>
+            <SelectImage src={checkedItems2.bone ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems2.bone ? colors.white : "#949494", cursor: "pointer" }}>뼈 건강</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw" }} onClick={() => handleItemClick2('blood')}>
-            <img src={checkedItems2.blood ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer onClick={() => handleItemClick2('blood')}>
+            <SelectImage src={checkedItems2.blood ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems2.blood ? colors.white : "#949494", cursor: "pointer" }}>혈관 건강</SortP>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", marginTop: "1vw", marginBottom: "1vw" }} onClick={() => handleItemClick2('pregnantWomen')}>
-            <img src={checkedItems2.pregnantWomen ? yescheck_radio : nocheck_radio} alt="nocheck" style={{ width: "1vw", height: "1vw", marginLeft: "2vw", cursor: "pointer" }} /> 
+          </SelectContainer>
+          <SelectContainer style={{ marginBottom: "1vw" }} onClick={() => handleItemClick2('pregnantWomen')}>
+            <SelectImage src={checkedItems2.pregnantWomen ? yescheck_radio : nocheck_radio} alt="nocheck"/> 
             <SortP style={{ marginLeft: "1vw", color: checkedItems2.pregnantWomen ? colors.white : "#949494", cursor: "pointer" }}>임산부 추천</SortP>
-          </div>
+          </SelectContainer>
         </SelectDiv>
       )}
 
@@ -373,7 +429,7 @@ function Pills() {
         </CircleContainer>
       </Banner>
       <PillsBoxContainer>
-        <PillsList data={drugs} />
+        <PillsList data={filteredDrugs} selectType={selectedType} selectExplain={selectedExplain}/>
       </PillsBoxContainer>
     </PillsContainer>
   );
