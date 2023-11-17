@@ -24,7 +24,6 @@ const PillsContainer = styled.div`
 //검색과 필터링 박스
 const First = styled.div`
   width: 60%;
-  height: 3vw;
   display: flex;
   align-items: center;
   margin-top: 5rem;
@@ -39,36 +38,36 @@ const PillsSearch = styled.div`
   color: ${colors.lightgray};
 `;
 
-
+//검색아이콘
 const SearchImage = styled.img`
   width: 1.5vw;
   height: 1.5vw;
   position: absolute;
-  margin-left: 1vw;
+  margin-left: 2vw;
   z-index: 1;
 `;
 
-//필터링
+//필터링 박스
 const SortDiv = styled.div`
   width: 22%;
-  height: 3vw;
+  height: 100%;
   border: 0.2vw solid #2a2a3a;
   border-radius: 1.5vw;
   background: #191b24;
   color: #484a64;
-  font-size: 2rem;
+  font-size: 1.2vw;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2vw;
   cursor: pointer;
-`
+`;
 
 const SortP = styled.p`
   color: #949494;
   font-size: 1vw;
 `
-
+//셀렉트 박스
 const SelectDiv = styled.div`
   min-width: 12.5vw;
   border: 0.05vw solid ${colors.white};
@@ -85,7 +84,7 @@ const SelectContainer = styled.div`
   align-items: center;
   margin-top: 1vw;
 `
-
+//셀렉트 위아래 
 const SelectImage = styled.img`
   width: 1vw;
   height: 1vw;
@@ -212,65 +211,84 @@ const Pills = () => {
     ironOmega3: false,
   });
 
+
   const handleItemClick = (itemName) => {
-    setCheckedItems((prevCheckedItems) => ({
+  setCheckedItems((prevCheckedItems) => {
+    const newState = {
       vitamin: false,
       zinc: false,
       lutein: false,
       calciumMagnesium: false,
       ironOmega3: false,
       [itemName]: !prevCheckedItems[itemName],
-    }));
+    };
 
-    const type =
-      itemName === "vitamin"
-        ? "비타민"
-        : itemName === "zinc"
-        ? "아연"
-        : itemName === "lutein"
-        ? "루테인"
-        : itemName === "calciumMagnesium"
-        ? "칼슘/마그네슘"
-        : itemName === "ironOmega3"
-        ? "철분제/오메가3"
-        : "";
+    // 만약 클릭한 항목이 이미 선택된 경우, 선택을 토글하기 위해 false로 설정합니다.
+    if (prevCheckedItems[itemName]) {
+      setSelectedType([]);
+    } else {
+      const type =
+        itemName === "vitamin"
+            ? "비타민"
+            : itemName === "zinc"
+            ? "아연"
+            : itemName === "lutein"
+            ? "루테인"
+            : itemName === "calciumMagnesium"
+            ? "칼슘/마그네슘"
+            : itemName === "ironOmega3"
+            ? "철분제/오메가3"
+            : "";
+      setSelectedType(type);
+    }
 
-    setSelectedType(type);
+    return newState;
+  });
   };
 
-  const [checkedItems2, setCheckedItems2] = useState({
-    fatigue: false,
-    eyes: false,
-    bone: false,
-    blood: false,
-    pregnantWomen: false,
-  });
+    const [checkedItems2, setCheckedItems2] = useState({
+      fatigue: false,
+      eyes: false,
+      bone: false,
+      blood: false,
+      pregnantWomen: false,
+    });
 
   const handleItemClick2 = (itemName) => {
-    setCheckedItems2((prevCheckedItems) => ({
+  setCheckedItems2((prevCheckedItems) => {
+    const newState = {
       fatigue: false,
       eyes: false,
       bone: false,
       blood: false,
       pregnantWomen: false,
       [itemName]: !prevCheckedItems[itemName],
-    }));
+    };
 
-    const type =
-      itemName === "fatigue"
-        ? "피로회복"
-        : itemName === "eyes"
-        ? "눈건강"
-        : itemName === "bone"
-        ? "뼈건강"
-        : itemName === "blood"
-        ? "혈관건강"
-        : itemName === "pregnantWomen"
-        ? "임산부추천"
-        : "";
+    // 만약 클릭한 항목이 이미 선택된 경우, 선택을 토글하기 위해 false로 설정합니다.
+    if (prevCheckedItems[itemName]) {
+      setSelectedExplain([]);
+    } else {
+      const type =
+        itemName === "fatigue"
+          ? "피로회복"
+          : itemName === "eyes"
+          ? "눈건강"
+          : itemName === "bone"
+          ? "뼈건강"
+          : itemName === "blood"
+          ? "혈관건강"
+          : itemName === "pregnantWomen"
+          ? "임산부추천"
+          : "";
 
-    setSelectedExplain(type);
-  };
+      setSelectedExplain(type);
+    }
+
+    return newState;
+  });
+};
+  
 
   // 셀렉트 보이기 안보이기
   const [selectDivVisible, setSelectDivVisible] = useState(false);
@@ -299,7 +317,8 @@ const Pills = () => {
   const [selectedType, setSelectedType] = useState([]);
   const [selectedExplain, setSelectedExplain] = useState([]);
 
-  const filteredDrugs = drugs.filter(drug => {
+
+  const filteredDrugs = drugs.filter((drug) => {
     const isSelectedType =
       selectedType.length === 0 ||
       (Array.isArray(selectedType)
@@ -307,10 +326,16 @@ const Pills = () => {
         : selectedType === drug.selectType);
 
     const isSelectedExplain =
-    selectedExplain.length === 0 ||
-    (Array.isArray(selectedExplain)
-      ? selectedExplain.some(explain => drug.selectExplain.split(',').includes(explain))
-      : selectedExplain.split(',').some(explain => drug.selectExplain.split(',').includes(explain)));
+      selectedExplain.length === 0 ||
+      (Array.isArray(selectedExplain)
+        ? selectedExplain.some((explain) =>
+            drug.selectExplain.split(",").includes(explain)
+          )
+        : selectedExplain
+            .split(",")
+            .some((explain) =>
+              drug.selectExplain.split(",").includes(explain)
+            ));
 
     return (
       isSelectedType &&
@@ -320,6 +345,7 @@ const Pills = () => {
         drug.company.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
+
 
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
@@ -337,14 +363,14 @@ const Pills = () => {
           <SortP>
             {checkedItems.vitamin ? "비타민" : checkedItems.zinc ? "아연" : checkedItems.lutein ? "루테인" : checkedItems.calciumMagnesium ? "칼슘/마그네슘" : checkedItems.ironOmega3 ? "철분제/오메가3" : "종류"}
           </SortP>
-          <img src={selectDivVisible ? icon_up : icon_down} alt="icon" style={{ width: "1.8vw", height: "1vw", cursor: "pointer" }}/>
+          <img src={selectDivVisible ? icon_up : icon_down} alt="icon" style={{ width: "1.5vw", height: "0.7vw", cursor: "pointer" }}/>
         </SortDiv>
 
         <SortDiv onClick={handleSortDivClick2}>
           <SortP>
-            {checkedItems2.fatigue ? "피로회복" : checkedItems2.eyes ? "눈 건강" : checkedItems2.bone ? "뺘 건강" : checkedItems2.blood ? "혈관 건강" : checkedItems2.pregnantWomen ? "임산부 추천" : "용도"}
+            {checkedItems2.fatigue ? "피로회복" : checkedItems2.eyes ? "눈 건강" : checkedItems2.bone ? "뼈 건강" : checkedItems2.blood ? "혈관 건강" : checkedItems2.pregnantWomen ? "임산부 추천" : "용도"}
           </SortP>
-          <img src={selectDivVisible2 ? icon_up : icon_down} alt="icon" style={{width: "1.8vw", height: "1vw", cursor: "pointer"}}/>        
+          <img src={selectDivVisible2 ? icon_up : icon_down} alt="icon" style={{width: "1.5vw", height: "0.7vw", cursor: "pointer"}}/>        
         </SortDiv>
       </First>
 
@@ -429,7 +455,11 @@ const Pills = () => {
         </CircleContainer>
       </Banner>
       <PillsBoxContainer>
-        <PillsList data={filteredDrugs} selectType={selectedType} selectExplain={selectedExplain}/>
+         {filteredDrugs.length === 0 ? (
+          <p style={{color:"white",fontSize: "2.5rem", fontWeight: "bold"}}>정보 없음...</p>
+        ) : (
+          <PillsList data={filteredDrugs} selectType={selectedType} selectExplain={selectedExplain}/>
+        )}
       </PillsBoxContainer>
     </PillsContainer>
   );
