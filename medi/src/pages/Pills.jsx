@@ -223,7 +223,6 @@ const Pills = () => {
       [itemName]: !prevCheckedItems[itemName],
     };
 
-    // 만약 클릭한 항목이 이미 선택된 경우, 선택을 토글하기 위해 false로 설정합니다.
     if (prevCheckedItems[itemName]) {
       setSelectedType([]);
     } else {
@@ -265,7 +264,6 @@ const Pills = () => {
       [itemName]: !prevCheckedItems[itemName],
     };
 
-    // 만약 클릭한 항목이 이미 선택된 경우, 선택을 토글하기 위해 false로 설정합니다.
     if (prevCheckedItems[itemName]) {
       setSelectedExplain([]);
     } else {
@@ -455,7 +453,7 @@ const Pills = () => {
         </CircleContainer>
       </Banner>
       <PillsBoxContainer>
-         {filteredDrugs.length === 0 ? (
+        {filteredDrugs.length === 0 ? (
           <p style={{color:"white",fontSize: "2.5rem", fontWeight: "bold"}}>정보 없음...</p>
         ) : (
           <PillsList data={filteredDrugs} selectType={selectedType} selectExplain={selectedExplain}/>
