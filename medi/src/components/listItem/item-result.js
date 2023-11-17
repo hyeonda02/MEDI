@@ -9,16 +9,16 @@ const StyleItem = styled.div`
     border-radius: 0.8vw;
     display: flex;
     align-items: center;
-    padding: 1vw 0 1vw 0;
+    padding: 1vw 1vw 1vw 0;
     margin-top: -1vw;
     background-color: ${colors.subBlue};
-
     flex-direction: row;
     justify-content: space-between;
 `;
 
 
 const CalcResultP = styled.p`
+    
     color: ${colors.black};
     font-size: 1vw;
 
@@ -32,12 +32,12 @@ const ItemResult = ({id, type1, title, type2, explain}) => {
     return(
         <StyleItem key={id}>
             <div style={{ padding: "0 2vw", backgroundColor: "white", width: "10vw", height: "9vw", borderRadius: "1vw"  }}>
-                <CalcResultP style={{ fontWeight: "bold", fontSize: "1vw" }}>
-                    {type1} + {type2}
+                <CalcResultP style={{ fontWeight: "bold", fontSize: "1.5vw",display:"flex",alignItems:"center", width:"100%",textAlign:"center", justifyContent:"center" }}>
+                    {type1}<br></br>+ <br></br>{type2}
                 </CalcResultP>
             </div>
-            <div style={{ padding: "0 2vw", backgroundColor: "white", width: "60vw", height: "9vw", borderRadius: "1vw", marginLeft: '0.5vw'}}>
-                <CalcTitleRightP style={{ color: title === '"적절함"' ? 'green' : 'red' }}>{title}</CalcTitleRightP>
+            <div style={{ fontWeight: "bold", padding: "0 2vw", backgroundColor: "white", width: "60vw", height: "9vw", borderRadius: "1vw", marginLeft: '0.5vw'}}>
+                <CalcTitleRightP style={{ fontWeight: "bold", color: title === '"적절함"' ? 'green' : 'red' }}>{title}</CalcTitleRightP>
                 <CalcResultP>{explain}</CalcResultP>
             </div>
 

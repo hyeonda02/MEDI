@@ -114,19 +114,8 @@ const CalcResult = () => {
                         </DoctorContainer>
                     </div>
                     <div className="right" style={{width: "75%", marginBottom:"5%"}}>
-                        <PatientContainer>
-                            <Patient>
-                                <CalcResultP style={{marginLeft: "3vw", fontWeight: "bold", fontSize: "1vw"}}>환자명</CalcResultP>
-                                <ResultBar style={{height: "100%", marginLeft: "3vw"}}/>
-                                <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>강다현</CalcResultP>
-                            </Patient>
-                            <Patient>
-                                <CalcResultP style={{marginLeft: "3vw", fontWeight: "bold", fontSize: "1vw"}}>환자명</CalcResultP>
-                                <ResultBar style={{height: "100%", marginLeft: "3vw"}}/>
-                                <CalcResultP style={{marginLeft: "2vw", fontWeight: "bold", fontSize: "1vw"}}>강다현</CalcResultP>
-                            </Patient>
-                        </PatientContainer>
-                        <CalcResultP style={{fontWeight: "bold", marginTop: "2vw", fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.<br/>이곳에 나타나지 않는 조합들은 안심하고 같이 복용해도 된답니다!</CalcResultP>
+
+                        <CalcResultP style={{fontWeight: "bold",  fontSize: "1vw"}}>약 조합의 설명을 한 눈에 보여드릴게요.<br/>이곳에 나타나지 않는 조합들은 안심하고 같이 복용해도 된답니다!</CalcResultP>
 
                         <ListResult data  ={selectedDataCombi}/>
 

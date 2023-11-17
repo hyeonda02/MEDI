@@ -318,7 +318,7 @@ const Calc = () => {
                         
                         <Flex2>
                             <CalcListEx>상품 목록</CalcListEx>
-                            <Warning>* 최대 5개까지 선택할 수 있습니다.</Warning>
+                            <Warning>* 최대 6개까지 선택할 수 있습니다.</Warning>
                         </Flex2>
                         
                         {/* 회색박스 */}
