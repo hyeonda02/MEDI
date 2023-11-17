@@ -10,7 +10,7 @@ const FooterDiv = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${colors.gray};
-    position: ${({ islogin }) => (islogin === "true" ? "fixed" : "relative")};
+    position: ${({ islogin, isloading }) => (islogin === "true" || isloading === "true" ? "fixed" : "relative")};
     bottom: 0;
     left: 0;
     margin-top: 10rem;
@@ -54,9 +54,10 @@ const Footer = () => {
     const isteam = location.pathname === "/team";
     const issign = location.pathname === "/signup";
     const iscalc = location.pathname === "/calc";
+    const isloading = location.pathname === "/loading";
 
     return (
-        <FooterDiv islogin={islogin.toString()} isteam={isteam.toString()} issign={issign.toString()} iscalc={iscalc.toString()}>
+        <FooterDiv islogin={islogin.toString()} isteam={isteam.toString()} issign={issign.toString()} iscalc={iscalc.toString()} isloading={isloading.toString()}>
             <img src={mediFooter} alt="footer" />
         </FooterDiv>
     );
