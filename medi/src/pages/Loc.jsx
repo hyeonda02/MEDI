@@ -50,9 +50,10 @@ const Location = () => {
     <div
       className="Location"
       style={{
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        // justifyContent: "center",
         alignItems: "center",
         marginBottom: "5vw",
       }}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import LoginButton from "../components/button/button-auth";
 import Input from "../components/input/input-auth";
 import error from "../assets/images/error.png";
+import axios from "axios";
 
 const LoginP = styled.p`
     color: ${colors.white};
@@ -34,9 +35,25 @@ const ErrorContainer = styled.div`
 
 const Login = () => {
     const [showPass, setShowPass] = useState(false);
+    const [userid, setUserId] = useState('');
+    const [userpassword, setUserPassword] = useState('');
 
     const toggleShowPassword = () => {
-    setShowPass(!showPass);
+        setShowPass(!showPass);
+    };
+
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('https://jsonplaceholder.typicode.com/posts', {
+                userId: userid,
+                userPassword: userpassword
+            });
+            console.log('로그인 성공', response.data);
+            window.location.href = "/";
+            
+        } catch (error) {
+            console.error('로그인 실패', error.response.data);
+        }
     };
 
 
@@ -51,18 +68,18 @@ const Login = () => {
 
             <LoginContainer>
                 <LoginP>아이디</LoginP>
-                <Input show="text" placeholder="아이디를 입력해주세요." />
+                <Input show="text" placeholder="아이디를 입력해주세요." input={userid} handleInputChange={(e) => setUserId(e.target.value)}/>
             </LoginContainer>
 
             <LoginContainer style={{ position: "relative", marginTop: "-1vw" }}>
                 <LoginP>비밀번호</LoginP>
-                <Input show={showPass} toggleShow={toggleShowPassword} placeholder="비밀번호를 입력해주세요."/>
+                <Input show={showPass} toggleShow={toggleShowPassword} placeholder="비밀번호를 입력해주세요." input={userpassword} handleInputChange={(e) => setUserPassword(e.target.value)}/>
 
                 <ErrorContainer>
                     <img src={error} alt="error" style={{width: "0.8vw", height: "0.8vw"}}/>
                     <LoginP style={{color: colors.red, fontSize: "0.8vw"}}>잘못된 정보입니다. 다시 입력해주세요.</LoginP>
                 </ErrorContainer>
-                <LoginButton buttonText="LOGIN" linkTo="/" type="submit"/>
+                <LoginButton buttonText="LOGIN" type="submit" onClick={(e) => { e.preventDefault(); handleLogin(); }} />
             </LoginContainer>
 
             <div style={{display: "flex", gap: "1rem", opacity: "0.5", fontSize: "0.5rem"}}>
