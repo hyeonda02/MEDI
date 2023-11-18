@@ -103,7 +103,7 @@ const CalcResult = () => {
                 <CalcResultP style={{marginTop: "1rem"}}>영양제 종류</CalcResultP>
                 <div style={{width: "80%", height: "0.5vw", backgroundColor: colors.white}}/>
 
-                <div style={{width: "80%", display: "flex", marginTop: "1.5vw"}}>
+                <div style={{width: "80%", display: "flex", marginTop: "1.5vw", marginBottom: "2vw"}}>
                     <div className="left" style={{ width: "25%", display: "flex", flexDirection: "column"}}>
                         <DoctorContainer>
                             <img src={medi} alt="medi" style={{width: "12vw", height: "12vw"}}/>
