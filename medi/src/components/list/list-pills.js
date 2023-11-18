@@ -3,14 +3,12 @@ import DrugListItem from "../listItem/item-pills";
 
 const StyleGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 0.8fr);
   justify-content: center;
   align-items: center;
-  gap: 4rem;
 
   @media screen and (max-width: 600px) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
   }
 `;
 

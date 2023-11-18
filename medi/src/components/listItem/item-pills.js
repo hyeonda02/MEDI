@@ -4,20 +4,20 @@ import colors from "../../styles/colors";
 
 // 전체 틀 스타일
 const StyleItem = styled.div`
-  margin-top: 5rem;
-  width: 12vw;
+  margin-top: 5vw;
+  width: 80%;
   min-height: 16vw;
-  border: none;
-  // background-color: ${colors.black};
-  border-radius: 1vw;
+  //border: none;
+  //border-radius: 1vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-left:5vw;
 
   @media screen and (max-width: 600px) {
-    width: 80%;
+    width: 50%;
     min-height: 21vw;
   }
 `;
@@ -76,16 +76,31 @@ const StyledParagraph = styled.p`
   color: ${colors.white};
   font-size: 2rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   display: flex;
-  flex-direction: row;
-  gap: 30px;
-  justify-content: space-between;
-  margin: 1vw 1vw 0 0;
+  flex-direction: column;
+  gap: 1vw;
+  justify-content: flex-start;
+  align-items: flex-start;
   cursor: pointer;
+
+  .company {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
 
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
+
+    .company {font-size: 1.2rem;}
+
+    .name {
+      font-size: 1.8rem;
+    }
   }
 `;
 
@@ -97,18 +112,23 @@ export const PillsModal = styled.div`
   transform: translate(-50%, -50%);
   background-color: ${colors.white};
   color: ${colors.black};
-  padding: 20px;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 80%;
   text-align: left;
   z-index: 999;
   letter-spacing: 2px;
-  font-size: 1.5rem;
+  font-size: 2rem;
 
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
-    padding: 10px;
+    padding: 2rem;
+
+    .close-button {
+      padding: 10px 20px;
+      font-size: 2rem;
+    }
   }
 
   .close-button {
@@ -129,7 +149,7 @@ const ResponsiveImage = styled.div`
   justify-content: space-between;
 
   img {
-    width: 20%;
+    width: 20vw;
     height: auto;
 
     @media (max-width: 600px) {
@@ -154,7 +174,6 @@ const DrugListItem = (props) => {
   const {
     id,
     img,
-    type,
     company,
     name,
     modalExplain,
@@ -190,15 +209,14 @@ const DrugListItem = (props) => {
       </ImageContainer>
       <ItemContainer>
         <StyledParagraph>
-          {company}
-          <br />
-          {type}
+          <span className="company">{company}</span>
+          <span className="name">{name}</span>
         </StyledParagraph>
       </ItemContainer>
       {isModalOpen && (
         <>
           <PillsModal>
-            <h4 style={{ fontSize: "2rem", fontWeight: "bold" }}>{name}</h4>
+            <h4 style={{ fontSize: "3rem", fontWeight: "bold" }}>{name}</h4>
             <p style={{ fontWeight: "bold" }}>{formattedModalExplain}</p>
             <br />
             <ResponsiveImage>
