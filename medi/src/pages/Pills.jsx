@@ -19,6 +19,7 @@ const PillsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 80vh;
 `;
 
 //검색과 필터링 박스
