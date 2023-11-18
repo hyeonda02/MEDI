@@ -172,13 +172,15 @@ const CheckedPills = styled.div`
 `
 
 const PillsImage = styled.img`
-    width: auto;
-    height: 75%;
+    width: 25%;
+    height: auto;
+    
 `
 
 const CalcPills = styled.div`
     color: black;
     font-size: 1vw;
+    width: 55%;
     
 `
 const CalcCom = styled.div`
@@ -212,6 +214,19 @@ const Flex2 = styled.div`
     align-items: center;
     justify-content: space-between;
     margin: auto;
+`
+
+const ListCenter = styled.div`
+
+    width: 100%;
+    height: 100%;
+    margin: 2%;
+    gap: 0.6vw;
+    display: flex;
+    
+    justify-content: center; //수평정렬
+    align-items: center; //수직정렬
+
 `
 
 
@@ -321,15 +336,18 @@ const Calc = () => {
                             <Warning>* 최대 6개까지 선택할 수 있습니다.</Warning>
                         </Flex2>
                         
-                        {/* 회색박스 */}
+                        {/* 스크롤박스 */}
                         <CalcListContainer>
                             {filteredDrugs.map(drug => (
+                                // 회색박스
                                 <CalcList key={drug.id}   isselected={selectedItems.includes(drug.id) ? true : undefined} onClick={() => handleBoxClick(drug.id)}>
-                                    <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
-                                    <CalcPills>
-                                        <CalcCom>{drug.company}</CalcCom>
-                                        <CalcPillsName>{drug.name}</CalcPillsName>
-                                    </CalcPills>
+                                    <ListCenter>
+                                        <PillsImage src={require(`../assets/${drug.image}`)} alt={drug.name} />
+                                        <CalcPills>
+                                            <CalcCom>{drug.company}</CalcCom>
+                                            <CalcPillsName>{drug.name}</CalcPillsName>
+                                        </CalcPills>
+                                    </ListCenter>
                                 </CalcList>
                             ))}
                         </CalcListContainer>
