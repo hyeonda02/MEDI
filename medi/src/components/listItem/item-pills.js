@@ -4,18 +4,15 @@ import colors from "../../styles/colors";
 
 // 전체 틀 스타일
 const StyleItem = styled.div`
-  margin-top: 5vw;
-  width: 80%;
+  width: 100%;
   min-height: 16vw;
-  //border: none;
-  //border-radius: 1vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-top: 5vw;
+
   @media screen and (max-width: 600px) {
-    width: 18vw;
     min-height: 21vw;
   }
 `;
@@ -48,6 +45,7 @@ const ItemContainer = styled.div`
   position: relative;
   border-radius: 3px;
   overflow: hidden;
+  text-align: left;
 
   &:hover {
     .MovieDetail {
@@ -77,32 +75,32 @@ const StyledParagraph = styled.p`
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 1vw;
   justify-content: flex-start;
-  align-items: flex-start;
+  margin: 0px;
   cursor: pointer;
 
   .company {
     font-size: 1.5rem;
-    font-weight: bold;
   }
 
   .name {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
 
     .company {
-      font-size: 1.1rem;
+      font-size: 1rem; 
     }
 
     .name {
-      font-size: 1.5rem;
+      font-size: 1.5rem; 
     }
   }
 `;
+
+
 
 // 모달 스타일
 export const PillsModal = styled.div`
@@ -124,11 +122,6 @@ export const PillsModal = styled.div`
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
     padding: 2rem;
-
-    .close-button {
-      padding: 10px 20px;
-      font-size: 2rem;
-    }
   }
 
   .close-button {
@@ -141,6 +134,12 @@ export const PillsModal = styled.div`
     padding: 10px 20px;
     cursor: pointer;
     font-size: 4rem;
+    
+    @media screen and (max-width: 600px) {
+      .close-button {
+        padding: 5px 10px;
+        font-size: 2rem;
+      }
   }
 `;
 
@@ -150,12 +149,10 @@ const ResponsiveImage = styled.div`
   justify-content: space-between;
 
   img {
-    width: 20vw;
+    max-width: 15%;
     height: auto;
-
-    @media screen and (max-width: 600px) {
-      width: 15vw;
-    }
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;
 
@@ -211,6 +208,7 @@ const DrugListItem = (props) => {
       <ItemContainer>
         <StyledParagraph>
           <span className="company">{company}</span>
+          <br></br>
           <span className="name">{name}</span>
         </StyledParagraph>
       </ItemContainer>

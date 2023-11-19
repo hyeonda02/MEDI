@@ -3,9 +3,9 @@ import DrugListItem from "../listItem/item-pills";
 
 const StyleGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 0.8fr);
-  justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
+  gap: 2vw;
 
   @media screen and (max-width: 600px) {
     grid-template-columns: repeat(4, 1fr);

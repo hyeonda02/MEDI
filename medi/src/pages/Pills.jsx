@@ -24,6 +24,7 @@ const PillsContainer = styled.div`
 
 //검색과 필터링 박스
 const First = styled.div`
+  position: relative;
   width: 60%;
   display: flex;
   align-items: center;
@@ -50,6 +51,7 @@ const SearchImage = styled.img`
 
 //필터링 박스
 const SortDiv = styled.div`
+  position: relative;
   width: 22%;
   height: 100%;
   border: 0.2vw solid #2a2a3a;
@@ -75,7 +77,7 @@ const SelectDiv = styled.div`
   border-radius: 2.5vw;
   background-color: #191b24;
   position: absolute;
-  margin-top: 6vh;
+  margin-top:11vw;
   margin-left: 16.5vw;
   z-index: 1;
 `;
