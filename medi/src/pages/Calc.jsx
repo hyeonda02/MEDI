@@ -26,8 +26,6 @@ const CalcExplainContainer = styled.div`
     margin-top: 5rem;
     display: flex;
     justify-content: center;
-    //background-color: ${colors.gray};
-    
 `
 const CalcExplain = styled.div`
     display: flex;
@@ -54,13 +52,6 @@ const CalcTitle = styled.div`
     font-size : 1.5vw;
     margin-left : 5rem;
     margin-top : 4rem;
-
-    // margin : 1.5% auto;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-
-
     color : ${colors.white};
     text-shadow: 2.5px 2px 2px gray; 
 `
@@ -99,8 +90,6 @@ const CalcListContainer = styled.div`
     border-radius: 3rem;
     display: flex;
     justify-content: center; //수평정렬
-    //align-items: center; //수직정렬
-    // margin-top: 1vw;
     overflow-y: auto;
     flex-wrap: wrap;
 
@@ -136,14 +125,12 @@ const CalcList = styled.div`
     justify-content: center; //수평정렬
     align-items: center; //수직정렬
 
-
     ${({ isselected }) =>
         isselected &&
         `
         background-color: ${colors.silver};
     `}
 `
-
 // 선택한 항목
 const CalcListEx2 = styled.div`
     font-size : 1vw;
@@ -156,17 +143,17 @@ const CalcCheckedContainer = styled.div`
     border-radius: 1.5vw;
     background-color: ${colors.white};
     margin: 1.5% auto;
-    align-items: center; //수직정렬
+    align-items: center;
     
 `
 // 선택된 영양제
 const CheckedPills = styled.div`
     display: flex;
-    flex-wrap: wrap; // 아이템을 다음 줄로 감싸도록 설정
+    flex-wrap: wrap;
     justify-content: center; 
     height: 15vw;
     @media (min-height: 30%) {
-        flex-direction: column; // 작은 화면에서는 세로로 정렬되도록 변경
+        flex-direction: column; 
         align-items: center;
     }
 `
@@ -174,7 +161,6 @@ const CheckedPills = styled.div`
 const PillsImage = styled.img`
     width: 25%;
     height: auto;
-    
 `
 
 const CalcPills = styled.div`
@@ -184,7 +170,7 @@ const CalcPills = styled.div`
     
 `
 const CalcCom = styled.div`
-font-size: 0.8vw;
+    font-size: 0.8vw;
     color: black;
 `
 const CalcPillsName = styled.div`
@@ -202,10 +188,8 @@ const Warning = styled.div`
     text-align: center;
     font-size: 1vw;
 `
-
 const Flex = styled.div`
     display:flex;
-
 `
 const Flex2 = styled.div`
     display:flex;
@@ -215,20 +199,15 @@ const Flex2 = styled.div`
     justify-content: space-between;
     margin: auto;
 `
-
 const ListCenter = styled.div`
-
     width: 100%;
     height: 100%;
     margin: 2%;
     gap: 0.6vw;
     display: flex;
-    
     justify-content: center; //수평정렬
     align-items: center; //수직정렬
-
 `
-
 
 
 const Calc = () => {
@@ -257,7 +236,7 @@ const Calc = () => {
 
     }
 
-    // 사용자의 입력 값이 type 또는 name과 일치하는 항목을 필터링
+    // 사용자의 입력 값이 type,name,company와 일치하는 항목을 필터링
     const filteredDrugs = DrugData.filter(drug =>
         drug.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
         drug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -390,17 +369,11 @@ const Calc = () => {
                     </CalcCheckedContainer>
                 </Flex>
                 
-
-                <Completebutton
-                    buttonText="완료"
-                    onClick = {submit}
-                />
+                <Completebutton buttonText="완료" onClick = {submit} />
             </CalcBox>
-
         </div>
-
         
     )
-
 };
+
 export default Calc
