@@ -14,10 +14,8 @@ const StyleItem = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-left:5vw;
-
   @media screen and (max-width: 600px) {
-    width: 50%;
+    width: 18vw;
     min-height: 21vw;
   }
 `;
@@ -33,7 +31,7 @@ const ImageContainer = styled.div`
     margin: 1vw 0 1vw 0;
 
     @media (max-width: 600px) {
-      height: 17vw;
+      height: 12vw;
     }
   }
   &:hover img {
@@ -96,10 +94,12 @@ const StyledParagraph = styled.p`
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
 
-    .company {font-size: 1.2rem;}
+    .company {
+      font-size: 1.1rem;
+    }
 
     .name {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   }
 `;
@@ -133,6 +133,7 @@ export const PillsModal = styled.div`
 
   .close-button {
     position: absolute;
+    background-color: ${colors.lightgray};
     top: 10px;
     right: 10px;
     border: none;
@@ -152,8 +153,8 @@ const ResponsiveImage = styled.div`
     width: 20vw;
     height: auto;
 
-    @media (max-width: 600px) {
-      height: 17vw;
+    @media screen and (max-width: 600px) {
+      width: 15vw;
     }
   }
 `;

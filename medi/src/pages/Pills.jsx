@@ -73,12 +73,12 @@ const SelectDiv = styled.div`
   min-width: 12.5vw;
   border: 0.05vw solid ${colors.white};
   border-radius: 2.5vw;
-  background-color: #191B24;
+  background-color: #191b24;
   position: absolute;
-  margin-top: 7.5%;
+  margin-top: 6vh;
   margin-left: 16.5vw;
   z-index: 1;
-`
+`;
 
 const SelectContainer = styled.div`
   display: flex;
