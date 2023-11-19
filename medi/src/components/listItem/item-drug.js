@@ -13,7 +13,7 @@ const StyleItem = styled.div`
 
     @media screen and (max-width:600px) {
         width: 18vw;
-        min-height: 21vw;
+        min-height: 22vw;
     }
 `
 
@@ -30,7 +30,7 @@ const ImageContainer = styled.div`
     justify-content: center;
 
     img {
-        width: 90%;
+        width: 80%;
         height: 10vw;
         margin: 1vw 0 1vw 0;
 
@@ -48,12 +48,12 @@ const ItemDrug = (props) => {
             <ItemContainer>
                 <div style={{
                     width: "0.5rem",
-                    height: "4rem",
+                    height: "2vw",
                     backgroundColor: colors.white
                 }} />
                 <p style={{
                     color: colors.white,
-                    fontSize: "1.5rem",
+                    fontSize: "1vw",
                     fontWeight: "bold"
                 }}>{company}<br />{type}</p>
             </ItemContainer>
