@@ -31,7 +31,7 @@ const teamData = [
         "name": "오유진",
         "number": "2171431",
         "track": "모바일소프트웨어트랙", 
-        "role": "디자인 및 Calc, Animation 페이지 개발",
+        "role": "디자인 및 Calc, Loading 페이지 개발",
         "git": "https://github.com/0hyujin",
         "image": "images/2171431.png"
     }
