@@ -52,20 +52,20 @@ const SortDiv = styled.div`
   justify-content: center;
   width: 22%;
   height: 100%;
-  border: 0.2vw solid #2a2a3a;
+  border: 0.2vw solid ${colors.darkgray};
   border-radius: 1.5vw;
-  background: #191b24;
-  color: #484a64;
-  font-size: 1.2vw;
+  background: ${colors.gray};
+  color: ${colors.darkslateblue};
+  font-size: 1.1vw;
   gap: 2vw;
   cursor: pointer;
   z-index: 2;
 `;
 
 const SortP = styled.p`
-  color: #949494;
-  font-size: 1vw;
-`
+  color: ${colors.navy};
+  font-size: 1.1vw;
+`;
 
 const SelectDiv = styled.div`
   position: absolute;
@@ -74,7 +74,7 @@ const SelectDiv = styled.div`
   margin-left: 16.5%;
   border: 0.05vw solid ${colors.white};
   border-radius: 2.5vw;
-  background-color: #191b24;
+  background-color: ${colors.gray};
   z-index: 1;
 `;
 
@@ -96,7 +96,6 @@ const Slides = styled.div`
   height: 100%;
 `;
 
-//배너
 const Banner = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,13 +115,11 @@ const PillsBannerContainer = styled.div`
   gap: 1vw;
 `;
 
-// 배너 이미지
 const Image = styled.img`
   width: 100%;
   border-radius: 0.5vw;
 `;
 
-// 배너 양쪽 버튼
 const Button = styled.img`
   width: 1.2vw;
   height: 1.2vw;
@@ -133,7 +130,6 @@ const ButtonLeftStyled = styled(Button)``;
 
 const ButtonRightStyled = styled(Button)``;
 
-// 배너 밑 동그라미 3개
 const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -145,13 +141,13 @@ const CircleContainer = styled.div`
 const Circle = styled.div`
   width: 0.5vw;
   height: 0.5vw;
-  background: #191b24;
+  background: ${colors.gray};
   border: none;
   border-radius: 50%;
   cursor: pointer;
 
   &.active {
-    background: #484a64;
+    background: ${colors.darkslateblue};
   }
 `;
 
@@ -164,10 +160,19 @@ const PillsBoxContainer = styled.div`
 `;
 
 const Pills = () => {
+
+  // 검색어
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchTermChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   //배너
   const images = [Banner1, Banner2, Banner3];
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // 슬라이드 변경 처리 함수
   const handleSlideChange = (direction) => {
     let newIndex = currentSlide + direction;
 
@@ -179,7 +184,7 @@ const Pills = () => {
 
     setCurrentSlide(newIndex);
   };
-
+  // 자동 슬라이드 타이머 설정
   useEffect(() => {
     const autoSlideTimer = setInterval(() => {
       setCurrentSlide((prevSlide) => {
@@ -196,8 +201,7 @@ const Pills = () => {
     };
   }, [images.length]);
 
-
-  // 셀렉트
+  //셀렉트
   const [checkedItems, setCheckedItems] = useState({
     vitamin: false,
     zinc: false,
@@ -205,24 +209,23 @@ const Pills = () => {
     calciumMagnesium: false,
     ironOmega3: false,
   });
-
-
+  // 클릭 처리 함수
   const handleItemClick = (itemName) => {
-  setCheckedItems((prevCheckedItems) => {
-    const newState = {
-      vitamin: false,
-      zinc: false,
-      lutein: false,
-      calciumMagnesium: false,
-      ironOmega3: false,
-      [itemName]: !prevCheckedItems[itemName],
-    };
+    setCheckedItems((prevCheckedItems) => {
+      const newState = {
+        vitamin: false,
+        zinc: false,
+        lutein: false,
+        calciumMagnesium: false,
+        ironOmega3: false,
+        [itemName]: !prevCheckedItems[itemName],
+      };
 
-    if (prevCheckedItems[itemName]) {
-      setSelectedType([]);
-    } else {
-      const type =
-        itemName === "vitamin"
+      if (prevCheckedItems[itemName]) {
+        setSelectedType([]);
+      } else {
+        const type =
+          itemName === "vitamin"
             ? "비타민"
             : itemName === "zinc"
             ? "아연"
@@ -233,57 +236,56 @@ const Pills = () => {
             : itemName === "ironOmega3"
             ? "철분제/오메가3"
             : "";
-      setSelectedType(type);
-    }
+        setSelectedType(type);
+      }
 
-    return newState;
-  });
-  };
-
-    const [checkedItems2, setCheckedItems2] = useState({
-      fatigue: false,
-      eyes: false,
-      bone: false,
-      blood: false,
-      pregnantWomen: false,
+      return newState;
     });
+  };
+  //두 번째 셀렉트
+  const [checkedItems2, setCheckedItems2] = useState({
+    fatigue: false,
+    eyes: false,
+    bone: false,
+    blood: false,
+    pregnantWomen: false,
+  });
 
   const handleItemClick2 = (itemName) => {
-  setCheckedItems2((prevCheckedItems) => {
-    const newState = {
-      fatigue: false,
-      eyes: false,
-      bone: false,
-      blood: false,
-      pregnantWomen: false,
-      [itemName]: !prevCheckedItems[itemName],
-    };
+    setCheckedItems2((prevCheckedItems) => {
+      const newState = {
+        fatigue: false,
+        eyes: false,
+        bone: false,
+        blood: false,
+        pregnantWomen: false,
+        [itemName]: !prevCheckedItems[itemName],
+      };
 
-    if (prevCheckedItems[itemName]) {
-      setSelectedExplain([]);
-    } else {
-      const type =
-        itemName === "fatigue"
-          ? "피로회복"
-          : itemName === "eyes"
-          ? "눈건강"
-          : itemName === "bone"
-          ? "뼈건강"
-          : itemName === "blood"
-          ? "혈관건강"
-          : itemName === "pregnantWomen"
-          ? "임산부추천"
-          : "";
+      if (prevCheckedItems[itemName]) {
+        setSelectedExplain([]);
+      } else {
+        const type =
+          itemName === "fatigue"
+            ? "피로회복"
+            : itemName === "eyes"
+            ? "눈건강"
+            : itemName === "bone"
+            ? "뼈건강"
+            : itemName === "blood"
+            ? "혈관건강"
+            : itemName === "pregnantWomen"
+            ? "임산부추천"
+            : "";
 
-      setSelectedExplain(type);
-    }
+        setSelectedExplain(type);
+      }
 
-    return newState;
-  });
-};
-  
+      return newState;
+    });
+  };
 
-  // 셀렉트 보이기 안보이기
+  // 셀렉트 보이기 안보이기 설정
   const [selectDivVisible, setSelectDivVisible] = useState(false);
 
   const handleSortDivClick = () => {
@@ -296,21 +298,18 @@ const Pills = () => {
     setSelectDivVisible2(!selectDivVisible2);
   };
 
-  // 데이터 다 출력
+  // 데이터 모두 출력
   const [drugs, setDrugData] = useState(DrugData);
 
   useEffect(() => {
     setDrugData(DrugData);
   }, []);
 
-  // 검색
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // 셀렉트
+  // 셀렉트 타입 및 설명
   const [selectedType, setSelectedType] = useState([]);
   const [selectedExplain, setSelectedExplain] = useState([]);
 
-
+  // 데이터 필터링
   const filteredDrugs = drugs.filter((drug) => {
     const isSelectedType =
       selectedType.length === 0 ||
@@ -338,12 +337,6 @@ const Pills = () => {
         drug.company.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
-
-
-  const handleSearchTermChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
 
   return (
     <PillsContainer>

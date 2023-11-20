@@ -42,7 +42,6 @@ const StyledParagraph = styled.p`
   }
 `;
 
-// 모달 스타일
 export const PillsModal = styled.div`
   position: fixed;
   top: 50%;
@@ -103,7 +102,6 @@ const ScrollableContent = styled.div`
     border-radius: 5px;
 `;
 
-// 이미지를 나타내는 부분
 const ResponsiveImage = styled.div`
   display: flex;
   justify-content: space-between;
@@ -116,7 +114,6 @@ const ResponsiveImage = styled.div`
   }
 `;
 
-// 모달을 덮는 배경
 const StyledOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -141,6 +138,7 @@ const DrugListItem = (props) => {
     modalImage4,
   } = props;
 
+  // 모달 열림 상태를 관리하는 상태
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -162,9 +160,11 @@ const DrugListItem = (props) => {
 
   return (
     <StyleItem key={id}>
+      {/* 이미지 클릭 시 모달 열기 */}
       <ImageContainer onClick={openModal}>
         <img src={img} alt="drug" />
       </ImageContainer>
+      {/* 약품 정보를 나타내는 상자 */}
       <ItemContainer>
         <StyledParagraph>
           <span className="company">{company}</span>
@@ -172,13 +172,17 @@ const DrugListItem = (props) => {
           <span className="name">{name}</span>
         </StyledParagraph>
       </ItemContainer>
+      {/* 모달이 열려있을 때 */}
       {isModalOpen && (
         <>
+          {/* 약품 정보를 나타내는 모달 */}
           <PillsModal>
             <h4 style={{ fontSize: "3rem", fontWeight: "bold" }}>{name}</h4>
+            {/* 스크롤 가능한 내용 */}
             <ScrollableContent>
               <p style={{ fontWeight: "bold" }}>{formattedModalExplain}</p>
               <br />
+              {/* 반응형 이미지 */}
               <ResponsiveImage>
                 <img src={modalImage1} alt="food" />
                 <img src={modalImage2} alt="food" />
@@ -187,6 +191,7 @@ const DrugListItem = (props) => {
               </ResponsiveImage>
             </ScrollableContent>
             <br />
+            {/* 모달 닫기 버튼 */}
             <button className="close-button" onClick={closeModal}>
               ✖
             </button>

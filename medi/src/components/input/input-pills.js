@@ -8,7 +8,7 @@ const SearchInput = styled.input`
     color: #484a64;
     outline: none;
     padding: 1vw 3vw 1vw 4vw;
-    font-size: 1vw;
+    font-size: 1.4vw;
     align-items: center;
 `;
 
