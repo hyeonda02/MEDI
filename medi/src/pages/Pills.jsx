@@ -162,13 +162,13 @@ const Circle = styled.div`
   }
 `;
 
-//약 상자 설명
 const PillsBoxContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1vw;
-  padding-top: 2vw;
+  width: 60%;
+  margin-left: 1vw;
 `;
 
 const Pills = () => {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import colors from "../../styles/colors";
 
-// 전체 틀 스타일
 const StyleItem = styled.div`
   width: 100%;
   min-height: 16vw;
@@ -11,13 +10,8 @@ const StyleItem = styled.div`
   align-items: center;
   cursor: pointer;
   margin-top: 5vw;
-
-  @media screen and (max-width: 600px) {
-    min-height: 21vw;
-  }
 `;
 
-//모달 상자
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -26,80 +20,27 @@ const ImageContainer = styled.div`
     width: 90%;
     height: 10vw;
     margin: 1vw 0 1vw 0;
-
-    @media (max-width: 600px) {
-      height: 12vw;
-    }
   }
+
   &:hover img {
     transform: scale(1.5);
   }
 `;
 
-// 각 아이템을 감싸는 틀
 const ItemContainer = styled.div`
-  display: flex;
+  width: 100%;
   margin-top: 10px;
-  flex: 0 0 12.5%;
-  box-sizing: border-box;
-  position: relative;
-  border-radius: 3px;
-  overflow: hidden;
-  text-align: left;
-
-  &:hover {
-    .MovieDetail {
-      display: block;
-    }
-    ${ImageContainer} img {
-      transform: scale(1.5);
-    }
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: 600px) {
-      height: 17vw;
-    }
-  }
-`;
-
-// 아이템 정보를 나타내는 문단
-const StyledParagraph = styled.p`
   color: ${colors.white};
-  font-size: 2rem;
+  font-size: 0.8vw;
   font-weight: bold;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   margin: 0px;
-  cursor: pointer;
-
-  .company {
-    font-size: 1.5rem;
-  }
-
-  .name {
-    font-size: 2.5rem;
-  }
-
-  @media screen and (max-width: 600px) {
-    font-size: 1.5rem; 
-
-    .company {
-      font-size: 1rem; 
-    }
-
-    .name {
-      font-size: 1.5rem; 
-    }
-  }
 `;
 
+const StyledParagraph = styled.p`
+  .name {
+    font-size: 1.2vw;
+  }
+`;
 
 
 // 모달 스타일
