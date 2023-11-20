@@ -20,7 +20,6 @@ const CalcBannerP2 = styled.p`
     font-size: 2rem;
     margin-top: -0.5rem;
 `
-
 const CalcExplainContainer = styled.div`
     width: 70%;
     margin-top: 5rem;
