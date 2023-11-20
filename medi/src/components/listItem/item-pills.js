@@ -42,7 +42,6 @@ const StyledParagraph = styled.p`
   }
 `;
 
-
 // 모달 스타일
 export const PillsModal = styled.div`
   position: fixed;
@@ -51,13 +50,13 @@ export const PillsModal = styled.div`
   transform: translate(-50%, -50%);
   background-color: ${colors.white};
   color: ${colors.black};
-  padding: 2rem;
-  border-radius: 8px;
+  padding: 2vw;
+  border-radius: 5vw;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  max-width: 80%;
+  max-width: 50%;
   text-align: left;
   z-index: 999;
-  letter-spacing: 2px;
+  letter-spacing: 0.3vw;
   font-size: 2rem;
 
   @media screen and (max-width: 600px) {
@@ -67,21 +66,41 @@ export const PillsModal = styled.div`
 
   .close-button {
     position: absolute;
-    background-color: ${colors.lightgray};
-    top: 10px;
-    right: 10px;
+    top: 3vw;
+    right: 3vw;
     border: none;
     border-radius: 4px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
-    font-size: 4rem;
-    
+    font-size: 3rem;
+
     @media screen and (max-width: 600px) {
       .close-button {
-        padding: 5px 10px;
+        padding: 10px 10px;
         font-size: 2rem;
+        top: 5px;
+        right: 5px;
       }
+    }
   }
+`;
+
+const ScrollableContent = styled.div`
+  max-height: 60vh; 
+  overflow-y: auto; 
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${colors.gray};
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${colors.lightgray};
+    border-radius: 5px;
 `;
 
 // 이미지를 나타내는 부분
@@ -157,14 +176,16 @@ const DrugListItem = (props) => {
         <>
           <PillsModal>
             <h4 style={{ fontSize: "3rem", fontWeight: "bold" }}>{name}</h4>
-            <p style={{ fontWeight: "bold" }}>{formattedModalExplain}</p>
-            <br />
-            <ResponsiveImage>
-              <img src={modalImage1} alt="food" />
-              <img src={modalImage2} alt="food" />
-              <img src={modalImage3} alt="food" />
-              <img src={modalImage4} alt="food" />
-            </ResponsiveImage>
+            <ScrollableContent>
+              <p style={{ fontWeight: "bold" }}>{formattedModalExplain}</p>
+              <br />
+              <ResponsiveImage>
+                <img src={modalImage1} alt="food" />
+                <img src={modalImage2} alt="food" />
+                <img src={modalImage3} alt="food" />
+                <img src={modalImage4} alt="food" />
+              </ResponsiveImage>
+            </ScrollableContent>
             <br />
             <button className="close-button" onClick={closeModal}>
               ✖
