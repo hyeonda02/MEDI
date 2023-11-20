@@ -22,7 +22,6 @@ const PillsContainer = styled.div`
   min-height: 80vh;
 `;
 
-//검색과 필터링 박스
 const First = styled.div`
   position: relative;
   width: 60%;
@@ -32,7 +31,6 @@ const First = styled.div`
   gap: 2vw;
 `;
 
-//검색
 const PillsSearch = styled.div`
   width: 50%;
   display: flex;
@@ -40,7 +38,6 @@ const PillsSearch = styled.div`
   color: ${colors.lightgray};
 `;
 
-//검색아이콘
 const SearchImage = styled.img`
   width: 1.5vw;
   height: 1.5vw;
@@ -49,7 +46,6 @@ const SearchImage = styled.img`
   z-index: 1;
 `;
 
-//필터링 박스
 const SortDiv = styled.div`
   display: flex;
   align-items: center;
@@ -70,7 +66,7 @@ const SortP = styled.p`
   color: #949494;
   font-size: 1vw;
 `
-//셀렉트 박스
+
 const SelectDiv = styled.div`
   position: absolute;
   min-width: 12.5vw;
@@ -87,7 +83,7 @@ const SelectContainer = styled.div`
   align-items: center;
   margin-top: 1vw;
 `
-//셀렉트 위아래 
+
 const SelectImage = styled.img`
   width: 1vw;
   height: 1vw;
@@ -95,21 +91,19 @@ const SelectImage = styled.img`
   cursor: pointer;
 `
 
-//배너 슬라이드
 const Slides = styled.div`
   width: 100%;
   height: 100%;
-  border: none;
-  border-radius: 0.4vw;
 `;
+
 //배너
 const Banner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 100%;
-`;
+  `;
+  
 const PillsBannerContainer = styled.div`
   width: 65%;
   height: 9vw;
@@ -145,6 +139,7 @@ const CircleContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 1.5vw;
+  gap: 1vw;
 `;
 
 const Circle = styled.div`
@@ -154,8 +149,6 @@ const Circle = styled.div`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  margin: 0 0.25vw;
-  transition: background-color 0.3s;
 
   &.active {
     background: #484a64;
@@ -163,11 +156,10 @@ const Circle = styled.div`
 `;
 
 const PillsBoxContainer = styled.div`
+  width: 60%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 1vw;
-  width: 60%;
   margin-left: 1vw;
 `;
 
