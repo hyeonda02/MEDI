@@ -70,7 +70,7 @@ const SortP = styled.p`
 const SelectDiv = styled.div`
   position: absolute;
   min-width: 12.5vw;
-  margin-top: 45%;
+  margin-top: 48%;
   margin-left: 16.5%;
   border: 0.05vw solid ${colors.white};
   border-radius: 2.5vw;
