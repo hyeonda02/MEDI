@@ -1,6 +1,6 @@
 import React from 'react';
 import colors from "../styles/colors";
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
 import pillImage from "../assets/images/loadingpill.png"
 
 
@@ -27,10 +27,22 @@ const LoadExplain = styled.div`
     align-items: center;
     flex-direction: column;
 `
+
+const moveUpDown  = keyframes`
+    100% { // 애니메이션 끝
+    transform: translateY(0);
+    }
+    50% { // 애니메이션 중간 지점
+        transform: translateY(-2vw);
+    }
+`;
 const UserImage = styled.img`
     width: 15%;
     height: auto;
+    animation: ${moveUpDown} 2s infinite; 
 `
+
+
 
 const Loading = () => {
     return (
