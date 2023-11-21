@@ -39,7 +39,6 @@
 	<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white" /><br/>
   <img src="https://img.shields.io/badge/figma-F24E1E?style=flat&logo=figma&logoColor=white" />
   <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white" />
-  <h4><a href="배포링크">🔗 프로젝트 배포</a></h4>
   <h6>현재는 프론트엔드 영역만 구현이 되어 있습니다. 추후 백엔드 개발이 이루어진다면 로그인, 회원가입 작동 기능을 포함한 추가적인 부분을 구현할 예정입니다.</h6>
   <br>
     
