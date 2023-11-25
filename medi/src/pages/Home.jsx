@@ -4,7 +4,7 @@ import colors from "../styles/colors";
 import styled from "styled-components";
 import ListDrug from "../components/list/list-drug";
 import DrugData from "../util/drug";
-import homeBanner from "../assets/images/homeBanner.png";
+import homeBanner from "../assets/images/homeBanner2.png";
 import user from "../assets/images/user.png";
 import medi from "../assets/images/medi.png";
 import mediLogo from "../assets/images/mediLogo.png";
